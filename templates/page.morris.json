@@ -110,7 +110,7 @@
         "button_link": "",
         "button_style": "link",
         "image_position": "right",
-        "text_alignment": "left",
+        "text_alignment": "center",
         "use_alt_bg": false
       }
     }
