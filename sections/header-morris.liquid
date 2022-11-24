@@ -1,48 +1,31 @@
-{%- assign mobile_expand_with_entire_link = true -%}
-
 {% style %}
-  .logo img {
-    width: {{ section.settings.logo_img_width_int }}px;
+  .logo-area2 {
+    display: flex;
+    justify-items: center;
   }
-  .logo-area__middle--logo-image {
-    max-width: {{ section.settings.logo_img_width_int }}px;
+
+  .logo-in-the-middle {
+    margin-left: auto;
+    margin-right: auto;
   }
-  @media (max-width: 767px) {
     .logo img {
-      width: {{ section.settings.mobile_logo_img_width_int }}px;
+      width: {{ section.settings.logo_img_width_int }}px;
+      margin: 2rem auto;
     }
-  }
-  {%- if section.settings.enable_sticky -%}
-  .section-header {
-    position: -webkit-sticky;
-    position: sticky;
-  }
-  {%- endif -%}
+    .logo-area__middle--logo-image {
+      max-width: {{ section.settings.logo_img_width_int }}px;
+    }
+    @media (max-width: 767px) {
+      .logo img {
+        width: {{ section.settings.mobile_logo_img_width_int }}px;
+      }
+    }
 {% endstyle %}
 
-{% if template == 'gift_card' %}
-  {% comment %} Gift card template logo {% endcomment %}
-  <meta itemprop="url" content="{{ shop.url }}">
-  <meta itemprop="name" content="{{ shop.name }}">
-  {% if section.settings.logo != blank %}
-    <h1 class="logo" itemscope itemtype="http://schema.org/Organization">
-      {% capture img_size %}{{ section.settings.logo_img_width_int | times: 2 }}x{% endcapture %}
-      <img
-        src="{{ section.settings.logo | img_url: img_size }}"
-        alt="{{ section.settings.logo.alt | escape }}"
-        itemprop="logo"
-        width="{{ section.settings.logo.width }}"
-        height="{{ section.settings.logo.height }}"
-      >
-    </h1>
-  {% else %}
-    <h1>{{ shop.name }}</h1>
-  {% endif %}
-{% else %}
-  {%- assign featured_links = section.settings.nav_featured_link | split: ', ' -%}
-  <div data-section-type="header" data-cc-animate>
-    <div id="pageheader" class="pageheader pageheader--layout-{{ section.settings.menu_layout }}">
-      {%- capture logo_html -%}
+<div>
+  <div id="pageheader" class="pageheader">
+    {%- capture logo_html -%}
+    <div class="logo-area2">
       <div class="logo">
         <a href="{{ routes.root_url }}" title="{{ shop.name }}">
           {%- if section.settings.logo != blank -%}
@@ -53,209 +36,17 @@
           {%- endif -%}
         </a>
       </div>
+    </div>
     {%- endcapture -%}
-      {%- comment -%} LOGO SECTION {%- endcomment -%}
-      <div class="logo-area container container--no-max">
-        <div class="logo-area__left">
-          <div class="logo-area__left__inner">
-            <button
-              class="button notabutton mobile-nav-toggle"
-              aria-label="{{ 'general.navigation.menu_toggle_aria_label' | t | escape }}"
-              aria-controls="main-nav"
-            >
-              {% render 'svg-menu' %}
-            </button>
-            {% if section.settings.enable_search %}
-              <a class="show-search-link" href="{{ routes.search_url }}">
-                <span class="show-search-link__icon">
-                  {%- render 'svg-search' -%}
-                </span>
-                <span class="show-search-link__text">
-                  {{- 'layout.search.open' | t -}}
-                </span>
-              </a>
-            {% endif %}
-            {% if section.settings.menu_layout contains 'inline' %}
-              <div
-                class="navigation navigation--left"
-                role="navigation"
-                aria-label="{{ 'general.navigation.main_navigation_aria_label' | t | escape }}"
-              >
-                <div class="navigation__tier-1-container">
-                  <ul class="navigation__tier-1">
-                    {% for link in linklists[section.settings.menu_linklist].links %}
-                      {%- assign has_dropdown = false -%}
-                      {%- if link.links != blank -%}
-                        {%- assign has_dropdown = true -%}
-                      {%- else -%}
-                        {%- for block in section.blocks -%}
-                          {%- if block.settings.dropdown_link_title == link.title -%}
-                            {%- assign has_dropdown = true -%}
-                          {%- endif -%}
-                        {%- endfor -%}
-                      {%- endif -%}
-                      <li class="navigation__item{% if has_dropdown %} navigation__item--with-children{% endif %}{% if featured_links contains link.title %} featured-link{% endif %}{% if link.active %} navigation__item--active{% endif %}">
-                        <a
-                          href="{{ link.url }}"
-                          class="navigation__link"
-                          {% if has_dropdown %}
-                            aria-haspopup="true" aria-expanded="false"
-                            aria-controls="NavigationTier2-{{ forloop.index }}"
-                          {% endif %}
-                        >
-                          {{- link.title -}}
-                        </a>
-                      </li>
-                    {% endfor %}
-                  </ul>
-                </div>
-              </div>
-            {% endif %}
-          </div>
-        </div>
-
-        <div class="logo-area__middle logo-area__middle--logo-{% if section.settings.logo != blank %}image{% else %}text{% endif %}">
-          <div class="logo-area__middle__inner">
-            {{- logo_html -}}
-          </div>
-        </div>
-
-        <div class="logo-area__right">
-          <div class="logo-area__right__inner">
-            <a href="#swym-wishlist" class="swym-wishlist">
-              <i aria-hidden="true" focusable="false" role="presentation" class="icon icon-swym-wishlist"></i>
-            </a>
-            {% if shop.customer_accounts_enabled %}
-              {% if customer %}
-                <a
-                  class="header-account-link"
-                  href="{{ routes.account_url }}"
-                  aria-label="{{ 'layout.customer.account' | t | escape }}"
-                >
-                  <span class="desktop-only">{{ 'layout.customer.account' | t | escape }}</span>
-                  <span class="mobile-only">{% render 'svg-user' %}</span>
-                </a>
-              {% else %}
-                <a
-                  class="header-account-link"
-                  href="{{ routes.account_login_url }}"
-                  aria-label="{{ 'layout.customer.account' | t | escape }}"
-                >
-                  <span class="desktop-only">{{ 'layout.customer.account' | t | escape }}</span>
-                  <span class="mobile-only">{% render 'svg-user' %}</span>
-                </a>
-              {% endif %}
-            {% endif %}
-            {% if section.settings.enable_search %}
-              <a class="show-search-link" href="{{ routes.search_url }}">
-                <span class="show-search-link__text">
-                  {{- 'layout.search.open' | t -}}
-                </span>
-                <span class="show-search-link__icon">
-                  {%- render 'svg-search' -%}
-                </span>
-              </a>
-            {% endif %}
-            <a href="{{ routes.cart_url }}" class="cart-link">
-              <span class="cart-link__label">{{ 'layout.header.cart' | t | escape }}</span>
-              <span class="cart-link__icon">
-                {%- render 'svg-cart' -%}
-                {%- if cart.item_count > 0 -%}
-                  <span class="cart-link__count"
-                    ><span class="pplr_cart_count">{{ cart.item_count }}</span></span
-                  >
-                {%- endif -%}
-              </span>
-            </a>
-          </div>
+    <div class="logo-area2 container container--no-max">
+      <div class="logo-in-the-middle logo-area__middle--logo-{% if section.settings.logo != blank %}image{% else %}text{% endif %}">
+        <div class="logo-area__middle__inner">
+          {{- logo_html -}}
         </div>
       </div>
-      {%- comment -%} END OF LOGO SECTION {%- endcomment -%}
     </div>
-
-    <a
-      href="#"
-      class="header-shade mobile-nav-toggle"
-      aria-label="{{ 'general.navigation_menu.toggle_aria_label' }}"
-    ></a>
   </div>
-
-  {%- if section.settings.menu_layout contains 'inline' -%}
-    <script id="InlineNavigationCheckScript">
-      theme.inlineNavigationCheck = function () {
-        var pageHeader = document.querySelector('.pageheader'),
-          inlineNavContainer = pageHeader.querySelector('.logo-area__left__inner'),
-          inlineNav = inlineNavContainer.querySelector('.navigation--left');
-        if (inlineNav && getComputedStyle(inlineNav).display != 'none') {
-          var inlineMenuCentered = document.querySelector('.pageheader--layout-inline-menu-center'),
-            logoContainer = document.querySelector('.logo-area__middle__inner');
-          if (inlineMenuCentered) {
-            var rightWidth = document.querySelector('.logo-area__right__inner').clientWidth,
-              middleWidth = logoContainer.clientWidth,
-              logoArea = document.querySelector('.logo-area'),
-              computedLogoAreaStyle = getComputedStyle(logoArea),
-              logoAreaInnerWidth =
-                logoArea.clientWidth -
-                Math.ceil(parseFloat(computedLogoAreaStyle.paddingLeft)) -
-                Math.ceil(parseFloat(computedLogoAreaStyle.paddingRight)),
-              availableNavWidth = logoAreaInnerWidth - Math.max(rightWidth, middleWidth) * 2 - 40;
-            inlineNavContainer.style.maxWidth = availableNavWidth + 'px';
-          }
-
-          var lastInlineNavLink = inlineNav.querySelector('.navigation__item:last-child');
-          if (lastInlineNavLink) {
-            var inlineNavWidth = lastInlineNavLink.offsetLeft + lastInlineNavLink.offsetWidth;
-            if (inlineNavContainer.offsetWidth >= inlineNavWidth) {
-              pageHeader.classList.add('pageheader--layout-inline-permitted');
-              var tallLogo = logoContainer.clientHeight > lastInlineNavLink.clientHeight + 1;
-              if (tallLogo) {
-                inlineNav.classList.add('navigation--tight-underline');
-              } else {
-                inlineNav.classList.remove('navigation--tight-underline');
-              }
-            } else {
-              pageHeader.classList.remove('pageheader--layout-inline-permitted');
-            }
-          }
-        }
-      };
-      theme.inlineNavigationCheck();
-    </script>
-  {%- endif -%}
-{% endif %}
-
-<script>
-  setTimeout(function () {
-    $('.desktop-only .navigation__tier-3--collection:first-child').each(function () {
-      var $ulFirst = $(this)
-        .parents('.navigation__tier-2')
-        .find('.navigation__item--with-children:first-child .navigation__tier-3');
-      $(this).height($ulFirst.height());
-    });
-  }, 300);
-
-  $(window).resize(function () {
-    if ($(window).width() >= 768) {
-      $('.desktop-only .navigation__tier-3--collection:first-child').each(function () {
-        var $ulFirst = $(this)
-          .parents('.navigation__tier-2')
-          .find('.navigation__item--with-children:first-child .navigation__tier-3');
-        $(this).height($ulFirst.height());
-      });
-    }
-  });
-</script>
-
-{% style %}
-  .desktop-only .navigation__tier-3--collection {
-    position: relative;
-  }
-  .desktop-only .navigation__tier-3--collection .navigation__item--last {
-    position: absolute;
-    bottom: 20px;
-    left: 0;
-  }
-{% endstyle %}
+</div>
 
 {% schema %}
 {
@@ -276,7 +67,7 @@
       "step": 5,
       "unit": "px",
       "label": "Logo width",
-      "default": 180
+      "default": 280
     },
     {
       "type": "range",
@@ -286,134 +77,7 @@
       "step": 5,
       "unit": "px",
       "label": "Mobile logo width",
-      "default": 100
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_sticky",
-      "label": "Enable sticky header",
-      "default": false
-    },
-    {
-      "type": "header",
-      "content": "Navigation"
-    },
-    {
-      "type": "link_list",
-      "id": "menu_linklist",
-      "label": "Menu",
-      "default": "main-menu"
-    },
-    {
-      "type": "select",
-      "id": "menu_layout",
-      "label": "Menu alignment",
-      "info": "Alignment will switch to 'Underneath' if the links do not fit beside the logo",
-      "options": [
-        {
-          "value": "inline-menu-left",
-          "label": "Left"
-        },
-        {
-          "value": "inline-menu-center",
-          "label": "Center"
-        },
-        {
-          "value": "underneath",
-          "label": "Underneath"
-        }
-      ],
-      "default": "underneath"
-    },
-    {
-      "type": "text",
-      "id": "nav_featured_link",
-      "label": "Featured link",
-      "info": "Enter the title of a link to highlight it in a different color",
-      "default": "Sale"
-    },
-    {
-      "type": "header",
-      "content": "Mobile navigation"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_mobile_promo_carousel",
-      "label": "Enable carousel layout for menu promotions",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_nav_mob_products",
-      "label": "Enable featured products",
-      "info": "Shows beneath the main menu",
-      "default": false
-    },
-    {
-      "type": "text",
-      "id": "nav_mob_products_title",
-      "label": "Featured products title",
-      "default": "Best Sellers"
-    },
-    {
-      "type": "collection",
-      "id": "nav_mob_products_collection",
-      "label": "Featured products collection"
-    },
-    {
-      "type": "header",
-      "content": "Search"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_search",
-      "label": "Enable search",
-      "default": true
-    },
-    {
-      "type": "text",
-      "id": "search_suggestions_title",
-      "label": "Suggestions title",
-      "info": "Suggestions show when the search is opened."
-    },
-    {
-      "type": "link_list",
-      "id": "search_suggestions_menu",
-      "label": "Suggestions menu",
-      "info": "Dropdown menus will show as separate rows. Links to collections and products will show images."
-    }
-  ],
-  "blocks": [
-    {
-      "type": "menu-promotion",
-      "name": "Menu promotion",
-      "settings": [
-        {
-          "type": "paragraph",
-          "content": "Menu promotions are shown in dropdown menus. [Read more](https://cleancanvas.co.uk/support/symmetry/header)"
-        },
-        {
-          "type": "text",
-          "id": "dropdown_link_title",
-          "label": "Link name",
-          "info": "The name of any top-level link"
-        },
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Image"
-        },
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Title"
-        },
-        {
-          "type": "url",
-          "id": "link_url",
-          "label": "Link URL"
-        }
-      ]
+      "default": 200
     }
   ]
 }
