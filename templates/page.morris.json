@@ -1,5 +1,5 @@
 {
-  "layout": "morris-theme",
+  "layout": "morris",
   "sections": {
     "main": {
       "type": "main-page",
