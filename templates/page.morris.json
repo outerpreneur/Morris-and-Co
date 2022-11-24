@@ -4,6 +4,7 @@
     "6d859a71-d25b-4f76-b0cb-a557165de02c": {
       "type": "image-with-text-overlay",
       "settings": {
+        "image": "shopify:\/\/shop_images\/web_banner_11.11_Mobile-100.jpg",
         "image_position": "center center",
         "mobile_image_position": "center center",
         "height": "fixed",
@@ -21,10 +22,27 @@
         "button_url_1": "",
         "button_label_2": "",
         "button_url_2": "",
-        "text_alignment": "center center",
+        "text_alignment": "bottom center",
         "full_width": true,
-        "mobile_overlay_under": false,
+        "mobile_overlay_under": true,
         "overlay_style": "shadow"
+      }
+    },
+    "0fdbb545-4a2f-4ab3-b103-acd4f06e347c": {
+      "type": "image-with-text",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/STP_Desktop.jpg",
+        "image_width": 700,
+        "subheading": "",
+        "title": "Image with text",
+        "use_h1": false,
+        "text": "<p>Pair text with an image to give customers insight into your brand. Tell a story, explain a product detail, or describe a new promotion.<\/p>",
+        "button_label": "Read more",
+        "button_link": "",
+        "button_style": "primary",
+        "image_position": "left",
+        "text_alignment": "center",
+        "use_alt_bg": false
       }
     },
     "16609021926b1f542e": {
@@ -40,25 +58,22 @@
         "button_link": "",
         "button_style": "primary",
         "image_position": "right",
-        "text_alignment": "left",
+        "text_alignment": "center",
         "use_alt_bg": false
       }
     },
-    "16609028053a7c743a": {
-      "type": "image-with-text",
+    "90c2b149-898f-4a94-ab5e-946376594505": {
+      "type": "featured-collection",
       "settings": {
-        "image": "shopify:\/\/shop_images\/hp-found.jpg",
-        "image_width": 700,
-        "subheading": "Social Responsibility",
-        "title": "",
-        "use_h1": false,
-        "text": "<p>August Berg strives to make a positive difference in the lives of others. With every watch sold, August Berg gifts 6-months of quality education and, with 20,000 watches sold, August Berg will build a school for kids in local communities in rural Africa through Human Practice Foundation.​<\/p>",
-        "button_label": "Learn more",
-        "button_link": "",
-        "button_style": "link",
-        "image_position": "left",
-        "text_alignment": "left",
-        "use_alt_bg": false
+        "title": "DISCOVER OUR WATCH COLLECTION",
+        "collection": "best-sellers",
+        "show_vendor": false,
+        "enable_carousel": false,
+        "grid": 4,
+        "rows": 1,
+        "use_alt_bg": false,
+        "show_view_all": false,
+        "full_width": false
       }
     },
     "main": {
@@ -66,22 +81,6 @@
       "disabled": true,
       "settings": {
         "full_width": false
-      }
-    },
-    "0fdbb545-4a2f-4ab3-b103-acd4f06e347c": {
-      "type": "image-with-text",
-      "settings": {
-        "image_width": 700,
-        "subheading": "",
-        "title": "Image with text",
-        "use_h1": false,
-        "text": "<p>Pair text with an image to give customers insight into your brand. Tell a story, explain a product detail, or describe a new promotion.<\/p>",
-        "button_label": "Read more",
-        "button_link": "",
-        "button_style": "primary",
-        "image_position": "left",
-        "text_alignment": "left",
-        "use_alt_bg": false
       }
     },
     "dc45021e-f91c-4a08-ba90-506338f1ab3d": {
@@ -98,28 +97,31 @@
         "full_width": false
       }
     },
-    "90c2b149-898f-4a94-ab5e-946376594505": {
-      "type": "featured-collection",
+    "16609028053a7c743a": {
+      "type": "image-with-text",
       "settings": {
-        "title": "DISCOVER OUR WATCH COLLECTION",
-        "collection": "best-sellers",
-        "show_vendor": false,
-        "enable_carousel": false,
-        "grid": 4,
-        "rows": 1,
-        "use_alt_bg": false,
-        "show_view_all": false,
-        "full_width": false
+        "image": "shopify:\/\/shop_images\/hp-found.jpg",
+        "image_width": 700,
+        "subheading": "Social Responsibility",
+        "title": "",
+        "use_h1": false,
+        "text": "<p>August Berg strives to make a positive difference in the lives of others. With every watch sold, August Berg gifts 6-months of quality education and, with 20,000 watches sold, August Berg will build a school for kids in local communities in rural Africa through Human Practice Foundation.​<\/p>",
+        "button_label": "Learn more",
+        "button_link": "",
+        "button_style": "link",
+        "image_position": "right",
+        "text_alignment": "left",
+        "use_alt_bg": false
       }
     }
   },
   "order": [
     "6d859a71-d25b-4f76-b0cb-a557165de02c",
-    "16609021926b1f542e",
-    "16609028053a7c743a",
-    "main",
     "0fdbb545-4a2f-4ab3-b103-acd4f06e347c",
+    "16609021926b1f542e",
+    "90c2b149-898f-4a94-ab5e-946376594505",
+    "main",
     "dc45021e-f91c-4a08-ba90-506338f1ab3d",
-    "90c2b149-898f-4a94-ab5e-946376594505"
+    "16609028053a7c743a"
   ]
 }
