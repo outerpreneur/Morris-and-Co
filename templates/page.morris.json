@@ -1,6 +1,13 @@
 {
   "layout": "morris",
   "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "full_width": false
+      }
+    },
     "6d859a71-d25b-4f76-b0cb-a557165de02c": {
       "type": "image-with-text-overlay",
       "settings": {
@@ -45,6 +52,20 @@
         "use_alt_bg": false
       }
     },
+    "90c2b149-898f-4a94-ab5e-946376594505": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "DISCOVER OUR WATCH COLLECTION",
+        "collection": "best-sellers",
+        "show_vendor": false,
+        "enable_carousel": false,
+        "grid": 4,
+        "rows": 1,
+        "use_alt_bg": false,
+        "show_view_all": false,
+        "full_width": false
+      }
+    },
     "16609021926b1f542e": {
       "type": "image-with-text",
       "settings": {
@@ -60,27 +81,6 @@
         "image_position": "right",
         "text_alignment": "center",
         "use_alt_bg": false
-      }
-    },
-    "90c2b149-898f-4a94-ab5e-946376594505": {
-      "type": "featured-collection",
-      "settings": {
-        "title": "DISCOVER OUR WATCH COLLECTION",
-        "collection": "best-sellers",
-        "show_vendor": false,
-        "enable_carousel": false,
-        "grid": 4,
-        "rows": 1,
-        "use_alt_bg": false,
-        "show_view_all": false,
-        "full_width": false
-      }
-    },
-    "main": {
-      "type": "main-page",
-      "disabled": true,
-      "settings": {
-        "full_width": false
       }
     },
     "dc45021e-f91c-4a08-ba90-506338f1ab3d": {
@@ -116,11 +116,11 @@
     }
   },
   "order": [
+    "main",
     "6d859a71-d25b-4f76-b0cb-a557165de02c",
     "0fdbb545-4a2f-4ab3-b103-acd4f06e347c",
-    "16609021926b1f542e",
     "90c2b149-898f-4a94-ab5e-946376594505",
-    "main",
+    "16609021926b1f542e",
     "dc45021e-f91c-4a08-ba90-506338f1ab3d",
     "16609028053a7c743a"
   ]
