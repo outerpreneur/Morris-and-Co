@@ -32,7 +32,7 @@
         "text_alignment": "bottom center",
         "full_width": true,
         "mobile_overlay_under": true,
-        "overlay_style": "shadow"
+        "overlay_style": "box"
       }
     },
     "0fdbb545-4a2f-4ab3-b103-acd4f06e347c": {
