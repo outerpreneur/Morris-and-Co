@@ -1326,8 +1326,8 @@
         "type": "header-morris",
         "settings": {
           "logo": "shopify:\/\/shop_images\/imageedit_2_5468040617.png",
-          "logo_img_width_int": 180,
-          "mobile_logo_img_width_int": 100
+          "logo_img_width_int": 270,
+          "mobile_logo_img_width_int": 230
         }
       }
     },
