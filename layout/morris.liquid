@@ -125,11 +125,11 @@
       {% assign sizes = '180,220,300,360,460,540,720,900,1080,1296,1512,1728,2048' | split: ',' %}
       {%- for size in sizes -%}
         {% capture preloadSrcset %}
-          {% assign sizeX = size | append: 'x' %}
-          {{ featured_media | replace: '1x1', sizeX }}
-          {{size}}w,
-          {{preloadSrcset}}
-        {% endcapture %}
+            {% assign sizeX = size | append: 'x' %}
+            {{ featured_media | replace: '1x1', sizeX }}
+            {{size}}w,
+            {{preloadSrcset}}
+          {% endcapture %}
       {%- endfor -%}
       <link rel="preload" as="image" href="{{featured_media | replace: '_1x1', '' }}" imagesrcset="{{preloadSrcset}}">
     {% endif %}
@@ -179,7 +179,7 @@
     <main id="content" role="main">
       <div class="container cf">
         <div class="globoRecommendationsTop"></div>
-        {{ content_for_layout -}}
+        {{ content_for_layout }}
         {%- render 'globo.alsobought.action' %}
       </div>
       <!-- /.container -->
@@ -187,10 +187,7 @@
     <!-- /#content -->
 
     {% if request.path != '/challenge' %}
-      <div id="pagefooter">
-        {% section 'cross-page-promos' %}
-        {% section 'footer' %}
-      </div>
+      <div id="pagefooter"></div>
 
       {% section 'popup' %}
     {% endif %}
