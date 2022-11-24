@@ -1,0 +1,95 @@
+{%- comment -%}
+{%- liquid
+  assign label_text = false
+  if settings.prod_new_show
+    if settings.prod_new_method == 'date'
+      assign now_s = 'now' | date: '%s' | plus: 0
+      assign pub_s = product.created_at | date: '%s' | plus: 0
+      assign diff_days = now_s | minus: pub_s | divided_by: 86400
+
+      if diff_days < settings.prod_new_limit_int
+        assign label_text = 'products.labels.new_in' | t
+        assign label_css_class_suffix = 'new-in'
+      endif
+    elsif settings.prod_new_method == 'tag'
+      if product.tags contains 'New'
+        assign label_text = 'products.labels.new_in' | t
+        assign label_css_class_suffix = 'new-in'
+      endif
+    else
+      for collection in product.collections
+        assign split_collection_handle = collection.handle | split: '-'
+        if split_collection_handle contains 'new'
+          assign label_text = 'products.labels.new_in' | t
+          assign label_css_class_suffix = 'new-in'
+          break
+        endif
+      endfor
+    endif
+  endif
+
+  unless label_text
+    if settings.prod_stock_warn_show and settings.prod_stock_warn_limit_int == 0 and product.variants.size == 1 and product.variants.first.inventory_management != blank and product.variants.first.inventory_quantity > 0
+      assign label_text = 'products.labels.only_x_left' | t: quantity: product.variants.first.inventory_quantity
+      assign label_css_class_suffix = 'stock'
+    elsif settings.prod_stock_warn_show and product.variants.size == 1 and product.variants.first.inventory_management != blank and product.variants.first.inventory_quantity > 0 and product.variants.first.inventory_quantity <= settings.prod_stock_warn_limit_int
+      assign label_text = 'products.labels.only_x_left' | t: quantity: product.variants.first.inventory_quantity
+      assign label_css_class_suffix = 'stock'
+    elsif settings.prod_reduction_show and cheapest_variant.compare_at_price > cheapest_variant.price
+      if settings.prod_reduction_type == 'percent'
+        assign amount = 1.0 | times: cheapest_variant.price | divided_by: cheapest_variant.compare_at_price
+        assign amount = 1.0 | minus: amount
+        assign amount = amount | times: 100.0 | round
+        assign label_text = 'products.labels.percent_reduction' | t: amount: amount
+        assign label_css_class_suffix = 'sale'
+      else
+        assign amount = cheapest_variant.compare_at_price | minus: cheapest_variant.price | money
+        assign label_text = 'products.labels.value_reduction_html' | t: amount: amount
+        assign label_css_class_suffix = 'sale'
+      endif
+    endif
+  endunless
+-%}
+{%- if label_text -%}
+  <span class="product-label product-label--{{ label_css_class_suffix }}">
+    <span>{{ label_text }}</span>
+  </span>
+{%- endif -%}
+{%- endcomment -%}
+{% assign showLabel = false %}
+{% for tag in product.tags %}
+  {% if tag contains 'badge:' %}
+    {% assign showLabel = true %}
+  {% endif %}
+{% endfor %}
+{% if showLabel or product.price < product.compare_at_price %}
+  <div class="product-label-box">
+    {% if product.price < product.compare_at_price %}
+      <span class="product-label product-label--sale">
+        <span>Sale</span>
+      </span>
+    {% endif %}
+    {% for tag in product.tags %}
+      {% if tag contains 'badge:' %}
+        {% assign newTag = tag | split: 'badge:' | last %}
+        {% if newTag contains 'New' %}
+          <span class="product-label product-label--new">
+            <span>{{newTag}}</span>
+          </span>
+        {% elsif newTag contains 'Limited Editions' %}
+          <span class="product-label product-label--limited">
+            <span>{{newTag}}</span>
+          </span>
+        {% elsif newTag contains 'Free Gifts' %}
+          <span class="product-label product-label--free">
+            <span>{{newTag}}</span>
+          </span>
+        {% else %}
+          <span class="product-label product-label--common">
+            <span>{{newTag}}</span>
+          </span>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  </div>
+{% endif %}

@@ -1,0 +1,736 @@
+{%- assign mobile_expand_with_entire_link = true -%}
+
+{% style %}
+  .logo img {
+    width: {{ section.settings.logo_img_width_int }}px;
+  }
+  .logo-area__middle--logo-image {
+    max-width: {{ section.settings.logo_img_width_int }}px;
+  }
+  @media (max-width: 767px) {
+    .logo img {
+      width: {{ section.settings.mobile_logo_img_width_int }}px;
+    }
+  }
+  {%- if section.settings.enable_sticky -%}
+  .section-header {
+    position: -webkit-sticky;
+    position: sticky;
+  }
+  {%- endif -%}
+{% endstyle %}
+
+{% if template == 'gift_card' %}
+
+{% comment %} Gift card template logo {% endcomment %}
+<meta itemprop="url" content="{{ shop.url }}">
+<meta itemprop="name" content="{{ shop.name }}">
+{% if section.settings.logo != blank %}
+  <h1 class="logo" itemscope itemtype="http://schema.org/Organization">
+    {% capture img_size %}{{ section.settings.logo_img_width_int | times: 2 }}x{% endcapture %}
+    <img src="{{ section.settings.logo | img_url: img_size }}" alt="{{ section.settings.logo.alt | escape }}" itemprop="logo" width="{{ section.settings.logo.width }}" height="{{ section.settings.logo.height }}" />
+  </h1>
+{% else %}
+  <h1>{{ shop.name }}</h1>
+{% endif %}
+
+{% else %}
+
+{%- assign featured_links = section.settings.nav_featured_link | split: ', ' -%}
+<div data-section-type="header" data-cc-animate>
+  <div id="pageheader" class="pageheader pageheader--layout-{{ section.settings.menu_layout }}">
+    {%- capture logo_html -%}
+      <div class="logo">
+        <a href="{{ routes.root_url }}" title="{{ shop.name }}">
+          {%- if section.settings.logo != blank -%}
+            {%- capture img_size -%}{{ section.settings.logo_img_width_int | times: 2 }}x{%- endcapture -%}
+            <img src="{{ section.settings.logo | img_url: img_size }}" alt="{{ section.settings.logo.alt | escape }}" itemprop="logo" width="{{ section.settings.logo.width }}" height="{{ section.settings.logo.height }}" />
+          {%- else -%}
+            <span class="logotext">{{ shop.name }}</span>
+          {%- endif -%}
+        </a>
+      </div>
+    {%- endcapture -%}
+
+    <div class="logo-area container container--no-max">
+      <div class="logo-area__left">
+        <div class="logo-area__left__inner">
+          <button class="button notabutton mobile-nav-toggle" aria-label="{{ 'general.navigation.menu_toggle_aria_label' | t | escape }}" aria-controls="main-nav">
+            {% render 'svg-menu' %}
+          </button>
+          {% if section.settings.enable_search %}
+            <a class="show-search-link" href="{{ routes.search_url }}">
+              <span class="show-search-link__icon">
+                {%- render 'svg-search' -%}
+              </span>
+              <span class="show-search-link__text">
+                {{- 'layout.search.open' | t -}}
+              </span>
+            </a>
+          {% endif %}
+          {% if section.settings.menu_layout contains 'inline' %}
+            <div class="navigation navigation--left" role="navigation" aria-label="{{ 'general.navigation.main_navigation_aria_label' | t | escape }}">
+              <div class="navigation__tier-1-container">
+                <ul class="navigation__tier-1">
+                  {% for link in linklists[section.settings.menu_linklist].links %}
+                    {%- assign has_dropdown = false -%}
+                    {%- if link.links != blank -%}
+                      {%- assign has_dropdown = true -%}
+                    {%- else -%}
+                      {%- for block in section.blocks -%}
+                        {%- if block.settings.dropdown_link_title == link.title -%}
+                          {%- assign has_dropdown = true -%}
+                        {%- endif -%}
+                      {%- endfor -%}
+                    {%- endif -%}
+                    <li class="navigation__item{% if has_dropdown %} navigation__item--with-children{% endif %}{% if featured_links contains link.title %} featured-link{% endif %}{% if link.active %} navigation__item--active{% endif %}">
+                      <a href="{{ link.url }}" class="navigation__link" {% if has_dropdown %}aria-haspopup="true" aria-expanded="false" aria-controls="NavigationTier2-{{ forloop.index }}"{% endif %}>
+                        {{- link.title -}}
+                      </a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="logo-area__middle logo-area__middle--logo-{% if section.settings.logo != blank %}image{% else %}text{% endif %}">
+        <div class="logo-area__middle__inner">
+          {{- logo_html -}}
+        </div>
+      </div>
+
+      <div class="logo-area__right">
+        <div class="logo-area__right__inner">
+        
+          <a href="#swym-wishlist" class="swym-wishlist">
+            <i aria-hidden="true" focusable="false" role="presentation" class="icon icon-swym-wishlist"></i>
+          </a>
+          {% if shop.customer_accounts_enabled %}
+            {% if customer %}
+              <a class="header-account-link" href="{{ routes.account_url }}" aria-label="{{ 'layout.customer.account' | t | escape }}">
+                <span class="desktop-only">{{ 'layout.customer.account' | t | escape }}</span>
+                <span class="mobile-only">{% render 'svg-user' %}</span>
+              </a>
+            {% else %}
+              <a class="header-account-link" href="{{ routes.account_login_url }}" aria-label="{{ 'layout.customer.account' | t | escape }}">
+                <span class="desktop-only">{{ 'layout.customer.account' | t | escape }}</span>
+                <span class="mobile-only">{% render 'svg-user' %}</span>
+              </a>
+            {% endif %}
+          {% endif %}
+          {% if section.settings.enable_search %}
+            <a class="show-search-link" href="{{ routes.search_url }}">
+              <span class="show-search-link__text">
+                {{- 'layout.search.open' | t -}}
+              </span>
+              <span class="show-search-link__icon">
+                {%- render 'svg-search' -%}
+              </span>
+            </a>
+          {% endif %}
+          <a href="{{ routes.cart_url }}" class="cart-link">
+            <span class="cart-link__label">{{ 'layout.header.cart' | t | escape }}</span>
+            <span class="cart-link__icon">
+              {%- render 'svg-cart' -%}
+              {%- if cart.item_count > 0 -%}
+                <span class="cart-link__count"><span class='pplr_cart_count'>{{ cart.item_count }}</span></span>
+              {%- endif -%}
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    {%- if section.settings.enable_search -%}
+      {%- liquid
+        assign show_search_suggestions = false
+        if section.settings.search_suggestions_title != blank or section.settings.search_suggestions_menu != blank
+          assign show_search_suggestions = true
+        endif
+      -%}
+      <div id="main-search" class="main-search {% if show_search_suggestions %}main-search--with-suggestions{% endif %}"
+          data-live-search="{{ settings.enable_live_search }}"
+          data-live-search-price="{{ settings.live_search_show_price }}"
+          data-live-search-vendor="{{ settings.live_search_show_vendor }}"
+          data-live-search-meta="{{ settings.live_search_search_meta }}"
+          data-product-image-shape="{{ settings.prod_thumb_shape }}"
+          data-product-image-crop="{{ settings.prod_thumb_crop }}"
+          data-show-sold-out-label="{{ settings.prod_sold_out_show }}"
+          data-show-sale-label="{{ settings.prod_sale_show }}"
+          data-show-reduction="{{ settings.prod_reduction_show }}"
+          data-reduction-type="{{ settings.prod_reduction_type }}">
+
+        <div class="main-search__container container">
+          <button class="main-search__close button notabutton" aria-label="{{ 'layout.search.close' | t | escape }}">{% render 'svg-x' %}</button>
+
+          <form class="main-search__form" action="{{ routes.search_url }}" method="get" autocomplete="off">
+            <input type="hidden" name="type" value="{{ settings.search_type }}" />
+            <input type="hidden" name="options[prefix]" value="last" />
+            <div class="main-search__input-container">
+              <input class="main-search__input" type="text" name="q" autocomplete="off" placeholder="{{ 'layout.search.placeholder' | t | escape }}" aria-label="{{ 'layout.search.title' | t | escape }}" />
+            </div>
+            <button class="main-search__button button notabutton" type="submit" aria-label="{{ 'layout.header.search_submit' | t }}">{% render 'svg-search' %}</button>
+          </form>
+
+          <div class="main-search__results"></div>
+
+          {% if show_search_suggestions %}
+            <div class="main-search__suggestions">
+              {% if section.settings.search_suggestions_title != blank %}
+                <div class="h4-style heading-font">{{ section.settings.search_suggestions_title }}</div>
+              {% endif %}
+              {% if section.settings.search_suggestions_menu != blank %}
+                {%- liquid
+                  assign suggestions_menu = linklists[section.settings.search_suggestions_menu]
+
+                  if settings.coll_grid_image_shape == 'portrait-23'
+                    assign collection_aspect_ratio = 0.67
+                  elsif settings.coll_grid_image_shape == 'portrait-45'
+                    assign collection_aspect_ratio = 0.8
+                  elsif settings.coll_grid_image_shape == 'square'
+                    assign collection_aspect_ratio = 1.0
+                  elsif settings.coll_grid_image_shape == 'landscape-54'
+                    assign collection_aspect_ratio = 1.25
+                  elsif settings.coll_grid_image_shape == 'landscape-32'
+                    assign collection_aspect_ratio = 1.50
+                  elsif settings.coll_grid_image_shape == 'tallest'
+                    assign collection_aspect_ratio = 999
+                    for link in suggestions_menu.links
+                      for child_link in link.links
+                        if child_link.type == 'collection_link'
+                          if child_link.object.featured_image.aspect_ratio < collection_aspect_ratio
+                            assign collection_aspect_ratio = child_link.object.featured_image.aspect_ratio
+                          endif
+                        endif
+                      endfor
+
+                      if link.type == 'collection_link'
+                        if link.object.featured_image.aspect_ratio < collection_aspect_ratio
+                          assign collection_aspect_ratio = link.object.featured_image.aspect_ratio
+                        endif
+                      endif
+                    endfor
+                  else
+                    assign collection_aspect_ratio = 0
+                    for link in suggestions_menu.links
+                      for child_link in link.links
+                        if child_link.type == 'collection_link' and child_link.object.featured_image.aspect_ratio > collection_aspect_ratio
+                          assign collection_aspect_ratio = child_link.object.featured_image.aspect_ratio
+                        endif
+                      endfor
+
+                      if link.type == 'collection_link' and link.object.featured_image.aspect_ratio > collection_aspect_ratio
+                        assign collection_aspect_ratio = link.object.featured_image.aspect_ratio
+                      endif
+                    endfor
+                  endif
+
+                  if settings.prod_thumb_shape == 'portrait-23'
+                    assign product_aspect_ratio = 0.67
+                  elsif settings.prod_thumb_shape == 'portrait-45'
+                    assign product_aspect_ratio = 0.8
+                  elsif settings.prod_thumb_shape == 'square'
+                    assign product_aspect_ratio = 1.0
+                  elsif settings.prod_thumb_shape == 'landscape-54'
+                    assign product_aspect_ratio = 1.25
+                  elsif settings.prod_thumb_shape == 'landscape-32'
+                    assign product_aspect_ratio = 1.50
+                  elsif settings.prod_thumb_shape == 'tallest'
+                    assign product_aspect_ratio = 99
+                    for link in suggestions_menu.links
+                      for child_link in link.links
+                        if child_link.type == 'product_link' and child_link.object.featured_media.preview_image.aspect_ratio < product_aspect_ratio
+                          assign product_aspect_ratio = child_link.object.featured_media.preview_image.aspect_ratio
+                        endif
+                      endfor
+                      if link.type == 'product_link' and link.object.featured_media.preview_image.aspect_ratio < product_aspect_ratio
+                        assign product_aspect_ratio = link.object.featured_media.preview_image.aspect_ratio
+                      endif
+                    endfor
+                  else
+                    assign product_aspect_ratio = 0
+                    for link in suggestions_menu.links
+                      for child_link in link.links
+                        if child_link.type == 'product_link' and child_link.object.featured_media.preview_image.aspect_ratio > product_aspect_ratio
+                          assign product_aspect_ratio = child_link.object.featured_media.preview_image.aspect_ratio
+                        endif
+                      endfor
+                      if link.type == 'product_link' and link.object.featured_media.preview_image.aspect_ratio > product_aspect_ratio
+                        assign product_aspect_ratio = link.object.featured_media.preview_image.aspect_ratio
+                      endif
+                    endfor
+                  endif
+                -%}
+                <div class="search-suggestions">
+                  <div class="search-suggestions__item-row">
+                    {% for link in suggestions_menu.links %}
+                      {% if link.links != blank %}
+                        <div class="search-suggestions__item search-suggestions__item--with-row">
+                          <div class="search-suggestions__heading h5-style heading-font"><a href="{{ link.url }}">{{ link.title }}</a></div>
+                          <div class="search-suggestions__item-row">
+                            {% for child_link in link.links %}
+                              <div class="search-suggestions__item">
+                                {% if child_link.type == 'collection_link' %}
+                                  {% render 'collection-block', collection: child_link.object, custom_aspect_ratio: collection_aspect_ratio %}
+                                {% elsif child_link.type == 'product_link' %}
+                                  {% render 'product-block', product: child_link.object, custom_aspect_ratio: product_aspect_ratio %}
+                                {% else %}
+                                  <a class="search-suggestions__link" href="{{ child_link.url }}">{{ child_link.title }}</a>
+                                {% endif %}
+                              </div>
+                            {% endfor %}
+                          </div>
+                        </div>
+                      {% else %}
+                        <div class="search-suggestions__item">
+                          {% if link.type == 'collection_link' %}
+                            {% render 'collection-block', collection: link.object, custom_aspect_ratio: collection_aspect_ratio %}
+                          {% elsif link.type == 'product_link' %}
+                            {% render 'product-block', product: link.object, custom_aspect_ratio: product_aspect_ratio %}
+                          {% else %}
+                            <a class="search-suggestions__link" href="{{ link.url }}">{{ link.title }}</a>
+                          {% endif %}
+                        </div>
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+
+  <div id="main-nav" class="desktop-only">
+    <div class="navigation navigation--main"
+        role="navigation"
+        aria-label="{{ 'general.navigation.main_navigation_aria_label' | t | escape }}"
+        data-mobile-expand-with-entire-link="{{ mobile_expand_with_entire_link }}">
+      <div class="navigation__tier-1-container">
+        <div class="mobile-only-flex navigation__mobile-header">
+          <a href="#" class="mobile-nav-back mobile-nav-tier-1-back">{% render 'svg-chevron-left', stroke_width: 1.3 %}</a>
+          <a href="#" class="mobile-nav-back mobile-nav-tier-2-back" style="display: none;">{% render 'svg-chevron-left', stroke_width: 1.3 %}</a>
+          <span class="mobile-nav-title"></span>
+          <a href="#" class="mobile-nav-toggle">{% render 'svg-x', stroke_width: 1.3 %}</a>
+        </div>
+        <ul class="navigation__tier-1">
+          {% for link in linklists[section.settings.menu_linklist].links %}
+            {%- liquid
+              assign has_dropdown = false
+              if link.links != blank
+                assign has_dropdown = true
+              endif
+              assign use_columns = false
+              if link.levels >= 2
+                assign use_columns = true
+              else
+                for block in section.blocks
+                  if block.settings.dropdown_link_title == link.title
+                    assign use_columns = true
+                    assign has_dropdown = true
+                  endif
+                endfor
+              endif
+            -%}
+            <li class="navigation__item{% if has_dropdown %} navigation__item--with-children{% endif %}{% if featured_links contains link.title %} featured-link{% endif %}{% if link.active %} navigation__item--active{% endif %}">
+              <a href="{{ link.url }}" class="navigation__link" {% if has_dropdown %}aria-haspopup="true" aria-expanded="false" aria-controls="NavigationTier2-{{ forloop.index }}"{% endif %}>
+                {{- link.title -}}
+              </a>
+
+              {% if has_dropdown %}
+                <a class="navigation__children-toggle" href="#">{% render 'icon-toggle-menu', stroke_width: 1.3 %}</a>
+
+                {%- assign promo_count = 0 -%}
+                {%- capture menu_promotion_html -%}
+                  {%- for block in section.blocks -%}
+                    {%- if block.settings.dropdown_link_title == link.title -%}
+                      {%- assign promo_count = promo_count | plus: 1 -%}
+                      <div class="menu-promotion">
+                        {%- if block.settings.link_url != blank -%}
+                          <a class="menu-promotion__link" href="{{ block.settings.link_url }}">
+                        {%- endif -%}
+                        <div class="menu-promotion__image">
+                          {%- render 'responsive-image', image: block.settings.image -%}
+                        </div>
+                        {%- if block.settings.title != blank -%}
+                          <div class="menu-promotion__text">{{ block.settings.title }}</div>
+                        {%- endif -%}
+                        {%- if block.settings.link_url != blank -%}
+                          </a>
+                        {%- endif -%}
+                      </div>
+                    {%- endif -%}
+                  {%- endfor -%}
+                {%- endcapture -%}
+                {%- assign column_count = promo_count | plus: link.links.size -%}
+
+                <div id="NavigationTier2-{{ forloop.index }}" class="navigation__tier-2-container navigation__child-tier">
+                  {% assign checkChildLinkHasChild = false %}
+                  {% for child_link in link.links %}
+                    {% if child_link.links != blank %}
+                      {% assign checkChildLinkHasChild = true %}
+                    {% endif %}
+                  {% endfor %}
+
+                  {% assign checkLinkCollection = false %}
+                  {% unless link.url contains 'collections' %}
+                    {% assign checkLinkCollection = true %}
+                  {% endunless %}
+
+                  {% if checkChildLinkHasChild == true %}
+                    <ul class="navigation__tier-2{% if use_columns %} navigation__columns navigation__columns--count-{{ column_count }}{% if column_count > 5 %} navigation__columns--wraps{% endif %}{% endif %}">
+                      {% for child_link in link.links %}
+                      <li class="navigation__item{% if child_link.links != blank %} navigation__item--with-children{% endif %}{% if use_columns %} navigation__column{% endif %}{% if featured_links contains child_link.title %} featured-link{% endif %}">
+                        <a href="{{ child_link.url }}" class="navigation__link{% if child_link.links != blank %} navigation__column-title{% endif %}" {% if child_link.links != blank %}aria-haspopup="true" aria-expanded="false"{% endif %}>
+                          {{- child_link.title -}}
+                        </a>
+                        {% if child_link.links != blank %}
+                          <a class="navigation__children-toggle" href="#">{% render 'icon-toggle-menu', stroke_width: 1.3 %}</a>
+                        {% endif %}
+  
+                        {% if child_link.links != blank %}
+                          <div class="navigation__tier-3-container navigation__child-tier">
+                            <ul class="navigation__tier-3 {% if child_link.title == 'Shop By Collection' %}navigation__tier-3--collection{% endif %}">
+                              {% for child_child_link in child_link.links %}
+                              <li class="navigation__item{% if featured_links contains child_child_link.title %} featured-link{% endif %}">
+                                <a class="navigation__link" href="{{ child_child_link.url }}">{{ child_child_link.title }}</a>
+                              </li>
+                              {% endfor %}
+                              <li class="navigation__item navigation__item--last{% unless forloop.last == true %} sp-only{% endunless %}">
+                                <a class="navigation__shop-all" href="{{ link.url }}">Shop all</a>
+                              </li>
+                            </ul>
+                          </div>
+                        {% endif %}
+                      </li>
+                      {% endfor %}
+
+                      <li class="navigation__item navigation__item--last sp-only">
+                        <a class="navigation__shop-all" href="{{ link.url }}">Shop all</a>
+                      </li>
+                      
+                      {%- if promo_count > 0 -%}
+                        <li class="navigation__column navigation__column--promotion navigation__column--promotion-count-{{ promo_count }}{% if section.settings.enable_mobile_promo_carousel and link.links.size > 0 %} navigation__column--promotion-carousel{% endif %} pc-only">
+                          {{ menu_promotion_html }}
+                        </li>
+                      {%- endif -%}
+                    </ul>
+                  {% else %}
+                    <ul class="navigation__tier-2 navigation__tier-2--no-child{% if use_columns %} navigation__columns navigation__columns--count-{{ column_count }}{% if column_count > 5 %} navigation__columns--wraps{% endif %}{% endif %}{% if promo_count == 0 %} navigation__link--no-promo{% endif %}">
+                      <li class="navigation__tier-2--no-child-column">
+                        <ul class="navigation__tier-2--no-child-box">
+                          {% for child_link in link.links %}
+                          <li class="navigation__item{% if child_link.links != blank %} navigation__item--with-children{% endif %}{% if use_columns %} navigation__column{% endif %}{% if featured_links contains child_link.title %} featured-link{% endif %}">
+                            <a href="{{ child_link.url }}" class="navigation__link{% if promo_count == 0 %} navigation__link--no-promo{% endif %}{% if child_link.links != blank %} navigation__column-title{% endif %}" {% if child_link.links != blank %}aria-haspopup="true" aria-expanded="false"{% endif %}>
+                              {{- child_link.title -}}
+                            </a>
+                          </li>
+                          {% endfor %}
+                          {% if link.url contains 'collections' %}
+                            <li class="navigation__item{% if child_link.links != blank %} navigation__item--with-children{% endif %}{% if use_columns %} navigation__column{% endif %}{% if featured_links contains child_link.title %} featured-link{% endif %}">
+                              <a href="{{ link.url }}" class="navigation__link navigation__shop-all{% if promo_count == 0 %} navigation__link--no-promo{% endif %}">
+                                Shop all
+                              </a>
+                            </li>
+                          {%  endif %}
+                          
+                          {%- comment -%}
+                            {% assign checkCollection = false %}
+                            {% unless link.title contains "Men's Watches" or link.title contains "Women's Watches" %}
+                              {% assign checkCollection = true %}
+                            {% endunless %}
+                            {% if link.url contains 'collections' and checkCollection == true %}
+                            {%  endif %}
+                          {%- endcomment -%}
+                        </ul>
+                      </li>
+                      
+                      {%- if promo_count > 0 -%}
+                        <li class="navigation__column navigation__column--promotion navigation__column--promotion-count-{{ promo_count }}{% if section.settings.enable_mobile_promo_carousel and link.links.size > 0 %} navigation__column--promotion-carousel{% endif %} {% if checkCollection == false %} pc-only{% endif %}">
+                          {{ menu_promotion_html }}
+                        </li>
+                      {%- endif -%}
+                    </ul>
+                  {% endif %}
+                </div>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+
+        <div class="mobile-menu-promotion sp-only">
+          {%- for block in section.blocks -%}
+            {%- if block.settings.dropdown_link_title == 'All' -%}
+              <div class="menu-promotion">
+                {%- if block.settings.link_url != blank -%}
+                  <a class="menu-promotion__link" href="{{ block.settings.link_url }}">
+                {%- endif -%}
+                <div class="menu-promotion__image">
+                  {%- render 'responsive-image', image: block.settings.image -%}
+                </div>
+                {%- if block.settings.title != blank -%}
+                  <div class="menu-promotion__text">{{ block.settings.title }}</div>
+                {%- endif -%}
+                {%- if block.settings.link_url != blank -%}
+                  </a>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+        {%- comment -%}
+        {% if section.settings.enable_nav_mob_products %}
+          <div class="mobile-only navigation__mobile-products">
+            <div class="navigation__mobile-products-title">{{ section.settings.nav_mob_products_title | escape }}</div>
+            <div class="product-list product-list--scrollarea">
+              {% for product in collections[section.settings.nav_mob_products_collection].products limit: 10 %}
+                {% render 'product-block', product: product, no_swiping: true, no_quick_buy_markup: true %}
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+        {%- endcomment -%}
+      </div>
+    </div>
+  </div>
+
+  <a href="#" class="header-shade mobile-nav-toggle" aria-label="{{ 'general.navigation_menu.toggle_aria_label' }}"></a>
+</div>
+
+{%- if section.settings.menu_layout contains 'inline' -%}
+<script id="InlineNavigationCheckScript">
+  theme.inlineNavigationCheck = function() {
+    var pageHeader = document.querySelector('.pageheader'),
+        inlineNavContainer = pageHeader.querySelector('.logo-area__left__inner'),
+        inlineNav = inlineNavContainer.querySelector('.navigation--left');
+    if (inlineNav && getComputedStyle(inlineNav).display != 'none') {
+      var inlineMenuCentered = document.querySelector('.pageheader--layout-inline-menu-center'),
+          logoContainer = document.querySelector('.logo-area__middle__inner');
+      if(inlineMenuCentered) {
+        var rightWidth = document.querySelector('.logo-area__right__inner').clientWidth,
+            middleWidth = logoContainer.clientWidth,
+            logoArea = document.querySelector('.logo-area'),
+            computedLogoAreaStyle = getComputedStyle(logoArea),
+            logoAreaInnerWidth = logoArea.clientWidth - Math.ceil(parseFloat(computedLogoAreaStyle.paddingLeft)) - Math.ceil(parseFloat(computedLogoAreaStyle.paddingRight)),
+            availableNavWidth = logoAreaInnerWidth - Math.max(rightWidth, middleWidth) * 2 - 40;
+        inlineNavContainer.style.maxWidth = availableNavWidth + 'px';
+      }
+
+      var lastInlineNavLink = inlineNav.querySelector('.navigation__item:last-child');
+      if (lastInlineNavLink) {
+        var inlineNavWidth = lastInlineNavLink.offsetLeft + lastInlineNavLink.offsetWidth;
+        if (inlineNavContainer.offsetWidth >= inlineNavWidth) {
+          pageHeader.classList.add('pageheader--layout-inline-permitted');
+          var tallLogo = logoContainer.clientHeight > lastInlineNavLink.clientHeight + 1;
+          if (tallLogo) {
+            inlineNav.classList.add('navigation--tight-underline');
+          } else {
+            inlineNav.classList.remove('navigation--tight-underline');
+          }
+        } else {
+          pageHeader.classList.remove('pageheader--layout-inline-permitted');
+        }
+      }
+    }
+  }
+  theme.inlineNavigationCheck();
+</script>
+{%- endif -%}
+
+{% endif %}
+
+<script>
+  setTimeout(function(){
+    $('.desktop-only .navigation__tier-3--collection:first-child').each(function(){
+      var $ulFirst = $(this).parents('.navigation__tier-2').find('.navigation__item--with-children:first-child .navigation__tier-3');
+      $(this).height($ulFirst.height());
+    })
+  },300);
+
+  $(window).resize(function(){
+    if($(window).width() >= 768){
+      $('.desktop-only .navigation__tier-3--collection:first-child').each(function(){
+        var $ulFirst = $(this).parents('.navigation__tier-2').find('.navigation__item--with-children:first-child .navigation__tier-3');
+        $(this).height($ulFirst.height());
+      })
+    }
+  })
+</script>
+
+{% style %}
+  .desktop-only .navigation__tier-3--collection{
+    position: relative;
+  }
+  .desktop-only .navigation__tier-3--collection .navigation__item--last{
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+  }
+{% endstyle %}
+
+{% schema %}
+  {
+    "name": "Header",
+    "class": "section-header",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo",
+        "info": "520 x 200px (recommended)"
+      },
+      {
+        "type": "range",
+        "id": "logo_img_width_int",
+        "min": 30,
+        "max": 500,
+        "step": 5,
+        "unit": "px",
+        "label": "Logo width",
+        "default": 180
+      },
+      {
+        "type": "range",
+        "id": "mobile_logo_img_width_int",
+        "min": 30,
+        "max": 300,
+        "step": 5,
+        "unit": "px",
+        "label": "Mobile logo width",
+        "default": 100
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_sticky",
+        "label": "Enable sticky header",
+        "default": false
+      },
+      {
+        "type": "header",
+        "content": "Navigation"
+      },
+      {
+        "type": "link_list",
+        "id": "menu_linklist",
+        "label": "Menu",
+        "default": "main-menu"
+      },
+      {
+        "type": "select",
+        "id": "menu_layout",
+        "label": "Menu alignment",
+        "info": "Alignment will switch to 'Underneath' if the links do not fit beside the logo",
+        "options": [
+          {
+            "value": "inline-menu-left",
+            "label": "Left"
+          },
+          {
+            "value": "inline-menu-center",
+            "label": "Center"
+          },
+          {
+            "value": "underneath",
+            "label": "Underneath"
+          }
+        ],
+        "default": "underneath"
+      },
+      {
+        "type": "text",
+        "id": "nav_featured_link",
+        "label": "Featured link",
+        "info": "Enter the title of a link to highlight it in a different color",
+        "default": "Sale"
+      },
+      {
+        "type": "header",
+        "content": "Mobile navigation"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_mobile_promo_carousel",
+        "label": "Enable carousel layout for menu promotions",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_nav_mob_products",
+        "label": "Enable featured products",
+        "info": "Shows beneath the main menu",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "nav_mob_products_title",
+        "label": "Featured products title",
+        "default": "Best Sellers"
+      },
+      {
+        "type": "collection",
+        "id": "nav_mob_products_collection",
+        "label": "Featured products collection"
+      },
+      {
+        "type": "header",
+        "content": "Search"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_search",
+        "label": "Enable search",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "search_suggestions_title",
+        "label": "Suggestions title",
+        "info": "Suggestions show when the search is opened."
+      },
+      {
+        "type": "link_list",
+        "id": "search_suggestions_menu",
+        "label": "Suggestions menu",
+        "info": "Dropdown menus will show as separate rows. Links to collections and products will show images."
+      }
+    ],
+    "blocks": [
+      {
+        "type": "menu-promotion",
+        "name": "Menu promotion",
+        "settings": [
+          {
+            "type": "paragraph",
+            "content": "Menu promotions are shown in dropdown menus. [Read more](https://cleancanvas.co.uk/support/symmetry/header)"
+          },
+          {
+            "type": "text",
+            "id": "dropdown_link_title",
+            "label": "Link name",
+            "info": "The name of any top-level link"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "url",
+            "id": "link_url",
+            "label": "Link URL"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

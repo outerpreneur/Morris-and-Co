@@ -1,0 +1,26 @@
+{% unless section.settings.full_width %}<div class="article">{% endunless %}
+  <div class="container cf" data-cc-animate>
+    <div class="page-header cf {% if page.handle == 'social-actions' or page.handle == 'our-founder' or page.handle == 'about' or page.handle == 'our-designer' %}hidden-ian{% endif %}">
+      <h1 class="majortitle">{{ page.title }}</h1>
+    </div>
+    <div class="rte">
+      {{ page.content }}
+    </div>
+  </div>
+{% unless section.settings.full_width %}</div>{% endunless %}
+
+
+{% schema %}
+  {
+    "name": "Page",
+    "class": "page-section-spacing",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "full_width",
+        "label": "Full width",
+        "default": false
+      }
+    ]
+  }
+{% endschema %}

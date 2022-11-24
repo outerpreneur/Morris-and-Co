@@ -1,0 +1,1086 @@
+{
+  "sections": {
+    "16359276425da8ce46": {
+      "type": "slideshow",
+      "blocks": {
+        "5da8a122-9ef1-4c4b-9402-186831b30d4d": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "image": "shopify:\/\/shop_images\/web_banner_11.11_Desktop-100.jpg",
+            "mobile_image": "shopify:\/\/shop_images\/web_banner_11.11_Mobile-100.jpg",
+            "image_position": "center center",
+            "mobile_image_position": "center center",
+            "slide_link": "",
+            "subheading": "",
+            "title": "Exclusive Surprises for 11.11!",
+            "title_size": 38,
+            "title_size_mobile": 30,
+            "text": "<p> Up to 35% OFF Selected Watches<\/p>",
+            "enlarge_text": true,
+            "button_label_1": "Shop now",
+            "button_url_1": "shopify:\/\/collections\/sale",
+            "button_label_2": "",
+            "button_url_2": "",
+            "text_alignment": "center right"
+          }
+        },
+        "e29c7209-498a-4eb0-bf64-a2e8f84d9a6c": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/STP_Desktop.jpg",
+            "mobile_image": "shopify:\/\/shop_images\/STP_Mobile.jpg",
+            "image_position": "center center",
+            "mobile_image_position": "center bottom",
+            "slide_link": "",
+            "subheading": "NEW LAUNCH",
+            "title": "Strawberry Thief Petite Collection",
+            "title_size": 32,
+            "title_size_mobile": 30,
+            "text": "<p>Introducing refined and feminine timepieces for woman<\/p>",
+            "enlarge_text": true,
+            "button_label_1": "Shop Now",
+            "button_url_1": "shopify:\/\/collections\/new-arrivals",
+            "button_label_2": "",
+            "button_url_2": "",
+            "text_alignment": "center left"
+          }
+        },
+        "fbc26a92-24e3-458a-abb5-7d1c40957420": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Deep_Blue_Desktop_w_text_copy.jpg",
+            "mobile_image": "shopify:\/\/shop_images\/Deep_Blue_Mobile.jpg",
+            "image_position": "center center",
+            "mobile_image_position": "center top",
+            "slide_link": "",
+            "subheading": "",
+            "title": "Discover New Serenity \nDeep Blue Watches",
+            "title_size": 38,
+            "title_size_mobile": 30,
+            "text": "<p>For a contemporary look<\/p>",
+            "enlarge_text": true,
+            "button_label_1": "SHOP NOW",
+            "button_url_1": "shopify:\/\/collections\/new-arrivals",
+            "button_label_2": "",
+            "button_url_2": "",
+            "text_alignment": "center right"
+          }
+        },
+        "5a3b9cef-d3d4-4980-8fd0-33aaa9b1048e": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Link_Desktop.jpg",
+            "mobile_image": "shopify:\/\/shop_images\/10.22_Banners_Link_Mobile-50.jpg",
+            "image_position": "center center",
+            "mobile_image_position": "center center",
+            "slide_link": "shopify:\/\/collections\/all-watches",
+            "subheading": "",
+            "title": "Link Collection",
+            "title_size": 38,
+            "title_size_mobile": 30,
+            "text": "<p>Discover the classic yet unique <br\/>timepieces just for you<\/p>",
+            "enlarge_text": true,
+            "button_label_1": "SHOP NOW",
+            "button_url_1": "shopify:\/\/collections\/serenity-link",
+            "button_label_2": "",
+            "button_url_2": "",
+            "text_alignment": "center right"
+          }
+        },
+        "e002f3f1-dffe-44a7-9e95-eacdb57ea794": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "image": "shopify:\/\/shop_images\/10.22_Banners_Lifestyle_w-o_text_Desktop-50.jpg",
+            "mobile_image": "shopify:\/\/shop_images\/10.22_Banners_Lifestyle_Mobile-50.jpg",
+            "image_position": "center center",
+            "mobile_image_position": "center center",
+            "slide_link": "",
+            "subheading": "",
+            "title": "Time to be present",
+            "title_size": 38,
+            "title_size_mobile": 30,
+            "text": "<p>Time to connect, time to share, time to live the life you choose<\/p><p><\/p><p>#Timefulness<\/p>",
+            "enlarge_text": false,
+            "button_label_1": "About Us",
+            "button_url_1": "shopify:\/\/pages\/about",
+            "button_label_2": "Shop Now",
+            "button_url_2": "shopify:\/\/collections\/all-watches",
+            "text_alignment": "center left"
+          }
+        },
+        "c42b1f4c-4c7c-4c7a-96f8-88e7244259f6": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "image": "shopify:\/\/shop_images\/10.22_Banners_Lifestyle_w-o_text_Desktop-50.jpg",
+            "mobile_image": "shopify:\/\/shop_images\/10.22_Banners_Lifestyle_Mobile-50.jpg",
+            "image_position": "center center",
+            "mobile_image_position": "center center",
+            "slide_link": "",
+            "subheading": "",
+            "title": "Rediscover \nOur Serenity \nLeather Collection",
+            "title_size": 42,
+            "title_size_mobile": 24,
+            "text": "<p>For a refined and vintage silhouette<\/p>",
+            "enlarge_text": true,
+            "button_label_1": "Shop now",
+            "button_url_1": "shopify:\/\/collections\/serenity-leather-collection",
+            "button_label_2": "",
+            "button_url_2": "",
+            "text_alignment": "center left"
+          }
+        },
+        "8c17cf23-9fae-4d5b-ab1a-a96726556552": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Lifestyle_Desktop.jpg",
+            "mobile_image": "shopify:\/\/shop_images\/10.22_Banners_Lifestyle_Mobile-50.jpg",
+            "image_position": "center center",
+            "mobile_image_position": "center center",
+            "slide_link": "",
+            "subheading": "",
+            "title": "Time To Be Present",
+            "title_size": 38,
+            "title_size_mobile": 30,
+            "text": "<p>Time to connect, Time to share, Time to live the life you choose<\/p><p>#Timefulness<\/p>",
+            "enlarge_text": false,
+            "button_label_1": "About Us",
+            "button_url_1": "",
+            "button_label_2": "Shop Now",
+            "button_url_2": "shopify:\/\/collections\/all-watches",
+            "text_alignment": "center left"
+          }
+        }
+      },
+      "block_order": [
+        "5da8a122-9ef1-4c4b-9402-186831b30d4d",
+        "e29c7209-498a-4eb0-bf64-a2e8f84d9a6c",
+        "fbc26a92-24e3-458a-abb5-7d1c40957420",
+        "5a3b9cef-d3d4-4980-8fd0-33aaa9b1048e",
+        "e002f3f1-dffe-44a7-9e95-eacdb57ea794",
+        "c42b1f4c-4c7c-4c7a-96f8-88e7244259f6",
+        "8c17cf23-9fae-4d5b-ab1a-a96726556552"
+      ],
+      "settings": {
+        "height": "fixed",
+        "height_desktop": 660,
+        "height_mobile": 400,
+        "full_width": false,
+        "mobile_overlay_under": true,
+        "overlay_style": "no_background",
+        "slide_transition": "fade",
+        "slide_navigation": "dots",
+        "autoplay": true,
+        "autoplay_speed": 5
+      }
+    },
+    "1635927863703110df": {
+      "type": "rich-text",
+      "disabled": true,
+      "blocks": {
+        "1635927863703110df-2": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Time gives us an opportunity to do more of what matters each and every day. <em>Time is a gift — embrace it and start living.​<\/em><\/p>",
+            "enlarge_text": true
+          }
+        }
+      },
+      "block_order": [
+        "1635927863703110df-2"
+      ],
+      "settings": {
+        "height": "large",
+        "text_alignment": "center",
+        "full_width": false,
+        "use_alt_bg": true
+      }
+    },
+    "16359278676808bea5": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Shop our bestsellers",
+        "collection": "best-sellers",
+        "show_vendor": false,
+        "enable_carousel": true,
+        "grid": 4,
+        "rows": 1,
+        "use_alt_bg": false,
+        "show_view_all": true,
+        "full_width": false
+      }
+    },
+    "1655823606526f5daa": {
+      "type": "multi-column",
+      "blocks": {
+        "1655823606a696b68e-0": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify:\/\/shop_images\/Women_s_Collection.jpg",
+            "image_width": 700,
+            "title": "Women's Collection",
+            "text": "<p>Shop our women's collection for the perfect watch for Summer<\/p><p><a href=\"\/collections\/womens-watches\" title=\"Vintage Danish Watches for Women\">Shop now<\/a><\/p>",
+            "button_label": "",
+            "link": "https:\/\/augustberg.com\/collections\/womens-watches"
+          }
+        },
+        "1655823606a696b68e-1": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify:\/\/shop_images\/Mens_Collection.jpg",
+            "image_width": 700,
+            "title": "Men's Collection",
+            "text": "<p>Time to live the life you choose, with our collection men's watches<\/p><p><a href=\"\/collections\/mens-watches\" title=\"Vintage Danish Watches for Men\">Shop now<\/a> <\/p>",
+            "button_label": "",
+            "link": "https:\/\/augustberg.com\/collections\/mens-watches"
+          }
+        }
+      },
+      "block_order": [
+        "1655823606a696b68e-0",
+        "1655823606a696b68e-1"
+      ],
+      "settings": {
+        "title": "",
+        "text_alignment": "left",
+        "button_style": "link",
+        "use_alt_bg": false
+      }
+    },
+    "1643165558a1296ef1": {
+      "type": "gallery",
+      "disabled": true,
+      "blocks": {
+        "164316555776dfb56d-0": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/10140A05VBL_5.jpg",
+            "alignment": "center center",
+            "enlarge_image": false,
+            "subheading": "WOMEN'S WATCHES",
+            "title": "GIFTS FOR HER",
+            "button_label": "",
+            "link": "shopify:\/\/collections\/womens-watches",
+            "text_alignment": "bottom left"
+          }
+        },
+        "164316555776dfb56d-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/10140H04LBN20_FB_ads_1.jpg",
+            "alignment": "bottom center",
+            "enlarge_image": false,
+            "subheading": "MEN'S WATCHES",
+            "title": "GIFTS FOR HIM",
+            "button_label": "",
+            "link": "shopify:\/\/collections\/mens-watches",
+            "text_alignment": "bottom left"
+          }
+        },
+        "164316555776dfb56d-2": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "image": "shopify:\/\/shop_images\/AugustBerg150521-0248.jpg",
+            "alignment": "top center",
+            "enlarge_image": false,
+            "subheading": "a father's love",
+            "title": "THE GIFT OF TIME",
+            "button_label": "",
+            "link": "",
+            "text_alignment": "bottom left"
+          }
+        }
+      },
+      "block_order": [
+        "164316555776dfb56d-0",
+        "164316555776dfb56d-1",
+        "164316555776dfb56d-2"
+      ],
+      "settings": {
+        "grid": 2,
+        "desktop_image_height": 460,
+        "mobile_image_height": 400,
+        "title_size": 30,
+        "title_size_mobile": 22,
+        "enable_margin": true,
+        "full_width": false,
+        "use_alt_bg": false,
+        "enable_carousel": true,
+        "overlay_style": "no_background",
+        "button_style": "primary"
+      }
+    },
+    "16558234898ad7575b": {
+      "type": "testimonials",
+      "blocks": {
+        "74e7369e-c547-4824-a2cc-eb978bf5605a": {
+          "type": "testimonial",
+          "settings": {
+            "star_rating": 5,
+            "testimonial": "This is a beautiful watch, I smile everytime I look at my wrist. Knowing that something that delights me so much also supports a charity is an added joy.",
+            "author": "Donna Wilcox",
+            "image": "shopify:\/\/shop_images\/gardening-withmy-august-berg-morris-co.jpg",
+            "image_alignment": "center center",
+            "image_caption": "",
+            "link": ""
+          }
+        },
+        "1655823489eb7d3de9-1": {
+          "type": "testimonial",
+          "settings": {
+            "star_rating": 5,
+            "testimonial": "Stunning. Absolutely stunning. It's one of the most beautiful things I've ever seen. I just can't help looking at it. Thank you for making such a beautiful watch. It's truly the best.",
+            "author": "Kaori",
+            "image": "shopify:\/\/shop_images\/morris-co-beautiful-watch.jpg",
+            "image_alignment": "center center",
+            "image_caption": "",
+            "link": ""
+          }
+        },
+        "1655823489eb7d3de9-0": {
+          "type": "testimonial",
+          "disabled": true,
+          "settings": {
+            "star_rating": 5,
+            "testimonial": "My Serenity Sky Blue Silver watch with a silver mesh band has been one of my best purchases. It is sleek, stylish, minimalistic and gorgeous.",
+            "author": "Cheri Daur",
+            "image": "shopify:\/\/shop_images\/10140E11VGN_19.jpg",
+            "image_alignment": "center center",
+            "image_caption": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "74e7369e-c547-4824-a2cc-eb978bf5605a",
+        "1655823489eb7d3de9-1",
+        "1655823489eb7d3de9-0"
+      ],
+      "settings": {
+        "title": "Customer reviews",
+        "layout": "image-right",
+        "text_caps": false,
+        "quote_text_size": 28,
+        "quote_text_size_mobile": 20,
+        "image_shape": "square",
+        "use_alt_bg": true,
+        "autoplay": true,
+        "autoplay_speed": 5
+      }
+    },
+    "16431716799cc2935d": {
+      "type": "gallery",
+      "disabled": true,
+      "blocks": {
+        "1643171679b5f2232b-0": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/10240B08VCG9C_2_b452b001-1a80-4af6-a442-3bd54ccd4ba6.jpg",
+            "alignment": "center center",
+            "enlarge_image": false,
+            "subheading": "COLLECTION",
+            "title": "SERENITY",
+            "button_label": "",
+            "link": "shopify:\/\/collections\/serenity",
+            "text_alignment": "bottom left"
+          }
+        },
+        "1643171679b5f2232b-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/M1PL0538A17VRD_1_-min.jpg",
+            "alignment": "center center",
+            "enlarge_image": false,
+            "subheading": "COLLECTION",
+            "title": "MORRIS & CO x AUGUST BERG",
+            "button_label": "",
+            "link": "shopify:\/\/collections\/morris-co-x-august-berg",
+            "text_alignment": "bottom left"
+          }
+        },
+        "1643171679b5f2232b-2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/10438E12MSLS_8_2.jpg",
+            "alignment": "center center",
+            "enlarge_image": false,
+            "subheading": "COLLECTION",
+            "title": "REFLEXION",
+            "button_label": "",
+            "link": "shopify:\/\/collections\/reflexion",
+            "text_alignment": "bottom left"
+          }
+        },
+        "b746564a-eb3f-419b-9469-52e8e097f233": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/reflexion-collection.jpg",
+            "alignment": "center center",
+            "enlarge_image": false,
+            "subheading": "Gallery",
+            "title": "Tell your story",
+            "button_label": "",
+            "link": "",
+            "text_alignment": "bottom left"
+          }
+        }
+      },
+      "block_order": [
+        "1643171679b5f2232b-0",
+        "1643171679b5f2232b-1",
+        "1643171679b5f2232b-2",
+        "b746564a-eb3f-419b-9469-52e8e097f233"
+      ],
+      "settings": {
+        "grid": 2,
+        "desktop_image_height": 460,
+        "mobile_image_height": 400,
+        "title_size": 30,
+        "title_size_mobile": 22,
+        "enable_margin": false,
+        "full_width": true,
+        "use_alt_bg": false,
+        "enable_carousel": true,
+        "overlay_style": "full",
+        "button_style": "primary"
+      }
+    },
+    "1655856480a6b3ddb6": {
+      "type": "multi-column",
+      "blocks": {
+        "16558564804f5c0b66-0": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify:\/\/shop_images\/Web_Image_Serenity_FINAL-50.jpg",
+            "image_width": 700,
+            "title": "Serenity",
+            "text": "<p><a href=\"\/collections\/serenity\" title=\"SERENITY\">Shop now<\/a><\/p>",
+            "button_label": "",
+            "link": "shopify:\/\/collections\/serenity"
+          }
+        },
+        "16558564804f5c0b66-1": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify:\/\/shop_images\/Web_Image_Morris_Co_FINAL-50.jpg",
+            "image_width": 700,
+            "title": "Morris & Co x August Berg",
+            "text": "<p><a href=\"\/collections\/morris-co-x-august-berg\" title=\"MORRIS & CO. x AUGUST BERG\">Shop now<\/a><\/p>",
+            "button_label": "",
+            "link": "shopify:\/\/collections\/morris-co-x-august-berg"
+          }
+        },
+        "16558564804f5c0b66-2": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify:\/\/shop_images\/Web_Image_Reflexion_FINAL-50.jpg",
+            "image_width": 700,
+            "title": "Reflexion",
+            "text": "<p><a href=\"\/collections\/reflexion\" title=\"REFLEXION\">Shop now<\/a><\/p>",
+            "button_label": "",
+            "link": "shopify:\/\/collections\/reflexion"
+          }
+        }
+      },
+      "block_order": [
+        "16558564804f5c0b66-0",
+        "16558564804f5c0b66-1",
+        "16558564804f5c0b66-2"
+      ],
+      "settings": {
+        "title": "Explore our Collections",
+        "text_alignment": "center",
+        "button_style": "link",
+        "use_alt_bg": false
+      }
+    },
+    "16359278867b92de38": {
+      "type": "image-with-text",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/counter_-months-education_80_1.gif",
+        "image_width": 700,
+        "subheading": "Social Responsibility",
+        "title": "Months of education provided",
+        "use_h1": false,
+        "text": "<p>August  Berg has partnered with the Human Practice Foundation and for every watch sold, together we will give a child in Asia and Africa at least 6 months of quality education.<\/p>",
+        "button_label": "Learn more",
+        "button_link": "shopify:\/\/pages\/social-actions",
+        "button_style": "primary",
+        "image_position": "right",
+        "text_alignment": "left",
+        "use_alt_bg": true
+      }
+    },
+    "16582096383afaf425": {
+      "type": "multi-column",
+      "blocks": {
+        "165820963864b1a638-1": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify:\/\/shop_images\/green-details.png",
+            "image_width": 700,
+            "title": "Show your Style",
+            "text": "<p>Our bands are available in multiple designs, colors, leathers, and textiles<\/p><p><a href=\"\/collections\/leather-straps\" title=\"Genuine Italian Leather Straps\">Shop bands<\/a><\/p>",
+            "button_label": "",
+            "link": ""
+          }
+        },
+        "165820963864b1a638-0": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify:\/\/shop_images\/details-serenity.png",
+            "image_width": 700,
+            "title": "Danish Craftmenship",
+            "text": "<p>Each watch is meticulously crafted with a Japanese quartz movement.<\/p><p><a href=\"\/pages\/our-designer\" title=\"Our Designer\">Learn more<\/a><\/p>",
+            "button_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "165820963864b1a638-1",
+        "165820963864b1a638-0"
+      ],
+      "settings": {
+        "title": "",
+        "text_alignment": "left",
+        "button_style": "primary",
+        "use_alt_bg": false
+      }
+    },
+    "16430790984eb15a88": {
+      "type": "featured-collection",
+      "disabled": true,
+      "settings": {
+        "title": "Latest arrivals",
+        "collection": "nordic-beach-collection",
+        "show_vendor": false,
+        "enable_carousel": false,
+        "grid": 4,
+        "rows": 1,
+        "use_alt_bg": false,
+        "show_view_all": true,
+        "full_width": false
+      }
+    },
+    "16567347106c8412a8": {
+      "type": "custom-row",
+      "disabled": true,
+      "blocks": {
+        "43bdfc14-1f49-4848-89de-b3d8880fa414": {
+          "type": "html",
+          "disabled": true,
+          "settings": {
+            "width": "full",
+            "code": "<br>"
+          }
+        },
+        "6727cabd-648d-4e94-8a1a-0cc52b32ed4a": {
+          "type": "html",
+          "disabled": true,
+          "settings": {
+            "width": "full",
+            "code": "<div class=\"section-header-info\">\n          <div class=\"align-center\"><h1 class=\"majortitle in-content\">Craftmenship<\/h1><div class=\"rte\"><p>Danes possess a deep-set belief in quality, each watch is meticulously crafted with a Japanese quartz movement, and features a single-dome sapphire crystal glass that is anti-reflective and scratch-resistant. <\/p><\/div><\/div>\n      <\/div>"
+          }
+        },
+        "1656734710facd442a-0": {
+          "type": "image",
+          "settings": {
+            "width": "half",
+            "image": "shopify:\/\/shop_images\/green-details.png",
+            "image_position": "center center",
+            "height": "adapt",
+            "height_desktop": 600,
+            "height_mobile": 500,
+            "subheading": "",
+            "title": "",
+            "text": "",
+            "enlarge_text": false,
+            "button_label": "",
+            "image_link": "",
+            "text_alignment": "center center",
+            "mobile_overlay_under": false,
+            "overlay_style": "no_background"
+          }
+        },
+        "39c3ecb6-0e94-4ff2-9898-930f0413fcaa": {
+          "type": "image",
+          "settings": {
+            "width": "half",
+            "image": "shopify:\/\/shop_images\/details-serenity.png",
+            "image_position": "center center",
+            "height": "adapt",
+            "height_desktop": 620,
+            "height_mobile": 500,
+            "subheading": "",
+            "title": "",
+            "text": "",
+            "enlarge_text": false,
+            "button_label": "",
+            "image_link": "",
+            "text_alignment": "center center",
+            "mobile_overlay_under": false,
+            "overlay_style": "no_background"
+          }
+        },
+        "319f2e86-9244-4846-84c3-d7a72164ab27": {
+          "type": "text",
+          "settings": {
+            "width": "half",
+            "subheading": "",
+            "title": "Craftmenship",
+            "text": "<p>Danes possess a deep-set belief in quality, each watch is meticulously crafted with a Japanese quartz movement, and features a single-dome sapphire crystal glass that is anti-reflective and scratch-resistant. <\/p>",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "primary",
+            "text_alignment": "center"
+          }
+        }
+      },
+      "block_order": [
+        "43bdfc14-1f49-4848-89de-b3d8880fa414",
+        "6727cabd-648d-4e94-8a1a-0cc52b32ed4a",
+        "1656734710facd442a-0",
+        "39c3ecb6-0e94-4ff2-9898-930f0413fcaa",
+        "319f2e86-9244-4846-84c3-d7a72164ab27"
+      ],
+      "settings": {
+        "alignment": "top"
+      }
+    },
+    "1658132874de63246d": {
+      "type": "custom-row",
+      "disabled": true,
+      "blocks": {
+        "19587e57-2034-49e0-b1cf-89d3a5d28f5a": {
+          "type": "text",
+          "settings": {
+            "width": "half",
+            "subheading": "",
+            "title": "Your style",
+            "text": "<p>Available in multiple designs, colors, leathers, and textiles, these easily interchangeable bands can quickly update your style.<\/p><p><a href=\"\/collections\/leather-straps\" title=\"Genuine Italian Leather Straps\">Shop bands<\/a><\/p>",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "primary",
+            "text_alignment": "center"
+          }
+        },
+        "1658132873d8b4a88f-0": {
+          "type": "image",
+          "settings": {
+            "width": "full",
+            "image": "shopify:\/\/shop_images\/selection-of-bands.jpg",
+            "image_position": "center center",
+            "height": "adapt",
+            "height_desktop": 600,
+            "height_mobile": 500,
+            "subheading": "",
+            "title": "",
+            "text": "",
+            "enlarge_text": false,
+            "button_label": "",
+            "image_link": "",
+            "text_alignment": "center center",
+            "mobile_overlay_under": false,
+            "overlay_style": "shadow"
+          }
+        }
+      },
+      "block_order": [
+        "19587e57-2034-49e0-b1cf-89d3a5d28f5a",
+        "1658132873d8b4a88f-0"
+      ],
+      "settings": {
+        "alignment": "middle"
+      }
+    },
+    "1656711884322424a3": {
+      "type": "image-with-text-overlay",
+      "disabled": true,
+      "settings": {
+        "image": "shopify:\/\/shop_images\/august-berg-summer-range.jpg",
+        "image_position": "center center",
+        "mobile_image_position": "center center",
+        "height": "fixed",
+        "height_desktop": 640,
+        "height_mobile": 460,
+        "image_link": "",
+        "subheading": "Tell your story",
+        "title": "",
+        "title_size": 84,
+        "title_size_mobile": 46,
+        "use_h1": false,
+        "text": "",
+        "enlarge_text": false,
+        "button_label_1": "",
+        "button_url_1": "",
+        "button_label_2": "",
+        "button_url_2": "",
+        "text_alignment": "center left",
+        "full_width": false,
+        "mobile_overlay_under": false,
+        "overlay_style": "shadow"
+      }
+    },
+    "16559321322cc0df4f": {
+      "type": "multi-column",
+      "disabled": true,
+      "blocks": {
+        "1655932132ef345fe5-1": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify:\/\/shop_images\/anders-anne-landscape.jpg",
+            "image_width": 700,
+            "title": "More than a watch brand",
+            "text": "<p>We started August Berg to celebrate timefulness and giving the gift of time.<\/p><p><a href=\"\/pages\/our-founder\" title=\"Our Founder\">Learn more<\/a><\/p>",
+            "button_label": "",
+            "link": ""
+          }
+        },
+        "1655932132ef345fe5-0": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify:\/\/shop_images\/social-responsibility-1.jpg",
+            "image_width": 700,
+            "title": "We give back with every sale",
+            "text": "<p>We have partnered with the <a href=\"https:\/\/www.humanpractice.org\" target=\"_blank\" title=\"https:\/\/www.humanpractice.org\">Human Practice Foundation<\/a> to provide 6-months education for every watch sold and for every 20,000 units we'll build a new school.<\/p><p><a href=\"\/pages\/hpf\" title=\"Changing the world, one wrist at a time\">Learn more<\/a><\/p>",
+            "button_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "1655932132ef345fe5-1",
+        "1655932132ef345fe5-0"
+      ],
+      "settings": {
+        "title": "",
+        "text_alignment": "left",
+        "button_style": "primary",
+        "use_alt_bg": true
+      }
+    },
+    "1655861273c034ca77": {
+      "type": "image-with-text",
+      "disabled": true,
+      "settings": {
+        "image": "shopify:\/\/shop_images\/timefulness-meet-founder.jpg",
+        "image_width": 700,
+        "subheading": "Social responsibility",
+        "title": "More than a watch brand",
+        "use_h1": false,
+        "text": "<p>Anders Peter started August Berg with his partner Anne to advocate Timefulness while giving back to society. With every watch sold, August Berg works with the Human Practice Foundation to provide quality education to children in local communities in rural Africa.<\/p>",
+        "button_label": "Learn more",
+        "button_link": "shopify:\/\/pages\/our-founder",
+        "button_style": "primary",
+        "image_position": "right",
+        "text_alignment": "left",
+        "use_alt_bg": false
+      }
+    },
+    "1655931970c74c62ef": {
+      "type": "video-with-text",
+      "disabled": true,
+      "settings": {
+        "video": "https:\/\/youtu.be\/rq9s2HLtQtk",
+        "autoplay": false,
+        "placeholder_image": "shopify:\/\/shop_images\/AB-main-banner_giftset.jpg",
+        "subheading": "Craftmenship",
+        "title": "Danish design tradition",
+        "use_h1": false,
+        "text": "<p>Our timepieces are inspired by the clean and minimalist Danish design tradition combined with a modern twist. <\/p>",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "primary",
+        "video_position": "left",
+        "text_alignment": "left",
+        "use_alt_bg": false
+      }
+    },
+    "16359285201c71bbb1": {
+      "type": "background-video",
+      "disabled": true,
+      "settings": {
+        "video": "https:\/\/youtu.be\/rq9s2HLtQtk",
+        "placeholder_image": "shopify:\/\/shop_images\/httpscdn.shopify.comsfiles1003169124401files704x563px_6_b49150c8-bc3c-4423-a7b5-3c4be4fd7516.jpgv_1613334006.jpg",
+        "subheading": "",
+        "title": "",
+        "title_size": 84,
+        "title_size_mobile": 20,
+        "use_h1": false,
+        "text": "",
+        "enlarge_text": false,
+        "button_label_1": "",
+        "button_url_1": "",
+        "button_label_2": "",
+        "button_url_2": "",
+        "text_alignment": "center center",
+        "height_desktop": 600,
+        "height_mobile": 160,
+        "full_width": false,
+        "overlay_style": "no_background"
+      }
+    },
+    "165821623934354e10": {
+      "type": "custom-row",
+      "blocks": {
+        "1e207050-512a-4b8c-ada1-d454eba774c3": {
+          "type": "html",
+          "settings": {
+            "width": "full",
+            "code": "<hr style=\"margin-bottom:25px\">"
+          }
+        }
+      },
+      "block_order": [
+        "1e207050-512a-4b8c-ada1-d454eba774c3"
+      ],
+      "settings": {
+        "alignment": "middle"
+      }
+    },
+    "1643080230d84ba4b0": {
+      "type": "logo-list",
+      "blocks": {
+        "7004b556-7e7b-4334-805e-f272453e4568": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/vogue-export-featured-in-01-smaller.png",
+            "image_width": 150,
+            "link": "",
+            "title": ""
+          }
+        },
+        "a5ff6537-79e0-4a35-a2f5-be316dff36e3": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/country-town-house-featured-01-smaller.png",
+            "image_width": 150,
+            "link": "",
+            "title": ""
+          }
+        },
+        "43a30a22-73ad-4678-9a99-8c3c938b4f57": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/bazaar-featured-01-smaller.png",
+            "image_width": 150,
+            "link": "",
+            "title": ""
+          }
+        },
+        "edba8941-0702-4d86-9697-3280abdf1335": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/marie-clare-as-featured-in-01-smaller-agaain.png",
+            "image_width": 210,
+            "link": "",
+            "title": ""
+          }
+        },
+        "ff56fb14-4589-43a2-8ad3-3248e14b0c8c": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Prestige-logo-1.png",
+            "image_width": 150,
+            "link": "",
+            "title": ""
+          }
+        },
+        "c43f23da-ad66-4894-8c8f-b7d63a43d9bc": {
+          "type": "logo",
+          "disabled": true,
+          "settings": {
+            "image": "shopify:\/\/shop_images\/W_H_6c59a8dd-0964-486b-8420-546454d2ab68.jpg",
+            "image_width": 170,
+            "link": "",
+            "title": ""
+          }
+        }
+      },
+      "block_order": [
+        "7004b556-7e7b-4334-805e-f272453e4568",
+        "a5ff6537-79e0-4a35-a2f5-be316dff36e3",
+        "43a30a22-73ad-4678-9a99-8c3c938b4f57",
+        "edba8941-0702-4d86-9697-3280abdf1335",
+        "ff56fb14-4589-43a2-8ad3-3248e14b0c8c",
+        "c43f23da-ad66-4894-8c8f-b7d63a43d9bc"
+      ],
+      "settings": {
+        "title": "As seen in",
+        "image_opacity": 100,
+        "use_alt_bg": false
+      }
+    },
+    "16467292548f4cd61f": {
+      "type": "custom-row",
+      "blocks": {
+        "36b6f39e-f185-4ae6-acd4-b45a31ed90ed": {
+          "type": "html",
+          "settings": {
+            "width": "full",
+            "code": "<hr style=\"margin-bottom:25px\">"
+          }
+        }
+      },
+      "block_order": [
+        "36b6f39e-f185-4ae6-acd4-b45a31ed90ed"
+      ],
+      "settings": {
+        "alignment": "middle"
+      }
+    },
+    "16467293895c4deedf": {
+      "type": "custom-row",
+      "disabled": true,
+      "blocks": {
+        "1646729388c55c4c0d-1": {
+          "type": "text",
+          "settings": {
+            "width": "quarter",
+            "subheading": "",
+            "title": "Brand Ethos",
+            "text": "",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "primary",
+            "text_alignment": "center"
+          }
+        }
+      },
+      "block_order": [
+        "1646729388c55c4c0d-1"
+      ],
+      "settings": {
+        "alignment": "middle"
+      }
+    },
+    "16359279164ff7d3f3": {
+      "type": "gallery",
+      "disabled": true,
+      "blocks": {
+        "16359279164ff7d3f3-0": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/our_role.jpg",
+            "alignment": "center center",
+            "enlarge_image": false,
+            "subheading": "",
+            "title": "",
+            "button_label": "",
+            "link": "shopify:\/\/pages\/about",
+            "text_alignment": "bottom left"
+          }
+        },
+        "40f41af6-e1e3-4952-a8bd-6216b947819d": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/timefulness.jpg",
+            "alignment": "center center",
+            "enlarge_image": false,
+            "subheading": "",
+            "title": "",
+            "button_label": "",
+            "link": "shopify:\/\/pages\/about",
+            "text_alignment": "bottom left"
+          }
+        },
+        "74d51ad0-414d-42b6-ac3f-9cf6cc88f9a6": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/manifesto.jpg",
+            "alignment": "center center",
+            "enlarge_image": false,
+            "subheading": "",
+            "title": "",
+            "button_label": "",
+            "link": "shopify:\/\/pages\/about",
+            "text_alignment": "bottom left"
+          }
+        },
+        "9e5a2f58-8186-4221-9493-a2b085d42029": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/core_belief.jpg",
+            "alignment": "center center",
+            "enlarge_image": false,
+            "subheading": "",
+            "title": "",
+            "button_label": "",
+            "link": "shopify:\/\/pages\/about",
+            "text_alignment": "bottom left"
+          }
+        }
+      },
+      "block_order": [
+        "16359279164ff7d3f3-0",
+        "40f41af6-e1e3-4952-a8bd-6216b947819d",
+        "74d51ad0-414d-42b6-ac3f-9cf6cc88f9a6",
+        "9e5a2f58-8186-4221-9493-a2b085d42029"
+      ],
+      "settings": {
+        "grid": 4,
+        "desktop_image_height": 460,
+        "mobile_image_height": 400,
+        "title_size": 30,
+        "title_size_mobile": 22,
+        "enable_margin": true,
+        "full_width": true,
+        "use_alt_bg": false,
+        "enable_carousel": true,
+        "overlay_style": "no_background",
+        "button_style": "primary"
+      }
+    },
+    "163592870141219e2f": {
+      "type": "featured-blog",
+      "settings": {
+        "title": "Journal",
+        "blog": "news",
+        "post_limit": 3,
+        "show_author": false,
+        "show_date": false,
+        "crop_ratio": "1.33"
+      }
+    }
+  },
+  "order": [
+    "16359276425da8ce46",
+    "1635927863703110df",
+    "16359278676808bea5",
+    "1655823606526f5daa",
+    "1643165558a1296ef1",
+    "16558234898ad7575b",
+    "16431716799cc2935d",
+    "1655856480a6b3ddb6",
+    "16359278867b92de38",
+    "16582096383afaf425",
+    "16430790984eb15a88",
+    "16567347106c8412a8",
+    "1658132874de63246d",
+    "1656711884322424a3",
+    "16559321322cc0df4f",
+    "1655861273c034ca77",
+    "1655931970c74c62ef",
+    "16359285201c71bbb1",
+    "165821623934354e10",
+    "1643080230d84ba4b0",
+    "16467292548f4cd61f",
+    "16467293895c4deedf",
+    "16359279164ff7d3f3",
+    "163592870141219e2f"
+  ]
+}

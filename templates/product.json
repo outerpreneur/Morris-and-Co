@@ -1,0 +1,364 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "show_tax_and_shipping": false,
+            "enable_product_reviews_by_price": false
+          }
+        },
+        "205ab4af-c886-4bd5-a68e-a4c21b260bbc": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "The inspiration for this design came from an original tapestry woven with wool and silk at Merton Abbey in 1887, designed by William Morris, Philip Webb and John Henry Dearle.",
+            "icon": "",
+            "icon_size": "small",
+            "enable_box": false,
+            "box_color": "#e0f4d5",
+            "show_in_quickbuy": false
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "show_single": true,
+            "variant_style": "dropdown",
+            "show_size_chart": false,
+            "size_chart_variant": "Size Guide",
+            "size_chart_page": ""
+          }
+        },
+        "31e50bc2-18a6-4a31-8c92-dd92060b8310": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "Engraving",
+            "icon": "",
+            "icon_size": "small",
+            "enable_box": false,
+            "box_color": "#e0f4d5",
+            "show_in_quickbuy": false
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_quantity_selector": false,
+            "enable_payment_button": false,
+            "show_backorder_text": true,
+            "show_pickup_availability": false
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+            "show_in_tab": true,
+            "open_tab": false,
+            "icon": "",
+            "show_in_quickbuy": true
+          }
+        },
+        "90430c6b-cb35-4d57-8eb3-6a5ec1f08f8e": {
+          "type": "accordion",
+          "disabled": true,
+          "settings": {
+            "title": "Details & Specifications",
+            "icon": "",
+            "content": "",
+            "page": "morris-strawberry-thief-bird-rose-gold-fennel-specs",
+            "open": false,
+            "show_in_quickbuy": false
+          }
+        },
+        "da7760bb-9d76-427f-912f-2c228af04880": {
+          "type": "accordion",
+          "settings": {
+            "title": "Size Guide",
+            "icon": "",
+            "content": "",
+            "page": "size-guide",
+            "open": false,
+            "show_in_quickbuy": false
+          }
+        },
+        "a752feff-8527-4660-ba4e-ac590b888e15": {
+          "type": "accordion",
+          "settings": {
+            "title": "Shipping & Returns",
+            "icon": "",
+            "content": "<p><strong>SHIPPING<\/strong><\/p><p><a href=\"https:\/\/augustberg.com\/apps\/help-center#hc-delivery-1\" target=\"_blank\" title=\"https:\/\/augustberg.com\/apps\/help-center#hc-delivery-1\">Free international shipping<\/a> on all orders.<\/p><p>Delivery for all orders within Singapore will take 1 to 2 business days. <\/p><p>All international orders will be delivered in 4 to 6 business days. <\/p><p><em>*For orders with engraving, an addition of 1 to 3 business days would be required.<\/em><\/p><p><strong>RETURNS<\/strong><\/p><p>Free and easy returns within 30 days of receiving your delivery. All returned items must be returned in their original condition and packaging where possible, including tags.<\/p><p>*<em>Personalized watches with engraving are excluded from exchange, refund or replacements<\/em>.<\/p>",
+            "page": "",
+            "open": false,
+            "show_in_quickbuy": false
+          }
+        },
+        "b3df1a1b-4e8c-4f54-9b27-8d9b0d21f39b": {
+          "type": "sharing",
+          "disabled": true,
+          "settings": {
+            "show_in_quickbuy": false
+          }
+        },
+        "44bb4092-f155-40ab-8e84-2d03ccb21b5b": {
+          "type": "accordion",
+          "settings": {
+            "title": "3 Year Warranty",
+            "icon": "",
+            "content": "<p>August Berg products are warranted to be free from defects in materials and workmanship for three years from original date of purchase when used under normal conditions and for the purpose intended.<\/p><p>Read more about our <a href=\"https:\/\/augustberg.com\/pages\/warranty-policy\" title=\"https:\/\/augustberg.com\/pages\/warranty-policy\">product warranty<\/a>.<\/p>",
+            "page": "",
+            "open": false,
+            "show_in_quickbuy": false
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "price",
+        "205ab4af-c886-4bd5-a68e-a4c21b260bbc",
+        "variant_picker",
+        "31e50bc2-18a6-4a31-8c92-dd92060b8310",
+        "buy_buttons",
+        "description",
+        "90430c6b-cb35-4d57-8eb3-6a5ec1f08f8e",
+        "da7760bb-9d76-427f-912f-2c228af04880",
+        "a752feff-8527-4660-ba4e-ac590b888e15",
+        "b3df1a1b-4e8c-4f54-9b27-8d9b0d21f39b",
+        "44bb4092-f155-40ab-8e84-2d03ccb21b5b"
+      ],
+      "settings": {
+        "show_breadcrumbs": true,
+        "show_location_underneath": false,
+        "inventory_transfers_enable": true,
+        "gallery_size": "medium",
+        "prod_gall_thumbs_under": "under",
+        "enable_sticky_gallery": true,
+        "enable_zoom": true,
+        "enable_video_looping": false
+      }
+    },
+    "16431727104445e401": {
+      "type": "apps",
+      "blocks": {
+        "45765888-da37-4413-8fc4-19dbcd8d3132": {
+          "type": "shopify:\/\/apps\/judge-me-product-reviews\/blocks\/review_widget\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+          }
+        }
+      },
+      "block_order": [
+        "45765888-da37-4413-8fc4-19dbcd8d3132"
+      ],
+      "settings": {
+        "full_width": false
+      }
+    },
+    "165949006524d64c5c": {
+      "type": "multi-column",
+      "disabled": true,
+      "blocks": {
+        "1659490064aed74fb0-1": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": false,
+            "image_width": 700,
+            "title": "",
+            "text": "<p>August Berg timepieces are identifiable by its iconic anti-reflective, single-domed Sapphire Crystal dial window, which delivers a striking and unparalleled view into the dial with its concave shape.<\/p>",
+            "button_label": "",
+            "link": ""
+          }
+        },
+        "02b41bd1-e8d4-47b7-8674-b9076305eb79": {
+          "type": "text_block",
+          "disabled": true,
+          "settings": {
+            "enable_image": false,
+            "image_width": 700,
+            "title": "",
+            "text": "<p><strong>Free International shipping<\/strong><\/p><p>Orders are shipped free of charge within one business day and are easily tracked.<\/p>",
+            "button_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "1659490064aed74fb0-1",
+        "02b41bd1-e8d4-47b7-8674-b9076305eb79"
+      ],
+      "settings": {
+        "title": "",
+        "text_alignment": "center",
+        "button_style": "link",
+        "use_alt_bg": true
+      }
+    },
+    "1643086136be690265": {
+      "type": "apps",
+      "blocks": {
+        "afb4b407-a149-4e3b-b5cf-21e71b2d0c5d": {
+          "type": "shopify:\/\/apps\/zepto-product-personalizer\/blocks\/product_personalizer_page\/7411210d-7b32-4c09-9455-e129e3be4729",
+          "settings": {
+          }
+        }
+      },
+      "block_order": [
+        "afb4b407-a149-4e3b-b5cf-21e71b2d0c5d"
+      ],
+      "settings": {
+        "full_width": false
+      }
+    },
+    "16443991013c714d58": {
+      "type": "apps",
+      "disabled": true,
+      "blocks": {
+        "d0bf9273-a867-4c93-87b9-b480d02d3f74": {
+          "type": "shopify:\/\/apps\/related-products-also-bought\/blocks\/app-block-product\/75cf2d86-3988-45e7-8f28-ada23c99704f",
+          "settings": {
+            "widget": "1",
+            "gashortcode": ""
+          }
+        }
+      },
+      "block_order": [
+        "d0bf9273-a867-4c93-87b9-b480d02d3f74"
+      ],
+      "settings": {
+        "full_width": false
+      }
+    },
+    "16594883859207de67": {
+      "type": "image-with-text-overlay",
+      "disabled": true,
+      "settings": {
+        "image": "shopify:\/\/shop_images\/design-philisophy.jpg",
+        "image_position": "center center",
+        "mobile_image_position": "center center",
+        "height": "fixed",
+        "height_desktop": 540,
+        "height_mobile": 460,
+        "image_link": "",
+        "subheading": "",
+        "title": "Design Philosophy",
+        "title_size": 44,
+        "title_size_mobile": 46,
+        "use_h1": false,
+        "text": "<p>August Berg timepieces are identifiable by its iconic anti-reflective, single-domed Sapphire Crystal dial window, which delivers a striking and unparalleled view into the dial with its concave shape.<\/p>",
+        "enlarge_text": false,
+        "button_label_1": "",
+        "button_url_1": "",
+        "button_label_2": "",
+        "button_url_2": "",
+        "text_alignment": "center center",
+        "full_width": true,
+        "mobile_overlay_under": false,
+        "overlay_style": "shadow"
+      }
+    },
+    "1643084702b6452fda": {
+      "type": "apps",
+      "disabled": true,
+      "blocks": {
+        "4f9f0f1c-e58a-494e-bb64-d381a5668680": {
+          "type": "shopify:\/\/apps\/instafeed-instagram-feed\/blocks\/app-block\/c447db20-095d-4a10-9725-b5977662c9d5",
+          "settings": {
+            "heading_size": 20,
+            "feed_width": 100,
+            "html_area": ""
+          }
+        }
+      },
+      "block_order": [
+        "4f9f0f1c-e58a-494e-bb64-d381a5668680"
+      ],
+      "settings": {
+        "full_width": true
+      }
+    },
+    "16433905455d0774bb": {
+      "type": "image-with-text",
+      "disabled": true,
+      "settings": {
+        "image": "shopify:\/\/shop_images\/Linkedin_Featured_Image_Branding.jpg",
+        "image_2": "shopify:\/\/shop_images\/design-pieces-ag.jpg",
+        "image_width": 700,
+        "subheading": "",
+        "title": "Design Philosophy",
+        "use_h1": false,
+        "text": "<p>August Berg’s 1950s Modern Vintage aesthetic is accentuated by an oversized crown emblazoned with a sleek August Berg infinity logo to symbolise a perfect time loop, reinforcing the importance of time and our relationship with it.<\/p>",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "primary",
+        "image_position": "right",
+        "text_alignment": "left",
+        "use_alt_bg": false
+      }
+    },
+    "1643391668a4513b15": {
+      "type": "image-with-text",
+      "disabled": true,
+      "settings": {
+        "image": "shopify:\/\/shop_images\/httpscdn.shopify.comsfiles1003169124401files704x563px_9_5b0c7008-a04f-4e31-a315-86b7b31d49b5.jpgv_1613334005.jpg",
+        "image_width": 700,
+        "subheading": "",
+        "title": "Designed in Denmark, made for the world",
+        "use_h1": false,
+        "text": "<p>A passionate, curious and creative soul, his latest artistic collaboration - August Berg’s Serenity Collection, sees the birth of a new classic look. The timepieces are inspired by the strong Danish classic design tradition, combined with a modern vintage twist.<br\/><br\/>“I am excited to have been given the opportunity to create a new design classic for August Berg and not least to share it with the world. August Berg’s story and brand ethos resonates positively with me.<br\/><br\/>It sends the timely and important message of making conscious choices with our time, for ourselves and for the world around us”, says Magnus Joergensen.<\/p>",
+        "button_label": "",
+        "button_link": "shopify:\/\/pages\/our-designer",
+        "button_style": "primary",
+        "image_position": "right",
+        "text_alignment": "center",
+        "use_alt_bg": false
+      }
+    },
+    "1643391777de5978dd": {
+      "type": "image-with-text",
+      "disabled": true,
+      "settings": {
+        "image": "shopify:\/\/shop_images\/linkedin_featured_hpf.jpg",
+        "image_width": 700,
+        "subheading": "",
+        "title": "Give the gift of time to someone else.",
+        "use_h1": false,
+        "text": "<p>August Berg has partnered with the Human Practice Foundation and for every watch sold, together we will give a child in Asia and Africa at least 6 months of quality education, and with 20,000 watches we will build a schoool together.<\/p>",
+        "button_label": "Read more",
+        "button_link": "shopify:\/\/pages\/social-actions",
+        "button_style": "primary",
+        "image_position": "left",
+        "text_alignment": "left",
+        "use_alt_bg": false
+      }
+    },
+    "recommendations": {
+      "type": "product-recommendations",
+      "disabled": true,
+      "settings": {
+        "title": "You may also like these",
+        "show_vendor": false,
+        "grid": 4
+      }
+    }
+  },
+  "order": [
+    "main",
+    "16431727104445e401",
+    "165949006524d64c5c",
+    "1643086136be690265",
+    "16443991013c714d58",
+    "16594883859207de67",
+    "1643084702b6452fda",
+    "16433905455d0774bb",
+    "1643391668a4513b15",
+    "1643391777de5978dd",
+    "recommendations"
+  ]
+}

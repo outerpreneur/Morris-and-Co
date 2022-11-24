@@ -1,0 +1,208 @@
+<script id = "cleverscript" >
+
+var cleveroptionindex = '';
+var cleverimages = {{product.metafields.clever["cleverimages"] | json}};
+// var cleveroptionindex = {{product.metafields.clever["cleveroptionindex"]}};
+{% if product.metafields.clever["cleveroptionindex"] != blank %}
+var cleveroptionindex = {{product.metafields.clever["cleveroptionindex"]}};
+{% endif %}
+var cleverproduct = {{product | json}};
+var clevervariants = cleverproduct.variants;
+var productimageswitcher =  {{product.metafields.clever['is_clever_on'] | json}};
+var appimageswitcher = {{shop.metafields.clever['is_image_switcher_on'] | json}};
+
+var imagesjson = {{product.images | json}};
+var cleverproductimages = [];
+
+
+
+{% assign i = 0 %}
+{% for image in product.images %}
+cleverproductimages[{{i}}] = [];
+cleverproductimages[{{i}}]['src'] = imagesjson[{{i}}];
+cleverproductimages[{{i}}]['id'] = {{image.id}};
+ {% assign i = i | plus:1 %}
+{% endfor %}
+
+
+if(cleverimages == null){
+
+    cleverimages=0;
+}
+
+if(cleveroptionindex == ''){
+
+    cleveroptionindex = 0;
+}
+
+var originalhtml;
+var originalhtmlThumb;
+
+
+
+document.addEventListener('DOMContentLoaded', function(event) {
+    setTimeout(function(){
+    originalhtmlThumb = $('.thumbnails').html();
+    
+    var slickoptions = $('.product-slideshow').get(0).slick.options;
+
+    $('.product-slideshow').slick('unslick');
+    var slides = $('.product-slideshow .slide').clone();
+    $(".product-slideshow").slick(slickoptions);
+    var owlthumb = $('.thumbnails a').clone();
+
+
+    if( appimageswitcher==1 && productimageswitcher == 1 ) {  
+      
+      
+        var initval ='';
+        for (var i = 0; i < 4; i++) {
+            
+            setTimeout(function() {
+                if(initval == 'set'){
+
+                            
+                return false;
+                }
+
+                cleverMapper();
+
+            }, i * 1000);
+
+        }
+
+            
+        $(document).on("change", ".opt-btn.js-option", function() {
+            cleverMapper();
+            
+        });
+
+
+                   
+
+        function  cleverMapper() {
+            
+            var found = 0;
+            var fvalue = [];
+            var foptionMap = [];
+            var nvalue = [];
+            var noptionMap = [];
+            var available = false;
+            var optionMap = [];
+           
+            $('.thumbnails').html(originalhtmlThumb);
+            $(".opt-btn.js-option").each(function(key){
+               
+                if($(this).prop("checked")){
+                    optionMap[key] = $(this).val(); 
+                   
+                }
+            });
+                
+            
+            optionMap = optionMap.filter(function (el) {
+
+                return el != null && el != "";
+            
+              });
+              
+            
+
+            var variantimagesArray = [];
+            if (cleverimages[optionMap[cleveroptionindex]] != undefined) {
+                     
+                while (variantimagesArray.length > 0) {
+                    variantimagesArray.pop();
+                }
+                variantimagesArrayref =  cleverimages[optionMap[cleveroptionindex]];
+            }
+
+                variantimagesArray = $.merge( $.merge( [], variantimagesArrayref ),cleverimages['CleverCommon']);
+                console.log(variantimagesArray);
+                $('.product-slideshow').slick('unslick');
+                $('.product-slideshow').html(slides);
+
+            
+            
+                $('.product-slideshow .slide').each(function(i, obj) {
+                currentimage = $(this).find('a').attr('href'); 
+                currentimageindex = $.inArray(currentimage, imagesjson); 
+                if(currentimageindex !== false){
+                    
+                    if(cleverproductimages[currentimageindex] != undefined){
+                        imageid = cleverproductimages[currentimageindex]['id']; 
+                        imageid = imageid.toString(); 
+                        
+
+
+                        if ($.inArray(imageid, variantimagesArray) !== -1) { 
+                            console.log('found');
+                        
+                        } else { 
+                            // console.log('Not found');
+                            $(this).remove();
+                            
+                        } 
+                    }
+                }
+
+                });
+            // return false;
+            $(".product-slideshow").slick(slickoptions);
+            $(".thumbnails").owlCarousel("destroy");
+            $('.thumbnails').html(owlthumb);
+            // $(".thumbnails .owl-item").removeAttr('style');
+            // $(".thumbnails .owl-item").removeClass('active');
+            
+
+
+            $('.thumbnails a').each(function(i, obj) {
+            
+                currentimage = $(this).attr('href'); 
+                currentimageindex = $.inArray(currentimage, imagesjson); 
+                if(currentimageindex !== false){
+                    
+                    if(cleverproductimages[currentimageindex] != undefined){
+                        imageid = cleverproductimages[currentimageindex]['id']; 
+                        imageid = imageid.toString(); 
+                        
+
+
+                        if ($.inArray(imageid, variantimagesArray) !== -1) { 
+                            // console.log('found');
+                        
+                        } else { 
+                            // console.log('Not found');
+                            $(this).remove();
+                            
+                        } 
+                    }
+                }
+
+            });
+
+            $(".thumbnails").on("initialized.owl.carousel", function () {
+                $(".lazyload--manual", this).removeClass("lazyload--manual").addClass("lazyload")
+            }).owlCarousel({
+                items: 6,
+                dots: !1,
+                margin: 7
+            });
+            $('.thumbnails a:first').trigger('click');
+            $('.clickyboxes li').attr('onclick','callClever()');
+
+            initval ='set';
+        }
+    }
+}, 4000)
+});
+
+
+function callClever(){
+            
+    setTimeout(function(){
+        
+        cleverMapper();
+    }, 100)
+}
+</script>

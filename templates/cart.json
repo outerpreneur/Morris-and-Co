@@ -1,0 +1,20 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-cart",
+      "settings": {
+        "show_page_title": true,
+        "enable_cart_notes": true,
+        "show_tax_and_shipping": false,
+        "cart_terms_page": "https:\/\/augustberg.com\/policies\/terms-of-service?ose=false",
+        "show_additional_checkout_buttons": true,
+        "show_backorder_text": true,
+        "show_shipping_calculator": false,
+        "shipping_calculator_default_country": "United States"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

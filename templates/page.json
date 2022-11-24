@@ -1,0 +1,282 @@
+{
+  "sections": {
+    "1660901974db070e66": {
+      "type": "rich-text",
+      "disabled": true,
+      "blocks": {
+        "16609019745622696c-0": {
+          "type": "heading",
+          "settings": {
+            "title": "About us",
+            "use_h1": true
+          }
+        }
+      },
+      "block_order": [
+        "16609019745622696c-0"
+      ],
+      "settings": {
+        "height": "small",
+        "text_alignment": "center",
+        "full_width": false,
+        "use_alt_bg": false
+      }
+    },
+    "166090202206e96652": {
+      "type": "video",
+      "disabled": true,
+      "settings": {
+        "video": "https:\/\/www.youtube.com\/watch?v=rq9s2HLtQtk&list=TLGGmY4A8m1GJtcxOTA4MjAyMg",
+        "subheading": "",
+        "video_title": "",
+        "title_size": 84,
+        "title_size_mobile": 46,
+        "text": "",
+        "enlarge_text": false,
+        "text_alignment": "center center",
+        "image": "shopify:\/\/shop_images\/summer-timepieces-august-berg.jpg",
+        "image_position": "center center",
+        "full_width": false,
+        "overlay_style": "no_background"
+      }
+    },
+    "1660902144dcdcb48b": {
+      "type": "rich-text",
+      "disabled": true,
+      "blocks": {
+        "1660902144f70e2795-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>August Berg was founded by Danish entrepreneur and retail specialist Anders Peter Juel Sauerberg, and designed by renowned Danish designer Magnus Jörgensen.​ August Berg is based on the inspiring thought of reframing the watch from a passive counter of time lost, to actively inspiring you to spend time on the things that bring purpose, meaning and joy to your life. <\/p>",
+            "enlarge_text": false
+          }
+        }
+      },
+      "block_order": [
+        "1660902144f70e2795-1"
+      ],
+      "settings": {
+        "height": "medium",
+        "text_alignment": "center",
+        "full_width": false,
+        "use_alt_bg": false
+      }
+    },
+    "16609021926b1f542e": {
+      "type": "image-with-text",
+      "disabled": true,
+      "settings": {
+        "image": "shopify:\/\/shop_images\/timefulness-about-2.jpg",
+        "image_width": 700,
+        "subheading": "Timefulness",
+        "title": "",
+        "use_h1": false,
+        "text": "<p>This appreciation for the time we have - and what we choose to do with it is essential. At August Berg we call it, Timefulness.​<\/p>",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "primary",
+        "image_position": "right",
+        "text_alignment": "left",
+        "use_alt_bg": false
+      }
+    },
+    "1660902280f967d0ed": {
+      "type": "rich-text",
+      "disabled": true,
+      "blocks": {
+        "1660902280b371f376-0": {
+          "type": "heading",
+          "settings": {
+            "title": "Our Story",
+            "use_h1": false
+          }
+        },
+        "1660902280b371f376-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Inspired by his son, Carl August, Anders Peter believes that time is the best gift you can give yourself and others. August Berg aims to inspire others to disconnect from omnipresent time wasters and reconnect with what truly matters to you, and your values.<\/p><p>Every August Berg timepiece thus serves as a keen reminder to live consciously, to be fully present for those you love, and to achieve the dreams you dare(d) to dream of.<\/p>",
+            "enlarge_text": false
+          }
+        }
+      },
+      "block_order": [
+        "1660902280b371f376-0",
+        "1660902280b371f376-1"
+      ],
+      "settings": {
+        "height": "medium",
+        "text_alignment": "left",
+        "full_width": false,
+        "use_alt_bg": false
+      }
+    },
+    "16609023541f8ee1e8": {
+      "type": "gallery",
+      "disabled": true,
+      "blocks": {
+        "16609023542ff1f17d-0": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/timefullness-text-image.jpg",
+            "alignment": "center center",
+            "enlarge_image": true,
+            "subheading": "",
+            "title": "",
+            "button_label": "",
+            "link": "",
+            "text_alignment": "bottom left"
+          }
+        },
+        "16609023542ff1f17d-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/morris-co-collection.jpg",
+            "alignment": "center center",
+            "enlarge_image": true,
+            "subheading": "",
+            "title": "",
+            "button_label": "",
+            "link": "",
+            "text_alignment": "bottom left"
+          }
+        }
+      },
+      "block_order": [
+        "16609023542ff1f17d-0",
+        "16609023542ff1f17d-1"
+      ],
+      "settings": {
+        "grid": 2,
+        "desktop_image_height": 460,
+        "mobile_image_height": 400,
+        "title_size": 30,
+        "title_size_mobile": 22,
+        "enable_margin": true,
+        "full_width": false,
+        "use_alt_bg": false,
+        "enable_carousel": true,
+        "overlay_style": "full",
+        "button_style": "primary"
+      }
+    },
+    "1660902762dccc240a": {
+      "type": "rich-text",
+      "disabled": true,
+      "blocks": {
+        "16609027623e629fc0-0": {
+          "type": "heading",
+          "settings": {
+            "title": "More than a watch brand",
+            "use_h1": false
+          }
+        },
+        "16609027623e629fc0-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>“August Berg, as a brand, believes in living consciously and making the most of how we spend our​time. The aim is to disrupt the watch and jewellery industry by shifting the focus from external values​to internal values.<\/p><p>I am passionate about integrating the notion of timefulness into everything I do. As a father, an entrepreneur, a husband, as well as within my person, it is essential that I find​the balance to keep performing at the top level without compromising on the things and relations that ​represent life's true values. I do this by striving to live in timefulness,” – says Anders Peter Juel​Sauerberg, CEO and founder of August Berg.<\/p>",
+            "enlarge_text": false
+          }
+        }
+      },
+      "block_order": [
+        "16609027623e629fc0-0",
+        "16609027623e629fc0-1"
+      ],
+      "settings": {
+        "height": "medium",
+        "text_alignment": "left",
+        "full_width": false,
+        "use_alt_bg": false
+      }
+    },
+    "16609028053a7c743a": {
+      "type": "image-with-text",
+      "disabled": true,
+      "settings": {
+        "image": "shopify:\/\/shop_images\/hp-found.jpg",
+        "image_width": 700,
+        "subheading": "Social Responsibility",
+        "title": "",
+        "use_h1": false,
+        "text": "<p>August Berg strives to make a positive difference in the lives of others. With every watch sold, August Berg gifts 6-months of quality education and, with 20,000 watches sold, August Berg will build a school for kids in local communities in rural Africa through Human Practice Foundation.​<\/p>",
+        "button_label": "Learn more",
+        "button_link": "",
+        "button_style": "link",
+        "image_position": "left",
+        "text_alignment": "left",
+        "use_alt_bg": false
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "full_width": false
+      }
+    },
+    "16609142576c08f338": {
+      "type": "multi-column",
+      "disabled": true,
+      "blocks": {
+        "1660914257307c8879-0": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify:\/\/shop_images\/shop-mens-book-pool.jpg",
+            "image_width": 700,
+            "title": "Our Role",
+            "text": "<p>Reframing the role of the watch from counter of time lost, to a measure of potential opportunity. Inspiring the consideration of what really matters, the things that bring purpose, meaning and joy.<\/p>",
+            "button_label": "",
+            "link": ""
+          }
+        },
+        "1660914257307c8879-1": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify:\/\/shop_images\/anders-anne-landscape.jpg",
+            "image_width": 700,
+            "title": "Our Northstar",
+            "text": "<p>Timefulness. Time gives us an opportunity to do more of what matters each and every day. Time is an opportunity that encourages you to be conscious of the choices you make.<\/p>",
+            "button_label": "",
+            "link": ""
+          }
+        },
+        "1660914257307c8879-2": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify:\/\/shop_images\/morris-co-beautiful-watch.jpg",
+            "image_width": 700,
+            "title": "Our Tribe",
+            "text": "<p>This is for those who believe we can do more of what matters with the time we have. The ones who find purpose in pursuing the path which brings meaning to their lives.<\/p>",
+            "button_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "1660914257307c8879-0",
+        "1660914257307c8879-1",
+        "1660914257307c8879-2"
+      ],
+      "settings": {
+        "title": "",
+        "text_alignment": "left",
+        "button_style": "primary",
+        "use_alt_bg": false
+      }
+    }
+  },
+  "order": [
+    "1660901974db070e66",
+    "166090202206e96652",
+    "1660902144dcdcb48b",
+    "16609021926b1f542e",
+    "1660902280f967d0ed",
+    "16609023541f8ee1e8",
+    "1660902762dccc240a",
+    "16609028053a7c743a",
+    "main",
+    "16609142576c08f338"
+  ]
+}

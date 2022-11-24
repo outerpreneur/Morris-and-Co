@@ -1,0 +1,59 @@
+<span class="product-label-container">
+  {%- for variant in product.variants -%}
+    <script id="variant-label-{{ variant.id }}" type="text/template">
+      {%- liquid
+        assign label_text = false
+        if settings.prod_new_show
+          if settings.prod_new_method == 'date'
+            assign now_s = 'now' | date: '%s' | plus: 0
+            assign pub_s = product.created_at | date: '%s' | plus: 0
+            assign diff_days = now_s | minus: pub_s | divided_by: 86400
+
+            if diff_days < settings.prod_new_limit_int
+              assign label_text = 'products.labels.new_in' | t
+              assign label_css_class_suffix = 'new-in'
+            endif
+          elsif settings.prod_new_method == 'tag'
+            if product.tags contains 'New'
+              assign label_text = 'products.labels.new_in' | t
+              assign label_css_class_suffix = 'new-in'
+            endif
+          else
+            for collection in product.collections
+              assign split_collection_handle = collection.handle | split: '-'
+              if split_collection_handle contains 'new'
+                assign label_text = 'products.labels.new_in' | t
+                assign label_css_class_suffix = 'new-in'
+                break
+              endif
+            endfor
+          endif
+        endif
+
+        if label_text == false and settings.prod_reduction_show and variant.compare_at_price > variant.price
+          if settings.prod_reduction_type == 'percent'
+            assign amount = 1.0 | times: variant.price | divided_by: variant.compare_at_price
+            assign amount = 1.0 | minus: amount
+            assign amount = amount | times: 100.0 | round
+            assign label_text = 'products.labels.percent_reduction' | t: amount: amount
+            assign label_css_class_suffix = 'sale'
+          else
+            assign amount = variant.compare_at_price | minus: variant.price | money
+            assign label_text = 'products.labels.value_reduction_html' | t: amount: amount
+            assign label_css_class_suffix = 'sale'
+          endif
+        endif
+      -%}
+      {%- if label_text -%}
+        <span class="product-label product-label--{{ label_css_class_suffix }}">
+          <span>{{ label_text }}</span>
+        </span>
+      {%- endif -%}
+    </script>
+    {% if variant.id == current_variant.id and label_text %}
+      <span class="product-label product-label--{{ label_css_class_suffix }}">
+        <span>{{ label_text }}</span>
+      </span>
+    {% endif %}
+  {%- endfor -%}
+</span>

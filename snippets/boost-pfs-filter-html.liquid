@@ -1,0 +1,102 @@
+{%- capture boost_pfs_layout -%}
+{%- case layout -%}
+
+{%- when 'productGridItemHtml' -%}
+{% raw %}
+<div data-product-id="{{itemId}}" class="product-block">
+	<div class="block-inner">
+		<div class="block-inner-inner">
+			<div class="image-cont {{hoverClass}}">
+				<a class="product-link" href="{{itemUrl}}">
+					<div class="image-label-wrap">
+						{{itemStyle}}
+						<div>
+							{{itemImages}}
+							{{itemWishlist}}
+						</div>
+						{{itemDots}}
+						{{itemLabel}}
+					</div>
+				</a>
+				{{itemImagePageButtons}}
+				{{itemQuickBuy}}
+			</div>
+			<div class="product-info">
+				<div class="inner">
+					<div class="innerer">
+						{{itemReviews}}
+						{{itemVendor}}
+						<div class="product-block__title">{{itemTitle}}</div>
+						{{itemPrice}}
+						{{itemSwatch}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	{{itemQuickView}}
+</div>
+{% endraw %}
+
+{%- when 'vendorHtml' -%}
+<div class="vendor">
+	{{ 'products.product.vendor' | t }}
+	<a href="{{itemVendorUrl}}">[[itemVendorLabel]]</a>
+</div>
+
+{%- when 'skuHtml' -%}
+<div class="sku {{itemNoSkuClass}}">
+	{{ 'products.product.sku' | t }}
+	<span class="sku__value">[[itemFirstVariantSku]]</span>
+</div>
+
+{%- when 'previousDisabledHtml' -%}
+<span class="prev">« {{ 'general.pagination.previous' | t }}</span>
+
+{%- when 'previousActiveHtml' -%}
+<a class="prev" href="[[itemUrl]]">« {{ 'general.pagination.previous' | t }}</a>
+
+{%- when 'nextDisabledHtml' -%}
+<span class="next">{{ 'general.pagination.next' | t }} »</span>
+
+{%- when 'nextActiveHtml' -%}
+<a class="next" href="[[itemUrl]]">{{ 'general.pagination.next' | t }} »</a>
+
+{%- when 'pageItemHtml' -%}
+<span class="pagination__number"><a href="[[itemUrl]]">[[itemTitle]]</a></span>
+
+{%- when 'pageItemSelectedHtml' -%}
+<span class="pagination__number active">[[itemTitle]]</span>
+
+{%- when 'pageItemRemainHtml' -%}
+<span class="pagination__number">...</span>
+
+{%- when 'paginateHtml' -%}
+<div class="pagination">[[previous]] [[pageItems]] [[next]]</div>
+
+{%- when 'sortingHtml' -%}
+{% assign temp_label_sorting = 'collections.sorting.title' | t | escape  %}
+<div class="link-dropdown link-dropdown--right-aligned">
+	<div class="visually-hidden" id="sort-dropdown-heading">
+      {% unless temp_label_sorting contains 'translation missing'  %}
+      	{{ temp_label_sorting }}
+      {% else %}
+      Sorting
+      {% endunless %}
+  	</div>
+	<button class="link-dropdown__button notabutton" aria-expanded="false" aria-controls="sort-dropdown-options" aria-describedby="sort-dropdown-heading">
+		<span class="link-dropdown__button-text">[[activeSorting]]</span>
+		<span class="link-dropdown__button-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down">
+				<title>Down</title>
+				<polyline points="6 9 12 15 18 9"></polyline>
+			</svg></span>
+	</button>
+	<div class="link-dropdown__options" id="sort-dropdown-options">
+		[[sortingItems]]
+	</div>
+</div>
+{%- endcase -%}
+
+{%-  endcapture -%}
+{%- assign str = '}}' -%}
+{{- boost_pfs_layout | json | replace: '[[', '{{' | replace: ']]', str -}}

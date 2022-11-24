@@ -1,0 +1,81 @@
+{%- if product.has_only_default_variant == false -%}
+  {%- if product.variants.size > 1 or block.settings.show_single -%}
+    <div class="option-selectors">
+      {%- for option in product.options_with_values -%}
+        {%- capture option_id -%}{{ section.id }}-{{ product.id }}-{{ option.name | handle }}-selector{%- endcapture -%}
+        {%- assign swatches = false -%}
+
+        {%- if settings.swatch_enabled and settings.swatch_option_name contains option.name -%}
+          {%- assign swatches = true -%}
+          <style>
+            {%- if settings.swatch_method == 'image' -%}
+              [data-swatch]::before { background-color: #ddd; }
+              {%- for value in option.values -%}
+                {%- assign swatch_value = value | handle -%}
+                [data-swatch="{{ swatch_value }}"]::before {
+                  background-image: url({{ swatch_value | append: '.png' | file_img_url: '48x48', crop: 'center' }});
+                }
+              {%- endfor -%}
+            {%- else -%}
+              {%- for value in option.values -%}
+                {%- assign swatch_value = value | handle -%}
+                [data-swatch="{{ swatch_value }}"]::before { background-color: {{ swatch_value | remove: '-' }}; }
+              {%- endfor -%}
+            {%- endif -%}
+          </style>
+        {%- endif -%}
+
+
+        {%- capture size_chart_html -%}
+          {%- if block.settings.show_size_chart and block.settings.size_chart_variant contains option.name and block.settings.size_chart_page != blank -%}
+            <div class="size-chart-container">
+              <a href="{{ pages[block.settings.size_chart_page].url }}" target="_blank" class="size-chart-link cc-modal" data-cc-modal-contentelement="#size-chart-content--{{ section.id }}">
+                <span class="size-chart-link__icon">{%- render 'icon', icon: 'ruler', size: 'small' -%}</span><span class="size-chart-link__text underline">{{- 'products.product.size_chart' | t -}}</span>
+              </a>
+              <div class="size-chart-content hidden" id="size-chart-content--{{ section.id }}">
+                <div class="size-chart">
+                  <div class="size-chart__inner rte">
+                    {{ pages[block.settings.size_chart_page].content }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endcapture -%}
+
+        {%- if block.settings.variant_style == 'dropdown' -%}
+          <div class="option-selector{% if size_chart_html != empty %} option-selector--with-size-chart{% endif %}" data-selector-type="dropdown">
+            {{ size_chart_html }}
+            {% render 'custom-select',
+              id: option_id,
+              label: option.name,
+              option_values: option.values,
+              selected_value: option.selected_value,
+              swatches: swatches
+            %}
+          </div>
+        {%- else -%}
+          <div class="option-selector{% if size_chart_html != empty %} option-selector--with-size-chart{% endif %}" data-selector-type="listed">
+            <fieldset class="option-selector-fieldset">
+              <div class="opposing-items">
+                <legend class="label">{{ option.name }}</legend>
+                {{ size_chart_html }}
+              </div>
+              <div class="option-selector__btns">
+                {%- for value in option.values -%}
+                  <input class="opt-btn js-option"
+                        type="radio"
+                        name="{{ option_id }}"
+                        id="{{ option_id }}-opt-{{ forloop.index0 }}"
+                        value="{{ value | escape }}"
+                        {% if option.selected_value == value %}checked{% endif %}>
+                  <label class="opt-label"{% if swatches %} data-swatch="{{ value | handle }}"{% endif %} for="{{ option_id }}-opt-{{ forloop.index0 }}">{{ value }}</label>
+                {%- endfor -%}
+              </div>
+            </fieldset>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+{%- endif -%}

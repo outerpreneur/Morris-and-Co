@@ -1,0 +1,334 @@
+<div class="container fully-spaced-row" data-section-type="cart-template" data-ajax-update="true">
+  {% if section.settings.show_page_title %}
+    <div class="page-header" data-cc-animate>
+      <h1 class="majortitle">{{ 'cart.general.title' | t }}</h1>
+    </div>
+  {% endif %}
+
+  {% if cart.items == empty %}
+    <div class="fully-spaced-row align-centre c-cart-empty" data-cc-animate>
+      <p>{{ 'cart.general.empty' | t }}</p>
+      <div class="c-cart-empty_upselling">
+      {% if section.blocks.size > 0 %}
+        {% for block in section.blocks %}
+          <div class="c-cart-empty_upselling--item">
+            <a href="{{block.settings.url}}" class="c-cart-empty_upselling--item-link" style="{% if block.settings.color_background != blank %}background-color: {{block.settings.color_background}};{% endif %}{% if block.settings.color_text != blank %}color: {{block.settings.color_text}}{% endif %}">
+              {{block.settings.title}}
+            </a>
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+    </div>
+  {% else %}
+    <form action="{{ routes.cart_url }}" method="post" id="cartform">
+      <div class="cart-item-list content-divider">
+        <div class="cart-item-list__head" data-cc-animate>
+          <div class="cart-item-list-heading cart-item-list-heading--product">{{ 'cart.label.product' | t }}</div>
+          <div class="cart-item-list-heading cart-item-list-heading--price">{{ 'cart.label.price' | t }}</div>
+          <div class="cart-item-list-heading cart-item-list-heading--quantity">{{ 'cart.label.quantity' | t }}</div>
+          <div class="cart-item-list-heading cart-item-list-heading--total">{{ 'cart.label.total' | t }}</div>
+        </div>
+        <div class="cart-item-list__body">
+          {% for item in cart.items %}
+            <div data-line="{{ forloop.index }}" data_pplr_row= "{{ forloop.index }}"  class="cart-item product-{{ item.product.handle }}" data-cc-animate>
+              {%- comment -%}
+              Determining the handle of the collection that was last seen for the 'continue shopping' link.
+              {%- endcomment -%}
+
+              {%- if forloop.first -%}
+                {%- capture collection_url -%}{{ item.product.collections.first.url }}{%- endcapture -%}
+                {%- if collection_url == empty or collection_url contains '/frontpage' -%}{%- capture collection_url -%}{{ routes.all_products_collection_url }}{%- endcapture -%}{%- endif -%}
+              {%- endif -%}
+
+              <div class="cart-item__column cart-item__image" id="cart-item-image-{{ item.id }}">
+                <a href="{{ item.url }}">
+                  {% render 'responsive-image', image: item.image, max_height: 100 %}
+                </a>
+              </div>
+
+              <div class="cart-item__not-image">
+                <div class="cart-item__column cart-item__description">
+                  <div>
+                    <a class="name" href="{{ item.url }}">{{ item.product.title }}<span class="ga_cart_upsell" data-productid="{{ item.product_id }}"></span></a>
+                    <div class="small-text">
+                      {% if item.product.variants.size > 1 %}
+                      <div class="variant">{{ item.variant.title }}</div>
+                      {% endif %}
+
+                      <span  class='pplr_cart_property_default' data-line='{{item.index}}' >{%- for p in item.properties -%}{% if p.first == '_bundle' %}{% continue %}{% endif %}{% if p.first == '__is_bundle_product' %}{% continue %}{% endif %}{% if p.first == '_upsell_bundle' %}{% continue %}{% endif %}{% if p.first == '_bundle' %}{% continue %}{% endif %}{% if p.first == '__is_bundle_product' %}{% continue %}{% endif %}{% if p.first == '_upsell_bundle' %}{% continue %}{% endif %}
+                        {% unless p.last == blank %}
+                          <div class="line-item-property">{{ p.first }}:
+                            {% if p.last contains '/uploads/' %}
+                            <a href="{{ p.last }}">{{ p.last | split: '/' | last }}</a>
+                            {% else %}
+                            {{ p.last }}
+                            {% endif %}
+                          </div>
+                        {% endunless %}
+                      {%- endfor -%}</span><span class="pplr_cart_item_property" data-line="{{item.index}}" ></span>
+
+                      {% if item.selling_plan_allocation %}
+                        <div class="subscription-description">{{ item.selling_plan_allocation.selling_plan.name }}</div>
+                      {% endif %}
+
+                      {% if section.settings.show_backorder_text == true %}
+                        {% render 'backorder', product: item.product, variant: item.variant %}
+                      {% endif %}
+
+                      {% if settings.prod_pre_order_label_show and item.product.template_suffix == 'preorder' %}
+                        <div class="price-label price-label--preorder">{{ 'products.product.preorder' | t }}</div>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+
+                <div class="cart-item__column cart-item__price">
+                  {% if item.original_line_price > item.final_line_price %}
+                    <div class="struck-out-price"><span class="theme-money"><span class='pplr_item_original_price' data-line='{{item.index}}' >{{ item.original_price | money }}</span></span></div>
+                  {% endif %}
+                  <div><span class="theme-money"><span class='pplr_item_final_price' data-line='{{item.index}}' >{{ item.final_price | money }}</span></span></div>
+
+                  {% render 'unit-price', variant: item %}
+
+                  {% if item.line_level_discount_allocations.size > 0 %}
+                    <ul class="cart-discount-list">
+                    {% for discount_allocation in item.line_level_discount_allocations %}
+                      <li class="cart-discount">
+                        <div class="cart-discount__label">
+                            <span class="cart-discount__icon">{% render 'icon-label' %}</span>
+                            <span class="cart-discount__title">{{ discount_allocation.discount_application.title }}</span>
+                        </div>
+                        <div class="cart-discount__amount theme-money">{{ discount_allocation.amount | money }}</div>
+                      </li>
+                    {% endfor %}
+                    </ul>
+                  {% endif %}
+                </div>
+
+                {% if item.variant.inventory_management == 'shopify' and item.variant.inventory_policy == 'deny' and item.variant.inventory_quantity <= item.quantity %}
+                  {% assign can_increase = false %}
+                {% else %}
+                  {% assign can_increase = true %}
+                {% endif %}
+                <div class="cart-item__column cart-item__quantity">
+                  <div class="quantity buttoned-input">
+                    <a id="updates_dec_{{ forloop.index }}" class="notabutton quantity-down {% if item.quantity < 2 %}unusable{% endif %}" href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity={{ item.quantity | minus: 1 }}" aria-label="{{ 'cart.label.decrease' | t | escape }}">{% render 'svg-minus' %}</a>
+                    <input
+                      class="cart-item__quantity-input"
+                      type="text"
+                      size="2"
+                      id="updates_{{ forloop.index }}"
+                      name="updates[]"
+                      value="{{ item.quantity }}"
+                      data-initial-value="{{ item.quantity }}"
+                      data-line="{{ forloop.index }}"
+                      {% if item.variant.inventory_management == 'shopify' and item.variant.inventory_policy == 'deny' %}data-max="{{ item.variant.inventory_quantity }}"{% endif %}
+                      aria-label="{{ 'cart.general.quantity' | t | escape }}" />
+                    <a id="updates_inc_{{ forloop.index }}" class="notabutton quantity-up {% unless can_increase %}unusable{% endunless %}" href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity={{ item.quantity | plus: 1 }}" aria-label="{{ 'cart.label.increase' | t | escape }}">{% render 'svg-plus' %}</a>
+                  </div>
+                  <a class="remove" onclick="return confirm('{{ 'cart.general.confirm_remove' | t }}')" href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity=0">
+                    {{ 'cart.general.remove' | t }}
+                    {% render 'svg-x' %}
+                  </a>
+                </div>
+
+                <div class="cart-item__column cart-item__total" data-line="{{ forloop.index }}">
+                  {% if item.original_line_price != item.final_line_price %}
+                    <div class="theme-money struck-out-price"><span class='pplr_item_line_original_price' data-line='{{item.index}}' >{{ item.original_line_price | money }}</span></div>
+                    <span class="theme-money"><span class='pplr_item_line_final_price' data-line='{{item.index}}' >{{ item.final_line_price | money }}</span></span>
+                  {% else %}
+                    <span class="theme-money"><span class='pplr_item_line_final_price' data-line='{{item.index}}' >{{ item.final_line_price | money }}</span></span>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="checkout-subtotal-container spaced-row" data-cc-animate>
+        <div class="flexible-layout">
+          <div class="checkout-subtotal-container__left column column--half">
+            {% if section.settings.enable_cart_notes %}
+              <div class="checkout-note">
+                <label for="note">{{ 'cart.label.note' | t }}</label>
+                <div class="textareawrapper"><textarea id="note" name="note">{{ cart.note }}</textarea></div>
+              </div>
+            {% endif %}
+
+            {% if section.settings.show_shipping_calculator %}
+              <button class="notabutton" data-toggle-shipping data-toggle-html="{{ 'cart.shipping_calculator.button_hide' | t | escape }}">{{ 'cart.shipping_calculator.button_show' | t }}</button>
+              {% render 'shipping-calculator', default_country: section.settings.shipping_calculator_default_country %}
+            {% endif %}
+          </div>
+
+          <div class="checkout-subtotal-container__right column column--half">
+            {%- if cart.cart_level_discount_applications != blank -%}
+              <ul class="cart-discount-list">
+                {%- for discount_application in cart.cart_level_discount_applications -%}
+                  <li class="cart-discount cart-discount--inline">
+                    <span class="cart-discount__label">
+                        <span class="cart-discount__icon">{% render 'icon-label' %}</span>
+                        <span class="cart-discount__title">{{ discount_application.title }}</span>
+                    </span>
+                    <span class="cart-discount__amount theme-money">{{ discount_application.total_allocated_amount | money }}</span>
+                  </li>
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+            <h2 class="subtotal h2-style">
+              {{ 'cart.general.subtotal' | t }}:
+              <span class="theme-money">
+                {%- if settings.cart_currency_code_enabled -%}
+                  {{- cart.total_price | money_with_currency -}}
+                {%- else -%}
+                  {{- cart.total_price | money -}}
+                {%- endif -%}
+              </span>
+            </h2>
+
+            {%- if section.settings.show_tax_and_shipping -%}
+              {%- capture taxes_shipping_checkout -%}
+                {%- if cart.taxes_included and shop.shipping_policy.body != blank -%}
+                  {{ 'cart.general.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url }}
+                {%- elsif cart.taxes_included -%}
+                  {{ 'cart.general.taxes_included_but_shipping_at_checkout' | t }}
+                {%- elsif shop.shipping_policy.body != blank -%}
+                  {{ 'cart.general.taxes_and_shipping_policy_at_checkout_html' | t: link: shop.shipping_policy.url }}
+                {%- else -%}
+                  {{ 'cart.general.taxes_and_shipping_at_checkout' | t }}
+                {%- endif -%}
+              {%- endcapture -%}
+
+              <div class="cart-policies">{{ taxes_shipping_checkout }}</div>
+            {%- endif -%}
+
+            {% if section.settings.cart_terms_page != blank %}
+              <div class="termsagreement">
+                <input type="checkbox" id="terms" />
+                <label for="terms">{{ 'cart.terms.agreement_html' | t: terms_url: section.settings.cart_terms_page }}</label>
+              </div>
+            {% endif %}
+
+            <div class="checkout-col">
+              <div class="checkout-buttons">
+                <span class="update-cart-container">
+                  <input type="submit" class="notabutton" name="update" value="{{ 'cart.general.update' | t }}" /> {{ 'cart.general.or' | t }}
+                </span>
+
+                <input type="submit" class="button button--large" id="update-cart" name="checkout" value="{{ 'cart.general.checkout' | t }}" />
+
+                {% if section.settings.show_additional_checkout_buttons and additional_checkout_buttons and section.settings.cart_terms_page == blank %}
+                <div class="additional-checkout-buttons">
+                  {{ content_for_additional_checkout_buttons }}
+                </div>
+                {% endif %}
+              </div>
+
+              <a class="continue-shopping" href="{{ collection_url }}">{{ 'cart.general.continue' | t }}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  {% endif %}
+</div>
+
+
+{% schema %}
+  {
+    "name": "Cart page",
+    "class": "page-section-spacing",
+    "blocks": [
+      {
+        "type": "collection_button",
+        "name": "Collection/Button",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "url",
+            "id": "url",
+            "label": "URL"
+          },
+          {
+            "type": "color",
+            "id": "color_text",
+            "label": "Text color",
+            "default": "#ffffff"
+          },
+          {
+            "type": "color",
+            "id": "color_background",
+            "label": "Background color",
+            "default": "#26415E"
+          }
+        ]
+      }
+    ],
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_page_title",
+        "label": "Show page title",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_cart_notes",
+        "label": "Enable cart notes",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_tax_and_shipping",
+        "label": "Show tax status and shipping policy link",
+        "default": true
+      },
+      {
+        "type": "url",
+        "id": "cart_terms_page",
+        "label": "Terms and Conditions link",
+        "info": "Additional checkout buttons will be hidden when cart terms are shown"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_additional_checkout_buttons",
+        "label": "Show additional checkout options",
+        "default": true,
+        "info": "Display other gateways and quick checkout buttons. [Read more](https://help.shopify.com/en/manual/payments/accelerated-checkouts)"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_backorder_text",
+        "label": "Show backorder text",
+        "default": true,
+        "info": "Only shows for products which use Shopify inventory tracking and are available to purchase when out of stock."
+      },
+      {
+        "type": "header",
+        "content": "Shipping rates calculator"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_shipping_calculator",
+        "label": "Show",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "shipping_calculator_default_country",
+        "label": "Default country selection",
+        "default": "United States"
+      },
+      {
+        "type": "paragraph",
+        "content": "If your customer is logged-in, the country in his default shipping address will be selected. If you are not sure about the spelling to use here, refer to your first checkout page dropdown."
+      }
+  ]
+  }
+{% endschema %}

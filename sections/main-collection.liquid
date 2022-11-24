@@ -1,0 +1,681 @@
+{%- assign filter_tree_vertical_style = shop.metafields.bc-sf-filter.settings | split: 'general":' | last | split: 'filterTreeVerticalStyle":"' | last | split: '","' | first | strip -%}
+{%- assign enable_filter_sticky_d = shop.metafields.bc-sf-filter.settings | split: 'general":' | last | split: 'stickyFilterOnDesktop":' | last | split: ',' | first | strip -%}
+
+{%- assign enable_filter_tree_button_desktop_v = false -%}
+{%- if filter_tree_vertical_style == 'style-off-canvas' or filter_tree_vertical_style == 'style-expand' -%}
+  {%- assign enable_filter_tree_button_desktop_v = true -%}
+{%- endif -%}
+
+{%- assign boost_settings = shop.metafields.bc-sf-filter.settings -%}
+{%- assign boost_in_collection_search = boost_settings | split: 'enableCollectionSearch":' | last | split: ',"' | first | strip -%}
+<div data-section-id="{{ section.id }}" data-section-type="collection-template" >
+  {% paginate collection.products by section.settings.coll_num_per_page_int %}
+
+  {%- liquid
+    if section.settings.show_image_behind_heading and collection.featured_image
+      assign header_image_enabled = true
+    else
+      assign header_image_enabled = false
+    endif
+  -%}
+
+
+  {% if header_image_enabled %}
+  <div class="page-header page-header--with-background page-header--background-desktop-only image-overlay image-overlay--bg-full page-header--padded-{{ section.settings.heading_image_height }} rimage-wrapper">
+    <div class="rimage-background lazyload fade-in"
+    data-bgset="{% render 'bgset', image: collection.image %}"
+    data-sizes="auto"
+    data-parent-fit="cover"></div>
+  {% else %}
+  {{ subcollection_html }}
+  <div class="page-header page-header--with-upper-spacing">
+  {% endif %}
+
+  {% if header_image_enabled %}
+    <div class="page-header-background-mobile-only image-overlay image-overlay--bg-full page-header--padded-{{ section.settings.heading_image_height }} rimage-wrapper">
+    <div class="rimage-background lazyload fade-in"
+      data-bgset="{% render 'bgset', image: collection.image %}"
+      data-sizes="auto"
+      data-parent-fit="cover"></div>
+  {% endif %}
+
+    <div class="container">
+    
+    <h1 class="boost-pfs-filter-collection-header pagetitle {% if header_image_enabled %}image-overlay__over super-large-text{% else %}h3-style{% endif %}">{{ collection.title | escape }}</h1>
+
+    {% if collection.metafields.custom.description.value != blank %}
+      <div class="collection-description">{{ collection.metafields.custom.description }}</div>
+    {% endif %}
+
+    {%- comment -%}
+    {% if collection.description != blank and section.settings.coll_desc_pos == 'above' %}
+      <div class="user-content cf align-center reading-width {% if header_image_enabled %}image-overlay__over{% endif %}">{{ collection.description }}</div>
+    {% endif %}
+    {%- endcomment -%}
+    </div>
+
+    {%- if current_link_parent and header_image_enabled and section.settings.subcoll_style == 'buttons' -%}
+    {{ subcollection_html }}
+    {%- endif -%}
+
+  {% if header_image_enabled %}
+    </div>
+  {% endif %}
+  </div>
+
+  {%- if current_link_parent and header_image_enabled and section.settings.subcoll_style != 'buttons' -%}
+    {{ subcollection_html }}
+  {%- endif -%}
+
+  <div class="container{% if settings.use_fullwidth_layout %} container--no-max{% endif %}">
+    {% if boost_in_collection_search == 'true' %}
+      <div class="boost-pfs-in-collection-search">
+        {% render 'boost-pfs-filter-skeleton', width: 4 %}
+      </div>
+    {% endif %}
+    <div class="utility-bar {% if enable_filter_sticky_d and enable_filter_tree_button_desktop_v %} boost-pfs-filter-tree-desktop-button-sticky-wrapper {% endif %}" data-ajax-container data-ajax-scroll-to>
+      <div class="utility-bar__left">
+        {% comment %}
+          {%- unless enable_filter_tree_button_desktop_v -%}
+            <a href="#" class="toggle-btn utility-bar__item{% if section.settings.collapse_tag_sidebar_by_default == false or current_tags %} toggle-btn--revealed-desktop{% endif %}" data-toggle-filters>
+              <span class="button-icon">{% render 'svg-filter' %}</span>
+              <span>{{ 'collections.filtering.filter' | t }}</span>
+              <span class="toggle-btn__chevron">{% render 'svg-chevron-right', stroke_width: 1.3 %}</span>
+            </a>
+          {%- endunless -%}
+        {% endcomment %}
+        {%- unless enable_filter_tree_button_desktop_v -%}
+          <div class="boost-pfs-filter-total-products"></div>
+        {%- endunless -%}
+        {%- if enable_filter_tree_button_desktop_v  -%}
+          <div class="boost-pfs-filter-tree-desktop-button">{%- render 'boost-pfs-filter-skeleton', type: 'button' -%}</div>
+        {%- endif -%}
+
+      </div>
+      {%- if enable_filter_tree_button_desktop_v  -%}
+        <div class="utility-bar__centre boost-pfs-filter-total-products">
+        </div>
+      {%- endif -%}
+
+      <div class="utility-bar__right">
+        {% if section.settings.coll_show_sort %}
+          <span class="utility-bar__item boost-pfs-filter-top-sorting desktop-only"></span>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="boost-pfs-filter-wrapper filter-container filter-container--show-filters-desktop" >
+      <div class="boost-pfs-filter-tree-mobile-button" >{% include 'boost-pfs-filter-skeleton', type: 'button' %}</div>
+      <div class="boost-pfs-filter-left-col">
+        <div class="boost-pfs-filter-tree boost-pfs-filter-tree-v" >
+          {% comment %} Include placeholder template {% endcomment %}
+          {%- unless enable_filter_tree_button_desktop_v -%}
+            {% render 'boost-pfs-filter-skeleton', type: 'filter-tree' %}
+          {%- endunless -%}
+        </div>
+      </div>
+
+      <div class="boost-pfs-filter-right-col filters-adjacent collection-listing ">
+        <div class="boost-pfs-filter-products product-list product-list--per-row-{{ section.settings.grid }} product-list--image-shape-{{ settings.prod_thumb_shape }}">
+          {%- liquid
+          if settings.prod_thumb_shape == 'portrait-23'
+            assign chosen_aspect_ratio = 0.67
+          elsif settings.prod_thumb_shape == 'portrait-45'
+            assign chosen_aspect_ratio = 0.8
+          elsif settings.prod_thumb_shape == 'square'
+            assign chosen_aspect_ratio = 1.0
+          elsif settings.prod_thumb_shape == 'landscape'
+            assign chosen_aspect_ratio = 1.50
+          elsif settings.prod_thumb_shape == 'tallest'
+            assign chosen_aspect_ratio = 99
+            for product in collection.products
+            if product.featured_media.preview_image.aspect_ratio < chosen_aspect_ratio
+              assign chosen_aspect_ratio = product.featured_media.preview_image.aspect_ratio
+            endif
+            endfor
+          else
+            assign chosen_aspect_ratio = 0
+            for product in collection.products
+            if product.featured_media.preview_image.aspect_ratio > chosen_aspect_ratio
+              assign chosen_aspect_ratio = product.featured_media.preview_image.aspect_ratio
+            endif
+            endfor
+          endif
+
+          if current_tags and filter_group_1_is_swatch
+            assign manual_image_load = true
+          else
+            assign manual_image_load = false
+          endif
+          -%}
+          {% for product in collection.products %}
+            {% render 'product-block', product: product, custom_aspect_ratio: chosen_aspect_ratio, manual_image_load: manual_image_load %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container pagination-row">
+    <div class="boost-pfs-filter-bottom-pagination container pagination-row"></div>
+    <div class="boost-pfs-filter-load-more"></div>
+  </div>
+
+
+  {% endpaginate %}
+
+  {% if collection.description != blank and section.settings.coll_desc_pos == 'below' %}
+    <div class="container container--reading-width fully-spaced-row">
+      <div class="user-content cf">{{ collection.description }}</div>
+    </div>
+  {% endif %}
+</div>
+{% assign options_to_show = settings.swatch_option_name | append: ',' | append: settings.prod_thumb_options_names | replace: ', ', ',' %}
+
+<script>
+  // Declare boostPFSThemeConfig variable
+  var boostPFSThemeConfig = {
+    label: {
+      sale: {{ 'products.labels.sale' | t | json }},
+      sold_out: {{ 'products.labels.sold_out' | t | json }},
+      preorder: {{ 'products.product.preorder' | t | json }},
+      listing: {{ 'products.listing.from' | t | json }},
+      add_to_cart: {{ 'products.product.add_to_cart' | t | json }},
+      vendor: {{ 'products.product.vendor' | t | json }},
+      sku: {{ 'products.product.sku' | t | json }},
+      read_more: {{ 'products.quick_buy.read_more' | t | json }},
+      from_price: {{ 'products.listing.from' | t | json }},
+      backorder: {{ 'products.product.backorder' | t | json }},
+      only_x_left: {{ 'products.labels.only_x_left' | t | json }},
+      previous: {{ 'general.pagination.previous' | t | json }},
+      next: {{ 'general.pagination.next' | t | json }},
+      quantity: {{ 'products.product.quantity' | t  | json }},
+      new_in: {{ 'products.labels.new_in' | t | json }},
+      only_x_left: {{ 'products.labels.only_x_left' | t | json }},
+      percent_reduction: {{ 'products.labels.percent_reduction' | t | json }},
+      value_reduction_html: {{ 'products.labels.value_reduction_html' | t | json }},
+      previous: {{ 'general.accessibility_labels.previous' | t | escape | json }},
+      next: {{ 'general.accessibility_labels.next' | t | escape | json }},
+      quick_buy:{{ 'products.quick_buy.launch' | t | json }},
+      more_swatches: {{ 'collections.general.more_swatches' | t | json }}
+    },
+    custom: {
+      products_per_page: {% if section.settings.coll_num_per_page_int != nil %} {{ section.settings.coll_num_per_page_int | json }} {% else %} 24 {% endif %},
+      grid: {% if section.settings.grid %} {{ section.settings.grid | json }} {% else %} 4 {% endif %},
+      prod_thumb_shape: {% if prod_thumb_shape %} {{ settings.prod_thumb_shape | json }} {% else %} false {% endif %},
+      quickbuy_style: {% if settings.quickbuy_style %} {{ settings.quickbuy_style | json }} {% else %} 'off' {% endif %},
+      prod_new_show: {% if settings.prod_new_show %} {{ settings.prod_new_show | json }} {% else %} false {% endif %},
+      prod_new_method: {% if settings.prod_new_method %} {{ settings.prod_new_method | json }} {% else %} '' {% endif %},
+      prod_new_limit_int: {% if settings.prod_new_limit_int %} {{ settings.prod_new_limit_int | json }} {% else %} 3 {% endif %},
+      prod_stock_warn_show: {% if settings.prod_stock_warn_show %} {{ settings.prod_stock_warn_show | json }} {% else %} false {% endif %},
+      prod_stock_warn_limit_int: {% if settings.prod_stock_warn_limit_int %} {{ settings.prod_stock_warn_limit_int | json }} {% else %} 0 {% endif %},
+      prod_reduction_show: {% if settings.prod_reduction_show %} {{ settings.prod_reduction_show | json }} {% else %} false {% endif %},
+      prod_reduction_type: {% if settings.prod_reduction_type %} {{ settings.prod_reduction_type | json }} {% else %} '' {% endif %},
+      thumb_variable_width: {% if settings.prod_thumb_variable_width != nil %} {{ settings.prod_thumb_variable_width | json }} {% else %} '' {% endif %},
+      show_vendor: {% if section.settings.show_vendor != nil %} {{ section.settings.show_vendor | json }} {% else %} false {% endif %},
+      blank_image_url: {{ 'blank.gif' | asset_url | json }},
+      prod_stock_warn_show: {% if settings.prod_stock_warn_show != nil %} {{ settings.prod_stock_warn_show | json }} {% else %} false {% endif %},
+      prod_stock_warn_limit: {% if settings.prod_stock_warn_limit_int != nil %} {{ settings.prod_stock_warn_limit_int | json }} {% else %} 0 {% endif %},
+      prod_thumb_height: {% if settings.prod_thumb_height != nil %} {{ settings.prod_thumb_height | json }} {% else %} 255 {% endif %},
+      prod_thumb_hover_image: {% if settings.prod_thumb_hover_image != nil %} {{ settings.prod_thumb_hover_image | json }} {% else %} false {% endif %},
+      prod_hov_type: {% if settings.prod_hov_type != nil %} {{ settings.prod_hov_type | json }} {% else %} "permanent" {% endif %},
+      enable_payment_button: {% if settings.enable_payment_button != nil %} {{ settings.enable_payment_button | json }} {% else %} false {% endif %},
+      prod_thumb_detail_show: {% if settings.prod_thumb_detail_show != nil %} {{ settings.prod_thumb_detail_show | json }} {% else %} false {% endif %},
+      swatch_enabled: {% if settings.swatch_enabled != nil %} {{ settings.swatch_enabled | json }} {% else %} false {% endif %},
+      swatch_option_name: {% if settings.swatch_option_name != nil %} {{ settings.swatch_option_name | json }} {% else %} "Color" {% endif %},
+      swatch_images: {% if settings.swatch_images != nil %} {{ settings.swatch_images | json }} {% else %} false {% endif %},
+      prod_sold_out_show: {% if settings.prod_sold_out_show %} {{ settings.prod_sold_out_show | json }} {% else %} false {% endif %},
+      prod_pre_order_label_show: {% if settings.prod_pre_order_label_show %} {{ settings.prod_pre_order_label_show | json }} {% else %} false {% endif %},
+      prod_sale_show: {% if settings.prod_sale_show %} {{ prod_sale_show | json }} {% else %} false {% endif %},
+      prod_thumb_show_options: {% if settings.prod_thumb_show_options %} {{ settings.prod_thumb_show_options | json }} {% else %} false {% endif %},
+      prod_thumb_options_names: {% if options_to_show %} {{ options_to_show | json }} {% else %} '' {% endif %},
+      chosen_aspect_ratio: {{ chosen_aspect_ratio | json }},
+    },
+  };
+
+  var boostPFSTemplate = {
+    'fixedWidthClass': 'fixed-width',
+    'hasThumbnailClass': 'has-thumbnails',
+    'noSkuClass': 'sku--no-sku',
+
+    // Grid Template
+    'vendorHtml': {% render 'boost-pfs-filter-html', layout: 'vendorHtml' %},
+    'skuHtml': {% render 'boost-pfs-filter-html', layout: 'skuHtml' %},
+    'productGridItemHtml': {% render 'boost-pfs-filter-html', layout: 'productGridItemHtml' %},
+
+    // Pagination Template
+    'previousDisabledHtml': {% render 'boost-pfs-filter-html', layout: 'previousDisabledHtml' %},
+    'previousActiveHtml': {% render 'boost-pfs-filter-html', layout: 'previousActiveHtml' %},
+    'nextDisabledHtml': {% render 'boost-pfs-filter-html', layout: 'nextDisabledHtml' %},
+    'nextActiveHtml': {% render 'boost-pfs-filter-html', layout: 'nextActiveHtml' %},
+    'pageItemHtml': {% render 'boost-pfs-filter-html', layout: 'pageItemHtml' %},
+    'pageItemSelectedHtml': {% render 'boost-pfs-filter-html', layout: 'pageItemSelectedHtml' %},
+    'pageItemRemainHtml': {% render 'boost-pfs-filter-html', layout: 'pageItemRemainHtml' %},
+    'paginateHtml': {% render 'boost-pfs-filter-html', layout: 'paginateHtml' %},
+
+    // Sorting Template
+    'sortingHtml': {% render 'boost-pfs-filter-html', layout: 'sortingHtml' %},
+  };
+</script>
+{% schema %}
+
+
+  {
+    "name": "Collection pages",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Heading"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_image_behind_heading",
+        "label": "Show collection image behind heading",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "heading_image_height",
+        "label": "Heading image height",
+        "options": [
+          {
+            "value": "small",
+            "label": "Compact"
+          },
+          {
+            "value": "medium",
+            "label": "Small"
+          },
+          {
+            "value": "large",
+            "label": "Medium"
+          },
+          {
+            "value": "huge",
+            "label": "Large"
+          }
+        ],
+        "default": "medium"
+      },
+      {
+        "id": "overlay_style",
+        "type": "select",
+        "label": "Overlay style",
+        "default": "shadow",
+        "options": [
+          {
+            "value": "full",
+            "label": "Tint"
+          },
+          {
+            "value": "box",
+            "label": "Box"
+          },
+          {
+            "value": "shadow",
+            "label": "Text shadow"
+          },
+          {
+            "value": "full image-overlay--bg-shadow",
+            "label": "Text shadow and tint"
+          },
+          {
+            "value": "no_background",
+            "label": "No background"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "Layout"
+      },
+      {
+        "type": "range",
+        "id": "coll_num_per_page_int",
+        "min": 16,
+        "max": 50,
+        "step": 2,
+        "label": "Number of products to show per page",
+        "default": 24
+      },
+      {
+        "type": "range",
+        "id": "grid",
+        "label": "Products per row",
+        "min": 2,
+        "max": 5,
+        "step": 1,
+        "default": 4
+      },
+      {
+        "type": "checkbox",
+        "id": "show_vendor",
+        "label": "Show product vendors",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "show_total",
+        "label": "Show product total",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "coll_desc_pos",
+        "label": "Description position",
+        "default": "above",
+        "options": [
+          {
+            "value": "above",
+            "label": "Below collection title"
+          },
+          {
+            "value": "below",
+            "label": "Below products"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "Filters"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_filtering",
+        "label": "Enable filtering",
+        "info": "[Customize filters](\/admin\/menus)",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "collapse_tag_sidebar_by_default",
+        "label": "Collapse filter column",
+        "default": false
+      },
+      {
+        "type": "select",
+        "id": "collapse_filters_method",
+        "label": "Filter row collapse",
+        "default": "over-12",
+        "options": [
+          {
+            "value": "none",
+            "label": "None"
+          },
+          {
+            "value": "over-6",
+            "label": "Over 6 items"
+          },
+          {
+            "value": "over-12",
+            "label": "Over 12 items"
+          },
+          {
+            "value": "over-18",
+            "label": "Over 18 items"
+          },
+          {
+            "value": "all",
+            "label": "All rows"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "show_filter_counts",
+        "label": "Show filter counts",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "ajax_products",
+        "label": "Filter and sort collections without loading a new page",
+        "default": true,
+        "info": "Some apps require this to be disabled"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_sticky_filter",
+        "label": "Enable stick on scroll",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "filter_two_columns",
+        "label": "Two column filter values",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "filter_two_columns_swatches",
+        "label": "Two column filter swatches",
+        "info": "Set up swatches in Theme settings > Products",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "coll_show_sort",
+        "label": "Show sorting dropdown",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "coll_show_feat",
+        "label": "Show 'Featured' in sorting dropdown",
+        "default": false
+      },
+      {
+        "type": "header",
+        "content": "Subcollections"
+      },
+      {
+        "type": "paragraph",
+        "content": "The current collection is located in the menu, and any other collections within that dropdown menu are displayed. [Read more](https://cleancanvas.co.uk/support/symmetry/subcollections)"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_subcoll",
+        "label": "Enable subcollections",
+        "info": "A menu must be selected below",
+        "default": true
+      },
+      {
+        "type": "link_list",
+        "id": "subcoll_menu",
+        "label": "Subcollections menu",
+        "info": "This is usually your main menu",
+        "default": "main-menu"
+      },
+      {
+        "type": "select",
+        "id": "subcoll_style",
+        "label": "Subcollections style",
+        "default": "buttons",
+        "options": [
+          {
+            "value": "buttons",
+            "label": "Buttons"
+          },
+          {
+            "value": "gallery",
+            "label": "Gallery"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "Subcollection gallery layout"
+      },
+      {
+        "type": "select",
+        "id": "subcoll_gall_shape",
+        "label": "Image shape",
+        "default": "sq",
+        "options": [
+          {
+            "value": "l-21",
+            "label": "Landscape (2x1)"
+          },
+          {
+            "value": "l-64",
+            "label": "Landscape (6x4)"
+          },
+          {
+            "value": "l-5x4",
+            "label": "Landscape (5x4)"
+          },
+          {
+            "value": "sq",
+            "label": "Square (1x1)"
+          },
+          {
+            "value": "p-4x5",
+            "label": "Portrait (4x5)"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "image_position",
+        "label": "Image alignment",
+        "info": "Used to keep the subject of your image in view",
+        "default": "center center",
+        "options": [
+          {
+            "value": "top left",
+            "label": "Top left"
+          },
+          {
+            "value": "top center",
+            "label": "Top center"
+          },
+          {
+            "value": "top right",
+            "label": "Top right"
+          },
+          {
+            "value": "center left",
+            "label": "Middle left"
+          },
+          {
+            "value": "center center",
+            "label": "Middle center"
+          },
+          {
+            "value": "center right",
+            "label": "Middle right"
+          },
+          {
+            "value": "bottom left",
+            "label": "Bottom left"
+          },
+          {
+            "value": "bottom center",
+            "label": "Bottom center"
+          },
+          {
+            "value": "bottom right",
+            "label": "Bottom right"
+          }
+        ]
+      },
+      {
+        "id": "subcoll_gall_enable_margin",
+        "type": "checkbox",
+        "label": "Add spacing",
+        "default": true
+      },
+      {
+        "id": "subcoll_gall_full_width",
+        "type": "checkbox",
+        "label": "Full page width",
+        "default": false
+      },
+      {
+        "id": "subcoll_gall_overlay_style",
+        "type": "select",
+        "label": "Overlay style",
+        "default": "shadow",
+        "options": [
+          {
+            "value": "full",
+            "label": "Tint"
+          },
+          {
+            "value": "box",
+            "label": "Box"
+          },
+          {
+            "value": "shadow",
+            "label": "Text shadow"
+          },
+          {
+            "value": "full image-overlay--bg-shadow",
+            "label": "Text shadow and tint"
+          },
+          {
+            "value": "no_background",
+            "label": "No background"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "subcoll_gall_text_alignment",
+        "label": "Text overlay position",
+        "options": [
+          {
+            "value": "top left",
+            "label": "Top left"
+          },
+          {
+            "value": "top center",
+            "label": "Top center"
+          },
+          {
+            "value": "top right",
+            "label": "Top right"
+          },
+          {
+            "value": "center center",
+            "label": "Middle"
+          },
+          {
+            "value": "bottom left",
+            "label": "Bottom left"
+          },
+          {
+            "value": "bottom center",
+            "label": "Bottom center"
+          },
+          {
+            "value": "bottom right",
+            "label": "Bottom right"
+          }
+        ],
+        "default": "center center"
+      },
+      {
+        "type": "select",
+        "id": "subcoll_gall_mobile_layout",
+        "label": "Mobile layout",
+        "info": "Mobile layout always uses 5x4 images",
+        "default": "2",
+        "options": [
+          {
+            "value": "1",
+            "label": "1 item"
+          },
+          {
+            "value": "2",
+            "label": "2 items"
+          },
+          {
+            "value": "hide",
+            "label": "Hide"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,101 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-list-collections",
+      "blocks": {
+        "5294cc2e-d679-4c9d-ae7f-7c11b4ee1f94": {
+          "type": "image",
+          "settings": {
+            "collection": "serenity"
+          }
+        },
+        "fc2a5201-8485-450a-88f6-759ec428d3e7": {
+          "type": "image",
+          "settings": {
+            "collection": "morris-co-x-august-berg"
+          }
+        },
+        "f7a0d9a2-1b6a-49d5-8e11-5818c872fee2": {
+          "type": "image",
+          "settings": {
+            "collection": "reflexion"
+          }
+        },
+        "b7c75b04-0e6c-47b1-a3aa-fcfbb5667fc8": {
+          "type": "image",
+          "settings": {
+            "collection": "straps"
+          }
+        }
+      },
+      "block_order": [
+        "5294cc2e-d679-4c9d-ae7f-7c11b4ee1f94",
+        "fc2a5201-8485-450a-88f6-759ec428d3e7",
+        "f7a0d9a2-1b6a-49d5-8e11-5818c872fee2",
+        "b7c75b04-0e6c-47b1-a3aa-fcfbb5667fc8"
+      ],
+      "settings": {
+        "title": "Our collections",
+        "display_type": "selected",
+        "grid": 4
+      }
+    },
+    "1645166521242298bd": {
+      "type": "image-with-text",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/jpg.jpg",
+        "image_width": 700,
+        "subheading": "DESIGN",
+        "title": "Serenity Collection",
+        "use_h1": false,
+        "text": "<p>August Berg's debut collection, Serenity, features luxury watches for women & men and available in 32mm and 40mm dials with three variations of watch straps – classic Milanese Mesh, genuine Italian leather, and our signature Perlon straps. Exclusively hand-picked by August Berg, and meticulously crafted, the unique Perlon straps are made using high-quality nylon, intricately woven and lined with Nubuck (cowhide leather) for a comfortable and breathable feel. These straps also feature invisible belt holes for a seamless and sleek look. ​<br\/><br\/>A new modern classic, designed by renowned Danish watch designer Magnus Joergensen, Serenity is uncompromising quality, style, and contemporary minimalism. A collection of affordable luxury watches that represent the best of Danish design traditions with a twist of modern features and colours, inspired by the Danish landscapes and scenery – from the deep blue skies and the jewel-toned waters of a Danish holiday.<\/p>",
+        "button_label": "SHOP NOW",
+        "button_link": "shopify:\/\/collections\/serenity",
+        "button_style": "primary",
+        "image_position": "left",
+        "text_alignment": "left",
+        "use_alt_bg": false
+      }
+    },
+    "1645160287b34cdc2d": {
+      "type": "image-with-text",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/resized_M1ST0538E17VRD_M1ST0538A16VID_M1ST0538E19VGN7_M1ST0530A19VGN7_M1ST05380A16VID_1_-min_3.jpg",
+        "image_width": 700,
+        "subheading": "DESIGN",
+        "title": "Morris & Co. x August Berg Collection",
+        "use_h1": false,
+        "text": "<p>Celebrating the elegant craftsmanship of William Morris, August Berg brings to life his iconic nature motifs through a selection of elegant yet minimalistic timepieces for both men and women.<\/p><p>The Morris & Co. collection is available in 30mm and 38mm dials with two variations of watch straps – August Berg’s signature Perlon strap and the classic Milanese Mesh. A tribute to Morris’ well-loved designs, the collection showcases a series of beloved Morris & Co. prints, including the iconic Pimpernel, Strawberry Thief, Love Is Enough, and Forest Hare; all of which are featured on the classic August Berg dials. Our William Morris watches exude a unique, timeless elegance without compromising functionality. This collection makes a great addition to the ever-popular William Morris accessories.<\/p>",
+        "button_label": "Read more",
+        "button_link": "shopify:\/\/pages\/morris-coxaugustberg",
+        "button_style": "primary",
+        "image_position": "left",
+        "text_alignment": "left",
+        "use_alt_bg": false
+      }
+    },
+    "164515988407f4d0a1": {
+      "type": "image-with-text",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/10438E12MSLS_3_ca179060-bdef-4124-970c-027417ccbc46.jpg",
+        "image_width": 700,
+        "subheading": "DESIGN",
+        "title": "Reflexion Collection",
+        "use_h1": false,
+        "text": "<p>Inspired by the importance of taking time to reflect on one's life. Reflexion emphasises the importance of taking time to reflect on how you and your loved ones are choosing to spend your time. The collection reiterates August Berg's key message of 'Time spent consciously is time well-spent'.<\/p><p>Reflexion features a slimmer and smaller case at 38mm complete with a mirror reflective dial emphasised by the purposeful lack of markers as a constant reminder to the wearer with an unobstructed reflection. Each Reflexion timepiece is paired with a matching Milanese Mesh strap to compliment the lustrous look. Those looking for a sleek, seamless and stunning timepiece will find Reflexion the watch for them, with its clean, minimalist design and just the right pop of colour.<\/p>",
+        "button_label": "SHOP NOW",
+        "button_link": "shopify:\/\/collections\/reflexion",
+        "button_style": "primary",
+        "image_position": "left",
+        "text_alignment": "left",
+        "use_alt_bg": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "1645166521242298bd",
+    "1645160287b34cdc2d",
+    "164515988407f4d0a1"
+  ]
+}

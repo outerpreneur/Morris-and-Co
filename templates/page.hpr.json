@@ -1,0 +1,54 @@
+{
+  "sections": {
+    "header": {
+      "type": "header-hpr",
+      "settings": {
+      }
+    },
+    "1660914812d5017f80": {
+      "type": "gallery",
+      "blocks": {
+        "1660914812de05ecda-0": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/social-responsibility.jpg",
+            "alignment": "center center",
+            "enlarge_image": false,
+            "subheading": "",
+            "title": "",
+            "button_label": "",
+            "link": "",
+            "text_alignment": "bottom left"
+          }
+        }
+      },
+      "block_order": [
+        "1660914812de05ecda-0"
+      ],
+      "settings": {
+        "grid": 1,
+        "desktop_image_height": 600,
+        "mobile_image_height": 400,
+        "title_size": 30,
+        "title_size_mobile": 22,
+        "enable_margin": false,
+        "full_width": false,
+        "use_alt_bg": false,
+        "enable_carousel": true,
+        "overlay_style": "no_background",
+        "button_style": "primary"
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "full_width": false
+      }
+    }
+  },
+  "order": [
+    "header",
+    "1660914812d5017f80",
+    "main"
+  ]
+}
