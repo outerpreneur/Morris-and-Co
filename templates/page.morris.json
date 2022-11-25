@@ -159,7 +159,7 @@
           "type": "html",
           "settings": {
             "width": "twentieth",
-            "code": "<style>\n.vl {\n  border-left: 1px solid gray;\n  height: 240px;\nmargin-left: auto;\nmargin-right: auto;\n}\n<\/style>\n\n<div class=\"vl\"><\/div>"
+            "code": "<style>\n.vl {\n  border-left: 1px solid gray;\n  height: 240px;\nmargin-left: auto;\nmargin-right: auto;\nwidth: 100%;\n}\n@media screen and (max-width: 767px){\n  .vl {\n    display: none;\n  }  \n}\n<\/style>\n\n<div class=\"vl\"><\/div>"
           }
         },
         "7465d709-6a15-421d-9480-3c8481c5b608": {
