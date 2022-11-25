@@ -41,9 +41,9 @@
         "image": "shopify:\/\/shop_images\/STP_Desktop.jpg",
         "image_width": 590,
         "subheading": "",
-        "title": "Image with text",
+        "title": "xxxxxxx",
         "use_h1": false,
-        "text": "<p>Pair text with an image to give customers insight into your brand. Tell a story, explain a product detail, or describe a new promotion.<\/p>",
+        "text": "<p>pesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.<\/p>",
         "button_label": "",
         "button_link": "",
         "button_style": "primary",
@@ -71,10 +71,10 @@
       "settings": {
         "image": "shopify:\/\/shop_images\/timefulness-about-2.jpg",
         "image_width": 700,
-        "subheading": "Timefulness",
+        "subheading": "Text",
         "title": "",
         "use_h1": false,
-        "text": "<p>This appreciation for the time we have - and what we choose to do with it is essential. At August Berg we call it, Timefulness.​<\/p>",
+        "text": "<p>pesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.<\/p>",
         "button_label": "",
         "button_link": "",
         "button_style": "primary",
@@ -102,10 +102,10 @@
       "settings": {
         "image": "shopify:\/\/shop_images\/hp-found.jpg",
         "image_width": 700,
-        "subheading": "Social Responsibility",
+        "subheading": "Text",
         "title": "",
         "use_h1": false,
-        "text": "<p>August Berg strives to make a positive difference in the lives of others. With every watch sold, August Berg gifts 6-months of quality education and, with 20,000 watches sold, August Berg will build a school for kids in local communities in rural Africa through Human Practice Foundation.​<\/p>",
+        "text": "<p>pesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.<\/p>",
         "button_label": "Learn more",
         "button_link": "",
         "button_style": "link",
@@ -122,8 +122,8 @@
           "settings": {
             "width": "half",
             "subheading": "",
-            "title": "Welcome",
-            "text": "<p>Use this text to share information about your store with your customers.<\/p><p>Describe products, share announcements, or welcome customers to your store.<\/p>",
+            "title": "xxxxxx",
+            "text": "<p>pesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.<\/p>",
             "button_label": "",
             "button_link": "",
             "button_style": "primary",
@@ -166,51 +166,6 @@
       "settings": {
         "alignment": "middle"
       }
-    },
-    "4b1c1eb0-c880-4552-9ae7-ee151ed124e9": {
-      "type": "custom-row",
-      "blocks": {
-        "template--16593299734755__4b1c1eb0-c880-4552-9ae7-ee151ed124e9-166937629205f346b2-0": {
-          "type": "image",
-          "settings": {
-            "width": "half",
-            "image": "shopify:\/\/shop_images\/BLACK_FRI_1_MOBILE.jpg",
-            "image_position": "center center",
-            "height": "adapt",
-            "height_desktop": 600,
-            "height_mobile": 500,
-            "subheading": "",
-            "title": "",
-            "text": "",
-            "enlarge_text": false,
-            "button_label": "",
-            "image_link": "",
-            "text_alignment": "center center",
-            "mobile_overlay_under": false,
-            "overlay_style": "shadow"
-          }
-        },
-        "template--16593299734755__4b1c1eb0-c880-4552-9ae7-ee151ed124e9-166937629205f346b2-1": {
-          "type": "text",
-          "settings": {
-            "width": "half",
-            "subheading": "",
-            "title": "Welcome",
-            "text": "<p>Use this text to share information about your store with your customers.<\/p><p>Describe products, share announcements, or welcome customers to your store.<\/p>",
-            "button_label": "",
-            "button_link": "",
-            "button_style": "primary",
-            "text_alignment": "center"
-          }
-        }
-      },
-      "block_order": [
-        "template--16593299734755__4b1c1eb0-c880-4552-9ae7-ee151ed124e9-166937629205f346b2-0",
-        "template--16593299734755__4b1c1eb0-c880-4552-9ae7-ee151ed124e9-166937629205f346b2-1"
-      ],
-      "settings": {
-        "alignment": "middle"
-      }
     }
   },
   "order": [
@@ -221,7 +176,6 @@
     "16609021926b1f542e",
     "dc45021e-f91c-4a08-ba90-506338f1ab3d",
     "16609028053a7c743a",
-    "ad921f47-d438-4014-9f6b-3f488590d351",
-    "4b1c1eb0-c880-4552-9ae7-ee151ed124e9"
+    "ad921f47-d438-4014-9f6b-3f488590d351"
   ]
 }
