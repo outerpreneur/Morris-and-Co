@@ -84,7 +84,7 @@
       "type": "featured-collection",
       "settings": {
         "title": "OUR LATEST PETIT CHRISTMAS COLLECTION",
-        "collection": "best-sellers",
+        "collection": "",
         "show_vendor": false,
         "enable_carousel": false,
         "grid": 5,
