@@ -133,14 +133,14 @@
         "fcb21a42-6ed7-4ff0-9c18-ed2cd18507cb": {
           "type": "html",
           "settings": {
-            "width": "quarter",
+            "width": "twentieth",
             "code": "<style>\n.vl {\n  border-left: 1px solid gray;\n  height: 240px;\nmargin-left: auto;\nmargin-right: auto;\n}\n<\/style>\n\n<div class=\"vl\"><\/div>"
           }
         },
         "7465d709-6a15-421d-9480-3c8481c5b608": {
           "type": "image",
           "settings": {
-            "width": "quarter",
+            "width": "third",
             "image": "shopify:\/\/shop_images\/web_banner_11.11_Mobile-100.jpg",
             "image_position": "center center",
             "height": "adapt",
