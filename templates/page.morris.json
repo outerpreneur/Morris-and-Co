@@ -11,7 +11,6 @@
     "6d859a71-d25b-4f76-b0cb-a557165de02c": {
       "type": "image-with-text-overlay",
       "settings": {
-        "image": "shopify:\/\/shop_images\/web_banner_11.11_Mobile-100.jpg",
         "image_position": "center center",
         "mobile_image_position": "center center",
         "height": "fixed",
@@ -38,7 +37,6 @@
     "0fdbb545-4a2f-4ab3-b103-acd4f06e347c": {
       "type": "image-with-text",
       "settings": {
-        "image": "shopify:\/\/shop_images\/STP_Desktop.jpg",
         "image_width": 590,
         "subheading": "",
         "title": "xxxxxxx",
@@ -56,7 +54,7 @@
       "type": "featured-collection",
       "settings": {
         "title": "DISCOVER OUR WATCH COLLECTION",
-        "collection": "best-sellers",
+        "collection": "",
         "show_vendor": false,
         "enable_carousel": false,
         "grid": 4,
@@ -69,7 +67,6 @@
     "16609021926b1f542e": {
       "type": "image-with-text",
       "settings": {
-        "image": "shopify:\/\/shop_images\/timefulness-about-2.jpg",
         "image_width": 700,
         "subheading": "Text",
         "title": "",
@@ -100,7 +97,6 @@
     "16609028053a7c743a": {
       "type": "image-with-text",
       "settings": {
-        "image": "shopify:\/\/shop_images\/hp-found.jpg",
         "image_width": 700,
         "subheading": "Text",
         "title": "",
@@ -141,7 +137,6 @@
           "type": "image",
           "settings": {
             "width": "third",
-            "image": "shopify:\/\/shop_images\/web_banner_11.11_Mobile-100.jpg",
             "image_position": "center center",
             "height": "adapt",
             "height_desktop": 600,
