@@ -66,6 +66,7 @@
     },
     "16609021926b1f542e": {
       "type": "image-with-text",
+      "disabled": true,
       "settings": {
         "image_width": 700,
         "subheading": "Text",
@@ -80,6 +81,50 @@
         "use_alt_bg": false
       }
     },
+    "c9bbe1ba-8099-4565-86cb-c4209c986ebb": {
+      "type": "custom-row",
+      "blocks": {
+        "template--16593299734755__c9bbe1ba-8099-4565-86cb-c4209c986ebb-166937629205f346b2-1": {
+          "type": "text",
+          "settings": {
+            "width": "half",
+            "subheading": "",
+            "title": "xxxxxxxx",
+            "text": "<p>pesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.<\/p>",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "primary",
+            "text_alignment": "center"
+          }
+        },
+        "template--16593299734755__c9bbe1ba-8099-4565-86cb-c4209c986ebb-166937629205f346b2-0": {
+          "type": "image",
+          "settings": {
+            "width": "half",
+            "image_position": "center center",
+            "height": "adapt",
+            "height_desktop": 600,
+            "height_mobile": 500,
+            "subheading": "",
+            "title": "",
+            "text": "",
+            "enlarge_text": false,
+            "button_label": "",
+            "image_link": "",
+            "text_alignment": "center center",
+            "mobile_overlay_under": false,
+            "overlay_style": "shadow"
+          }
+        }
+      },
+      "block_order": [
+        "template--16593299734755__c9bbe1ba-8099-4565-86cb-c4209c986ebb-166937629205f346b2-1",
+        "template--16593299734755__c9bbe1ba-8099-4565-86cb-c4209c986ebb-166937629205f346b2-0"
+      ],
+      "settings": {
+        "alignment": "middle"
+      }
+    },
     "dc45021e-f91c-4a08-ba90-506338f1ab3d": {
       "type": "featured-collection",
       "settings": {
@@ -92,22 +137,6 @@
         "use_alt_bg": false,
         "show_view_all": false,
         "full_width": false
-      }
-    },
-    "16609028053a7c743a": {
-      "type": "image-with-text",
-      "settings": {
-        "image_width": 700,
-        "subheading": "Text",
-        "title": "",
-        "use_h1": false,
-        "text": "<p>pesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.<\/p>",
-        "button_label": "",
-        "button_link": "",
-        "button_style": "link",
-        "image_position": "right",
-        "text_alignment": "center",
-        "use_alt_bg": false
       }
     },
     "ad921f47-d438-4014-9f6b-3f488590d351": {
@@ -169,8 +198,8 @@
     "0fdbb545-4a2f-4ab3-b103-acd4f06e347c",
     "90c2b149-898f-4a94-ab5e-946376594505",
     "16609021926b1f542e",
+    "c9bbe1ba-8099-4565-86cb-c4209c986ebb",
     "dc45021e-f91c-4a08-ba90-506338f1ab3d",
-    "16609028053a7c743a",
     "ad921f47-d438-4014-9f6b-3f488590d351"
   ]
 }
