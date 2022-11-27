@@ -1,5 +1,6 @@
 {
   "layout": "morris",
+  "wrapper": "div#morris.morris_class",
   "sections": {
     "main": {
       "type": "main-page",
