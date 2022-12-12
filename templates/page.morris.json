@@ -2,45 +2,45 @@
   "layout": "morris",
   "wrapper": "div#morris.morris_class",
   "sections": {
-    "image-with-text-overlay": {
-      "type": "image-with-text-overlay",
+    "06bf2f83-8adb-4368-b4d2-d56713b67f6b": {
+      "type": "image-with-text-overlay-and-logo",
       "settings": {
         "image_position": "center center",
         "mobile_image_position": "center center",
         "height": "fixed",
-        "height_desktop": 740,
+        "height_desktop": 700,
         "height_mobile": 460,
         "image_link": "",
         "subheading": "",
-        "title": "Exclusive collaboration",
+        "title": "Exclusive partnership",
         "title_size": 38,
-        "title_size_mobile": 36,
+        "title_size_mobile": 46,
         "use_h1": false,
-        "text": "<p>August Berg x Morris & Co<\/p>",
-        "enlarge_text": true,
+        "morris_logo": "shopify:\/\/shop_images\/Morris_AB_Logo_PNG.png",
+        "morris_logo_width": 155,
         "button_label_1": "",
         "button_url_1": "",
         "button_label_2": "",
         "button_url_2": "",
-        "text_alignment": "bottom center",
+        "text_alignment": "center center",
         "full_width": true,
-        "mobile_overlay_under": true,
+        "mobile_overlay_under": false,
         "overlay_style": "box"
       }
     },
-    "image-with-text": {
-      "type": "image-with-text",
+    "53952311-0bcb-40c1-b370-c7733a0d1b06": {
+      "type": "one-image-with-text",
       "settings": {
-        "image_width": 590,
+        "image_width": 700,
         "subheading": "",
-        "title": "xxxxxxx",
+        "title": "Image with text",
         "use_h1": false,
-        "text": "<p>pesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.<\/p>",
+        "text": "<p>Pair text with an image to give customers insight into your brand. Tell a story, explain a product detail, or describe a new promotion.<\/p>",
         "button_label": "",
         "button_link": "",
         "button_style": "primary",
         "image_position": "left",
-        "text_alignment": "center",
+        "text_alignment": "left",
         "use_alt_bg": false
       }
     },
@@ -170,8 +170,8 @@
     }
   },
   "order": [
-    "image-with-text-overlay",
-    "image-with-text",
+    "06bf2f83-8adb-4368-b4d2-d56713b67f6b",
+    "53952311-0bcb-40c1-b370-c7733a0d1b06",
     "featured-collection",
     "custom-row",
     "featured-collection-2",
