@@ -16,15 +16,14 @@
         "title_size": 42,
         "title_size_mobile": 46,
         "use_h1": false,
-        "morris_logo": "shopify:\/\/shop_images\/Morris_AB_Logo_PNG.png",
-        "morris_logo_width": 385,
+        "morris_logo_width": 255,
         "button_label_1": "",
         "button_url_1": "",
         "button_label_2": "",
         "button_url_2": "",
         "text_alignment": "bottom center",
         "full_width": true,
-        "mobile_overlay_under": false,
+        "mobile_overlay_under": true,
         "overlay_style": "box"
       }
     },
