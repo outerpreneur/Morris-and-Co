@@ -21,7 +21,7 @@
         "button_url_1": "",
         "button_label_2": "",
         "button_url_2": "",
-        "text_alignment": "center center",
+        "text_alignment": "bottom center",
         "full_width": true,
         "mobile_overlay_under": false,
         "overlay_style": "box"
