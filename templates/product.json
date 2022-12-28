@@ -18,7 +18,7 @@
         "402b3cab-3819-49ca-8b2e-8ea37458383e": {
           "type": "custom_liquid",
           "settings": {
-            "custom_liquid": "{%- liquid\n  assign current_variant = product.selected_or_first_available_variant\n-%}\n\n<p style=\"margin: 0; font-size: 12.75px\">or three payments of <strong>{{ current_variant.price | divided_by : 3 | money_with_currency }}<\/strong> with <strong>Splitit<\/strong><\/p>\n<p style=\"margin: 0 0 20px 0; font-size: 12.75px\">or three payments of <strong>{{ current_variant.price | divided_by : 3 | money_with_currency }} <\/strong> with <strong>Shopback<\/strong><\/p>",
+            "custom_liquid": "{%- liquid\n  assign current_variant = product.selected_or_first_available_variant\n-%}\n\n<p style=\"margin: 0; font-size: 12.75px\">or 3 payments of <strong>{{ current_variant.price | divided_by : 3 | money_with_currency }}<\/strong> with <strong>Splitit<\/strong><\/p>\n<p style=\"margin: 0 0 20px 0; font-size: 12.75px\">or 3 payments of <strong>{{ current_variant.price | divided_by : 3 | money_with_currency }} <\/strong> with <strong>Shopback<\/strong><\/p>",
             "show_in_quickbuy": false
           }
         },
