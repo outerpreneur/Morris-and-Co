@@ -1353,29 +1353,11 @@
         "settings": {
         }
       },
-      "17503894164445082576": {
-        "type": "shopify:\/\/apps\/helpcenter-faq-chat-helpdesk\/blocks\/contact-form-embed\/96ba30fd-9f2c-45e4-a753-8a1399d9a0d9",
-        "disabled": false,
-        "settings": {
-        }
-      },
-      "10839251823476779886": {
-        "type": "shopify:\/\/apps\/helpcenter-faq-chat-helpdesk\/blocks\/chat-embed\/96ba30fd-9f2c-45e4-a753-8a1399d9a0d9",
-        "disabled": false,
-        "settings": {
-        }
-      },
       "12120936241911852800": {
         "type": "shopify:\/\/apps\/judge-me-product-reviews\/blocks\/reviews_tab\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
         "disabled": true,
         "settings": {
           "position": "right"
-        }
-      },
-      "14017166734719355524": {
-        "type": "shopify:\/\/apps\/helpcenter-faq-chat-helpdesk\/blocks\/widget-embed\/96ba30fd-9f2c-45e4-a753-8a1399d9a0d9",
-        "disabled": false,
-        "settings": {
         }
       },
       "855628211100114053": {

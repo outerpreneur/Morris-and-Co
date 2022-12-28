@@ -118,6 +118,13 @@
             "open": false,
             "show_in_quickbuy": false
           }
+        },
+        "402b3cab-3819-49ca-8b2e-8ea37458383e": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<p>or three payments of {{- current_variant.price | money_with_currency -}}",
+            "show_in_quickbuy": false
+          }
         }
       },
       "block_order": [
@@ -132,7 +139,8 @@
         "da7760bb-9d76-427f-912f-2c228af04880",
         "a752feff-8527-4660-ba4e-ac590b888e15",
         "b3df1a1b-4e8c-4f54-9b27-8d9b0d21f39b",
-        "44bb4092-f155-40ab-8e84-2d03ccb21b5b"
+        "44bb4092-f155-40ab-8e84-2d03ccb21b5b",
+        "402b3cab-3819-49ca-8b2e-8ea37458383e"
       ],
       "settings": {
         "show_breadcrumbs": true,
@@ -221,7 +229,7 @@
       "disabled": true,
       "blocks": {
         "d0bf9273-a867-4c93-87b9-b480d02d3f74": {
-          "type": "shopify:\/\/apps\/related-products-also-bought\/blocks\/app-block-product\/75cf2d86-3988-45e7-8f28-ada23c99704f",
+          "type": "shopify:\/\/apps\/glo-related-products-upsell\/blocks\/app-block-product\/75cf2d86-3988-45e7-8f28-ada23c99704f",
           "settings": {
             "widget": "1",
             "gashortcode": ""
