@@ -174,6 +174,13 @@
                   </div>
                 {%- endif -%}
               </div>
+            
+            {% when 'payment' %}
+            {%- liquid assign current_variant = product.selected_or_first_available_variant-%}
+              
+              <p style="margin: 0; font-size: 12.75px">or 3 payments of <strong>{{ current_variant.price | divided_by : 3 | money_with_currency }} </strong> with <strong>Atome</strong></p>
+              <p style="margin: 0; font-size: 12.75px">or 3 payments of <strong>{{ current_variant.price | divided_by : 3 | money_with_currency }}</strong> with <strong>Splitit</strong></p>
+              <p style="margin: 0 0 3em 0; font-size: 12.75px">or 3 payments of <strong>{{ current_variant.price | divided_by : 3 | money_with_currency }} </strong> with <strong>Shopback</strong></p>
 
             {% when 'description' %}
               <div class="{% unless block.settings.show_in_quickbuy %}not-in-quickbuy{% endunless %}{% if block.settings.show_in_tab %} product-detail-accordion{% endif %}" {{ block.shopify_attributes }}>
