@@ -122,7 +122,7 @@
         "402b3cab-3819-49ca-8b2e-8ea37458383e": {
           "type": "custom_liquid",
           "settings": {
-            "custom_liquid": "<p>or three payments of {{ product.price | divided_by : 3 | money }} with Splitit<\/p>\n<p>or three payments of {{ product.price | divided_by : 3 | money }} with Shopback<\/p>",
+            "custom_liquid": "<p style=\"margin: 0\">or three payments of {{ product.price | divided_by : 3 | money }} with Splitit<\/p>\n<p>or three payments of {{ product.price | divided_by : 3 | money }} with Shopback<\/p>",
             "show_in_quickbuy": false
           }
         }
