@@ -15,6 +15,13 @@
             "enable_product_reviews_by_price": false
           }
         },
+        "402b3cab-3819-49ca-8b2e-8ea37458383e": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<p style=\"margin: 0; font-size: 12.75px\">or three payments of {{ product.price | divided_by : 3 | money }} with Splitit<\/p>\n<p style=\"margin: 0; font-size: 12.75px\">or three payments of {{ product.price | divided_by : 3 | money }} with Shopback<\/p>",
+            "show_in_quickbuy": false
+          }
+        },
         "205ab4af-c886-4bd5-a68e-a4c21b260bbc": {
           "type": "text",
           "disabled": true,
@@ -118,18 +125,12 @@
             "open": false,
             "show_in_quickbuy": false
           }
-        },
-        "402b3cab-3819-49ca-8b2e-8ea37458383e": {
-          "type": "custom_liquid",
-          "settings": {
-            "custom_liquid": "<p style=\"margin: 0\">or three payments of {{ product.price | divided_by : 3 | money }} with Splitit<\/p>\n<p>or three payments of {{ product.price | divided_by : 3 | money }} with Shopback<\/p>",
-            "show_in_quickbuy": false
-          }
         }
       },
       "block_order": [
         "title",
         "price",
+        "402b3cab-3819-49ca-8b2e-8ea37458383e",
         "205ab4af-c886-4bd5-a68e-a4c21b260bbc",
         "variant_picker",
         "31e50bc2-18a6-4a31-8c92-dd92060b8310",
@@ -139,8 +140,7 @@
         "da7760bb-9d76-427f-912f-2c228af04880",
         "a752feff-8527-4660-ba4e-ac590b888e15",
         "b3df1a1b-4e8c-4f54-9b27-8d9b0d21f39b",
-        "44bb4092-f155-40ab-8e84-2d03ccb21b5b",
-        "402b3cab-3819-49ca-8b2e-8ea37458383e"
+        "44bb4092-f155-40ab-8e84-2d03ccb21b5b"
       ],
       "settings": {
         "show_breadcrumbs": true,
