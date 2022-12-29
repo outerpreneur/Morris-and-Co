@@ -178,7 +178,7 @@
             {% when 'payment' %}
             {%- liquid assign current_variant = product.selected_or_first_available_variant-%}
               
-              <p style="margin: 0; font-size: 12.75px">or 3 payments of <strong>{{ current_variant.price | divided_by : 3 | money_with_currency }} </strong> with <strong>Atome</strong></p>
+              <p style="margin: 0; font-size: 12.75px">or 3 payments of <strong>{{ current_variant.price | divided_by : 3 | money_with_currency }} </strong> with <img class="atome-icon detail-atome-icon" style="background-color: inherit; opacity: 1; height: 12.75px !important; max-height: 18px; vertical-align: baseline !important; margin-top: 0px; margin-bottom: -1.82px; display: inline; width: initial; position: initial; font-size: inherit; " src="https://cdn.shopify.com/s/files/1/0031/6912/4401/files/images.png?v=1672309653">
               <p style="margin: 0; font-size: 12.75px">or 3 payments of <strong>{{ current_variant.price | divided_by : 3 | money_with_currency }}</strong> with <strong>Splitit</strong></p>
               <p style="margin: 0 0 3em 0; font-size: 12.75px">or 3 payments of <strong>{{ current_variant.price | divided_by : 3 | money_with_currency }} </strong> with <strong>Shopback</strong></p>
 
