@@ -6926,3 +6926,15 @@ function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableTo
 
 })(theme.jQuery);
 /* Built with Barry v1.0.7 */
+
+
+$('.cc-select').on('change', () => {
+  $updatePrice = $('.update-price')
+  $updatePrice.css('display', 'block')
+  console.log('clicked')
+})
+
+
+$('.update-price').on('click', () => {
+  window.location.reload();
+})
