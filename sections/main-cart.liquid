@@ -152,8 +152,8 @@
           <div class="checkout-subtotal-container__left column column--half">
             {% if section.settings.enable_cart_notes %}
               <div class="checkout-note" style= "max-width: 500px">
-                <img style="width: 49%; grid-area: photo1" crop="center" src="https://cdn.shopify.com/s/files/1/0031/6912/4401/files/Akademi_Primary_School_2_c7caaaf6-9cab-4a8c-8448-66519dcb9874.jpg?v=1675761634" | img_url>
-                <img style="width: 49%; grid-area: photo2" crop="center" src="https://cdn.shopify.com/s/files/1/0031/6912/4401/files/Billede3_68003aaa-a127-4f47-b2fd-771dc6a1c710.jpg?v=1675761634" | img_url>
+                <img style="grid-area: photo1" crop="center" src="https://cdn.shopify.com/s/files/1/0031/6912/4401/files/Akademi_Primary_School_2_c7caaaf6-9cab-4a8c-8448-66519dcb9874.jpg?v=1675761634" | img_url>
+                <img style="grid-area: photo2" crop="center" src="https://cdn.shopify.com/s/files/1/0031/6912/4401/files/Billede3_68003aaa-a127-4f47-b2fd-771dc6a1c710.jpg?v=1675761634" | img_url>
                 <label style= "grid-area: text" for="note">{{ 'cart.label.note' | t }}</label>
                 <div style= "grid-area: textarea; class="textareawrapper"><textarea id="note" name="note">{{ cart.note }}</textarea></div>
               </div>
