@@ -169,6 +169,10 @@
                  <p class="thank-you-message">Thank you for making a positive impact on childrens's lives</p>
                  <p class="key-details">Please key in your details below</p>
               </section>
+              <div class="checkout-note">
+<!--                 <label style= "grid-area: text" for="note">{{ 'cart.label.note' | t }}</label> -->
+                <div style= "grid-area: textarea; class="textareawrapper"><textarea id="note" name="note">{{ cart.note }}</textarea></div>
+              </div>
             {% endif %}
 
             {% if section.settings.show_shipping_calculator %}
