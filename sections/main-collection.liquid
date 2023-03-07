@@ -1,265 +1,324 @@
-{%- assign filter_tree_vertical_style = shop.metafields.bc-sf-filter.settings | split: 'general":' | last | split: 'filterTreeVerticalStyle":"' | last | split: '","' | first | strip -%}
-{%- assign enable_filter_sticky_d = shop.metafields.bc-sf-filter.settings | split: 'general":' | last | split: 'stickyFilterOnDesktop":' | last | split: ',' | first | strip -%}
+<div data-section-id="{{ section.id }}" data-section-type="collection-template" data-ajax-filtering="{{ section.settings.ajax_products }}" data-components="accordion,modal,price-range" data-cc-animate>
+{% paginate collection.products by section.settings.coll_num_per_page_int %}
 
-{%- assign enable_filter_tree_button_desktop_v = false -%}
-{%- if filter_tree_vertical_style == 'style-off-canvas' or filter_tree_vertical_style == 'style-expand' -%}
-  {%- assign enable_filter_tree_button_desktop_v = true -%}
-{%- endif -%}
+{%- liquid
+  if section.settings.show_image_behind_heading and collection.image
+    assign header_image_enabled = true
+  else
+    assign header_image_enabled = false
+  endif
+  assign current_sort = collection.sort_by | default: collection.default_sort_by
 
-{%- assign boost_settings = shop.metafields.bc-sf-filter.settings -%}
-{%- assign boost_in_collection_search = boost_settings | split: 'enableCollectionSearch":' | last | split: ',"' | first | strip -%}
-<div data-section-id="{{ section.id }}" data-section-type="collection-template" >
-  {% paginate collection.products by section.settings.coll_num_per_page_int %}
+  assign show_filters = section.settings.enable_filtering
+  if collection.filters == empty
+    assign show_filters = false
+  endif
+-%}
 
+{%- liquid
+  if section.settings.enable_subcoll and section.settings.subcoll_menu != blank
+    assign current_link_parent = false
+    for link in linklists[section.settings.subcoll_menu].links
+      if link.links != empty
+        if link.type == 'collection_link' and link.object.handle == collection.handle
+          assign current_link_parent = link
+          break
+        elsif link.type == 'catalog_link' and collection.handle == 'all'
+          assign current_link_parent = link
+          break
+        endif
+      endif
+      if link.links != blank and current_link_parent == false
+        for child_link in link.links
+          if child_link.type == 'collection_link' and child_link.object.handle == collection.handle
+            if child_link.links == empty
+              assign current_link_parent = link
+            else
+              assign current_link_parent = child_link
+            endif
+            break
+          endif
+          if child_link.type == 'catalog_link' and collection.handle == 'all'
+            if child_link.links == empty
+              assign current_link_parent = link
+            else
+              assign current_link_parent = child_link
+            endif
+            break
+          endif
+          if child_link.links != blank and current_link_parent == false
+            for child_child_link in child_link.links
+              if child_child_link.type == 'collection_link' and child_child_link.object.handle == collection.handle
+                assign current_link_parent = child_link
+                break
+              elsif child_child_link.type == 'catalog_link' and collection.handle == 'all'
+                assign current_link_parent = child_link
+                break
+              endif
+            endfor
+          endif
+        endfor
+      endif
+    endfor
+  endif
+-%}
+
+{%- if current_link_parent -%}
+  {%- assign subcoll_count = 0 -%}
+  {% capture subcollection_html %}
+    {% if section.settings.subcoll_style == 'buttons' %}
+      <div class="container">
+        <div class="subcollection-links subcollection-links--buttons align-center lightly-spaced-row-above{% if header_image_enabled %} image-overlay__over{% endif %}">
+          {%- for link in current_link_parent.links -%}
+            {%- unless link.object.handle == collection.handle or link.type != 'collection_link' -%}
+              {%- assign subcoll_count = subcoll_count | plus: 1 -%}
+              <a class="btn btn--tertiary" href="{{ link.url }}">{{ link.title | escape }}</a>
+            {%- endunless -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    {% else %}
+      {% unless section.settings.subcoll_gall_full_width %}
+        <div class="container container--not-mobile lightly-spaced-row-above lightly-spaced-row-above--not-mobile">
+      {% endunless %}
+      <div class="subcollection-links subcollection-links--gallery {% if section.settings.subcoll_gall_full_width %}subcollection-links--is-full-width{% endif %} {% if section.settings.subcoll_gall_mobile_layout == 'hide' %}desktop-only{% endif %} {% if header_image_enabled %}subcollection-links--under-image-header{% endif %}">
+        <div class="gallery slick-slider-overlay-dots {% if section.settings.subcoll_gall_enable_margin %} gallery--with-margins{% endif %}{% if section.settings.subcoll_gall_full_width and section.settings.subcoll_gall_enable_margin %} gallery--with-vertical-outer-padding{% endif %}"
+            data-mobile-item-count="{{ section.settings.subcoll_gall_mobile_layout }}">
+          {%- for link in current_link_parent.links -%}
+            {%- unless link.object.handle == collection.handle or link.type != 'collection_link' -%}
+              {%- assign subcoll_count = subcoll_count | plus: 1 -%}
+              <div class="gallery__item
+                  gallery__item--shape-fixed
+                  gallery__item--shape-{{ section.settings.subcoll_gall_shape }}
+                  gallery__item-{{ forloop.index }}
+                  image-overlay
+                  image-overlay--bg-{{ section.settings.subcoll_gall_overlay_style }}
+                  image-overlay--edge-boxes
+                  lazyload--placeholder
+                  {% unless section.settings.subcoll_gall_full_width and section.settings.subcoll_gall_enable_margin == false %}image-overlay--edge-boxes--pad-to-corner{% endunless %}
+                  ">
+                <a class="image-overlay__image-link" href="{{ link.url }}">
+                  {%- liquid
+                    if link.object.featured_image
+                      assign subcoll_image = link.object.featured_image
+                    else
+                      assign subcoll_image = false
+                    endif
+                  -%}
+                  {%- if subcoll_image -%}
+                    <div class="gallery__image rimage-outer-wrapper rimage-background lazyload--manual fade-in"
+                        data-bgset="{% render 'bgset', image: subcoll_image %}"
+                        data-sizes="auto"
+                        data-parent-fit="cover"
+                        style="background-position: {{ section.settings.image_position }}">
+                      <noscript>
+                        <div class="rimage-wrapper" style="padding-top:{{ 1 | divided_by: subcoll_image.aspect_ratio | times: 100 }}%">
+                          <img src="{{ subcoll_image | img_url: '512x512' }}" alt="{{ subcoll_image.alt | escape }}" class="rimage__image">
+                        </div>
+                      </noscript>
+                    </div>
+                  {%- else -%}
+                    <div class="gallery__image placeholder-image dark">
+                      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                    </div>
+                  {%- endif -%}
+
+                  <div class="overlay-text overlay--v-{{ section.settings.subcoll_gall_text_alignment | split: ' ' | first }} overlay--h-{{ section.settings.subcoll_gall_text_alignment | split: ' ' | last }} image-overlay__over">
+                    <div class="overlay-text__inner">
+                      <div class="overlay-text__text">
+                        <h2 class="overlay-text__title h4-style">{{ link.title }}</h2>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            {%- endunless -%}
+          {%- endfor -%}
+        </div>
+      </div>
+      {% unless section.settings.subcoll_gall_full_width %}
+        </div>
+      {% endunless %}
+    {% endif %}
+  {% endcapture %}
   {%- liquid
-    if section.settings.show_image_behind_heading and collection.featured_image
-      assign header_image_enabled = true
-    else
-      assign header_image_enabled = false
+    if subcoll_count < 2
+      assign subcollection_html = ''
     endif
   -%}
+{%- endif -%}
 
-
-  {% if header_image_enabled %}
-  <div class="page-header page-header--with-background page-header--background-desktop-only image-overlay image-overlay--bg-full page-header--padded-{{ section.settings.heading_image_height }} rimage-wrapper">
-    <div class="rimage-background lazyload fade-in"
-    data-bgset="{% render 'bgset', image: collection.image %}"
-    data-sizes="auto"
-    data-parent-fit="cover"></div>
-  {% else %}
-  {{ subcollection_html }}
-  <div class="page-header page-header--with-upper-spacing">
-  {% endif %}
-
-  {% if header_image_enabled %}
-    <div class="page-header-background-mobile-only image-overlay image-overlay--bg-full page-header--padded-{{ section.settings.heading_image_height }} rimage-wrapper">
+{% if header_image_enabled %}
+  <div class="page-header page-header--with-background page-header--background-desktop-only image-overlay image-overlay--bg-{{ section.settings.overlay_style }} page-header--padded-{{ section.settings.heading_image_height }} rimage-wrapper">
     <div class="rimage-background lazyload fade-in"
       data-bgset="{% render 'bgset', image: collection.image %}"
       data-sizes="auto"
       data-parent-fit="cover"></div>
-  {% endif %}
+    <div class="page-header-background-mobile-only image-overlay image-overlay--bg-{{ section.settings.overlay_style }} page-header--padded-{{ section.settings.heading_image_height }} rimage-wrapper">
+      <div class="rimage-background lazyload fade-in"
+        data-bgset="{% render 'bgset', image: collection.image %}"
+        data-sizes="auto"
+        data-parent-fit="cover"></div>
+      <div class="overlay-text overlay-text--inline overlay--v-center overlay--h-center image-overlay__over" data-cc-animate data-cc-animate-delay="0.2s">
+        <div class="overlay-text__inner">
+          <div class="overlay-text__text">
+            <h1 class="overlay-text__title super-large-text">{{ collection.title | escape }}</h1>
 
-    <div class="container">
-    
-    <h1 class="boost-pfs-filter-collection-header pagetitle {% if header_image_enabled %}image-overlay__over super-large-text{% else %}h3-style{% endif %}">{{ collection.title | escape }}</h1>
+            {% if collection.description != blank and section.settings.coll_desc_pos == 'above' %}
+              <div class="overlay-text__rte rte cf align-center reading-width large-text">{{ collection.description }}</div>
+            {% endif %}
 
-    {% if collection.metafields.custom.description.value != blank %}
-      <div class="collection-description">{{ collection.metafields.custom.description }}</div>
-    {% endif %}
-
-    {%- comment -%}
-    {% if collection.description != blank and section.settings.coll_desc_pos == 'above' %}
-      <div class="user-content cf align-center reading-width {% if header_image_enabled %}image-overlay__over{% endif %}">{{ collection.description }}</div>
-    {% endif %}
-    {%- endcomment -%}
+            {%- if current_link_parent and section.settings.subcoll_style == 'buttons' -%}
+              {{ subcollection_html }}
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
     </div>
-
-    {%- if current_link_parent and header_image_enabled and section.settings.subcoll_style == 'buttons' -%}
-    {{ subcollection_html }}
-    {%- endif -%}
-
-  {% if header_image_enabled %}
-    </div>
-  {% endif %}
   </div>
+{% else %}
+  {{ subcollection_html }}
+  <div class="page-header page-header--with-upper-spacing">
+    <div class="container">
+      <h1 class="pagetitle h3-style">{{ collection.title | escape }}</h1>
+
+      {% if collection.description != blank and section.settings.coll_desc_pos == 'above' %}
+        <div class="rte cf align-center reading-width">{{ collection.description }}</div>
+      {% endif %}
+    </div>
+  </div>
+{% endif %}
 
   {%- if current_link_parent and header_image_enabled and section.settings.subcoll_style != 'buttons' -%}
     {{ subcollection_html }}
   {%- endif -%}
 
   <div class="container{% if settings.use_fullwidth_layout %} container--no-max{% endif %}">
-    {% if boost_in_collection_search == 'true' %}
-      <div class="boost-pfs-in-collection-search">
-        {% render 'boost-pfs-filter-skeleton', width: 4 %}
-      </div>
-    {% endif %}
-    <div class="utility-bar {% if enable_filter_sticky_d and enable_filter_tree_button_desktop_v %} boost-pfs-filter-tree-desktop-button-sticky-wrapper {% endif %}" data-ajax-container data-ajax-scroll-to>
+    <div class="utility-bar" data-ajax-container data-ajax-scroll-to>
       <div class="utility-bar__left">
-        {% comment %}
-          {%- unless enable_filter_tree_button_desktop_v -%}
-            <a href="#" class="toggle-btn utility-bar__item{% if section.settings.collapse_tag_sidebar_by_default == false or current_tags %} toggle-btn--revealed-desktop{% endif %}" data-toggle-filters>
-              <span class="button-icon">{% render 'svg-filter' %}</span>
-              <span>{{ 'collections.filtering.filter' | t }}</span>
-              <span class="toggle-btn__chevron">{% render 'svg-chevron-right', stroke_width: 1.3 %}</span>
-            </a>
-          {%- endunless -%}
-        {% endcomment %}
-        {%- unless enable_filter_tree_button_desktop_v -%}
-          <div class="boost-pfs-filter-total-products"></div>
-        {%- endunless -%}
-        {%- if enable_filter_tree_button_desktop_v  -%}
-          <div class="boost-pfs-filter-tree-desktop-button">{%- render 'boost-pfs-filter-skeleton', type: 'button' -%}</div>
-        {%- endif -%}
-
+        {% if section.settings.coll_show_sort or show_filters %}
+          <a href="#" class="toggle-btn utility-bar__item{% if section.settings.collapse_tag_sidebar_by_default == false %} toggle-btn--revealed-desktop{% endif %}{% if show_filters == false %} mobile-only-flex{% endif %}" data-toggle-filters>
+            <span class="button-icon">{% render 'svg-filter' %}</span>
+            <span>{{ 'collections.filtering.filter' | t }}</span>
+            {% liquid
+              assign filter_count = 0
+              for filter in collection.filters
+                assign filter_count = filter_count | plus: filter.active_values.size
+                if filter.type == 'price_range'
+                  if filter.min_value.value != nil or filter.max_value.value != nil
+                    assign filter_count = filter_count | plus: 1
+                  endif
+                endif
+              endfor
+            %}
+            {% if filter_count > 0 %}
+              <span class="toggle-btn__count">({{ filter_count }})</span>
+            {% endif %}
+            <span class="toggle-btn__chevron">{% render 'svg-chevron-right', stroke_width: 1.3 %}</span>
+          </a>
+        {% endif %}
       </div>
-      {%- if enable_filter_tree_button_desktop_v  -%}
-        <div class="utility-bar__centre boost-pfs-filter-total-products">
+
+      {% if section.settings.show_total and paginate.items > 0 %}
+        <div class="utility-bar__centre">
+          <div class="utility-bar__item">{{ 'collections.general.product_count' | t: count: paginate.items }}</div>
         </div>
-      {%- endif -%}
+      {% endif %}
 
       <div class="utility-bar__right">
         {% if section.settings.coll_show_sort %}
-          <span class="utility-bar__item boost-pfs-filter-top-sorting desktop-only"></span>
+          <span class="utility-bar__item desktop-only">
+            <div class="link-dropdown link-dropdown--right-aligned">
+              <div class="visually-hidden" id="sort-dropdown-heading">{{ 'collections.sorting.title' | t | escape }}</div>
+              <button class="link-dropdown__button notabutton" aria-expanded="false" aria-controls="sort-dropdown-options" aria-describedby="sort-dropdown-heading">
+                <span class="link-dropdown__button-text">
+                  {%- for option in collection.sort_options -%}
+                    {%- if current_sort == option.value -%}
+                      {{ option.name | escape }}
+                      {%- break -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+                </span>
+                <span class="link-dropdown__button-icon">{% render 'svg-chevron-down', stroke_width: 1.3 %}</span>
+              </button>
+              <div class="link-dropdown__options" id="sort-dropdown-options">
+                {%- for option in collection.sort_options -%}
+                  {%- if option.value != 'manual' or section.settings.coll_show_feat or collection.default_sort_by == 'manual' -%}
+                    <a href="{{ request.path | sort_by: option.value | escape }}" class="link-dropdown__link{% if current_sort == option.value %} link-dropdown__link--active{% endif %}">{{ option.name | escape }}</a>
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+            </div>
+          </span>
+        {% endif %}
+        <span class="utility-bar__item mobile-only">
+          <div class="layout-switchers">
+            <a class="layout-switch layout-switch--two-columns layout-switch--active" href="#">{%- render 'svg-grid', stroke_width: 1.3 -%}</a>
+            <a class="layout-switch layout-switch--one-column" href="#">{%- render 'svg-box', stroke_width: 1.3 -%}</a>
+          </div>
+        </span>
+      </div>
+    </div>
+
+    <div class="filter-container filter-container--side{% if section.settings.collapse_tag_sidebar_by_default == false %} filter-container--show-filters-desktop{% endif %}" data-ajax-container>
+      {% if section.settings.coll_show_sort or show_filters %}
+        {% render 'faceted-filters', filter_context: collection, clear_url: collection.url, current_sort: current_sort %}
+      {% endif %}
+
+      <div class="filters-adjacent collection-listing">
+        {% if collection.products.size == 0 %}
+          <h5 class="align-centre fully-spaced-row">{{ 'collections.general.no_matches' | t }}</h5>
+        {% else %}
+          <div class="product-list product-list--per-row-{{ section.settings.grid }} product-list--image-shape-{{ settings.prod_thumb_shape }}">
+            {%- liquid
+              if settings.prod_thumb_shape == 'portrait-23'
+                assign chosen_aspect_ratio = 0.67
+              elsif settings.prod_thumb_shape == 'portrait-45'
+                assign chosen_aspect_ratio = 0.8
+              elsif settings.prod_thumb_shape == 'square'
+                assign chosen_aspect_ratio = 1.0
+              elsif settings.prod_thumb_shape == 'landscape-54'
+                assign chosen_aspect_ratio = 1.25
+              elsif settings.prod_thumb_shape == 'landscape-32'
+                assign chosen_aspect_ratio = 1.50
+              elsif settings.prod_thumb_shape == 'tallest'
+                assign chosen_aspect_ratio = 99
+                for product in collection.products
+                  if product.featured_media.preview_image.aspect_ratio < chosen_aspect_ratio
+                    assign chosen_aspect_ratio = product.featured_media.preview_image.aspect_ratio
+                  endif
+                endfor
+              else
+                assign chosen_aspect_ratio = 0
+                for product in collection.products
+                  if product.featured_media.preview_image.aspect_ratio > chosen_aspect_ratio
+                    assign chosen_aspect_ratio = product.featured_media.preview_image.aspect_ratio
+                  endif
+                endfor
+              endif
+            -%}
+            {% for product in collection.products %}
+              {% render 'product-block', product: product, custom_aspect_ratio: chosen_aspect_ratio, animate: true %}
+            {% endfor %}
+          </div>
         {% endif %}
       </div>
     </div>
-
-    <div class="boost-pfs-filter-wrapper filter-container filter-container--show-filters-desktop" >
-      <div class="boost-pfs-filter-tree-mobile-button" >{% include 'boost-pfs-filter-skeleton', type: 'button' %}</div>
-      <div class="boost-pfs-filter-left-col">
-        <div class="boost-pfs-filter-tree boost-pfs-filter-tree-v" >
-          {% comment %} Include placeholder template {% endcomment %}
-          {%- unless enable_filter_tree_button_desktop_v -%}
-            {% render 'boost-pfs-filter-skeleton', type: 'filter-tree' %}
-          {%- endunless -%}
-        </div>
-      </div>
-
-      <div class="boost-pfs-filter-right-col filters-adjacent collection-listing ">
-        <div class="boost-pfs-filter-products product-list product-list--per-row-{{ section.settings.grid }} product-list--image-shape-{{ settings.prod_thumb_shape }}">
-          {%- liquid
-          if settings.prod_thumb_shape == 'portrait-23'
-            assign chosen_aspect_ratio = 0.67
-          elsif settings.prod_thumb_shape == 'portrait-45'
-            assign chosen_aspect_ratio = 0.8
-          elsif settings.prod_thumb_shape == 'square'
-            assign chosen_aspect_ratio = 1.0
-          elsif settings.prod_thumb_shape == 'landscape'
-            assign chosen_aspect_ratio = 1.50
-          elsif settings.prod_thumb_shape == 'tallest'
-            assign chosen_aspect_ratio = 99
-            for product in collection.products
-            if product.featured_media.preview_image.aspect_ratio < chosen_aspect_ratio
-              assign chosen_aspect_ratio = product.featured_media.preview_image.aspect_ratio
-            endif
-            endfor
-          else
-            assign chosen_aspect_ratio = 0
-            for product in collection.products
-            if product.featured_media.preview_image.aspect_ratio > chosen_aspect_ratio
-              assign chosen_aspect_ratio = product.featured_media.preview_image.aspect_ratio
-            endif
-            endfor
-          endif
-
-          if current_tags and filter_group_1_is_swatch
-            assign manual_image_load = true
-          else
-            assign manual_image_load = false
-          endif
-          -%}
-          {% for product in collection.products %}
-            {% render 'product-block', product: product, custom_aspect_ratio: chosen_aspect_ratio, manual_image_load: manual_image_load %}
-          {% endfor %}
-        </div>
-      </div>
-    </div>
   </div>
 
-  <div class="container pagination-row">
-    <div class="boost-pfs-filter-bottom-pagination container pagination-row"></div>
-    <div class="boost-pfs-filter-load-more"></div>
-  </div>
-
+  <div class="container pagination-row" data-ajax-container>{% render 'pagination-control', paginate: paginate %}</div>
 
   {% endpaginate %}
 
   {% if collection.description != blank and section.settings.coll_desc_pos == 'below' %}
-    <div class="container container--reading-width fully-spaced-row">
-      <div class="user-content cf">{{ collection.description }}</div>
+    <div class="container container--reading-width fully-spaced-row" data-cc-animate>
+      <div class="rte cf">{{ collection.description }}</div>
     </div>
   {% endif %}
 </div>
-{% assign options_to_show = settings.swatch_option_name | append: ',' | append: settings.prod_thumb_options_names | replace: ', ', ',' %}
 
-<script>
-  // Declare boostPFSThemeConfig variable
-  var boostPFSThemeConfig = {
-    label: {
-      sale: {{ 'products.labels.sale' | t | json }},
-      sold_out: {{ 'products.labels.sold_out' | t | json }},
-      preorder: {{ 'products.product.preorder' | t | json }},
-      listing: {{ 'products.listing.from' | t | json }},
-      add_to_cart: {{ 'products.product.add_to_cart' | t | json }},
-      vendor: {{ 'products.product.vendor' | t | json }},
-      sku: {{ 'products.product.sku' | t | json }},
-      read_more: {{ 'products.quick_buy.read_more' | t | json }},
-      from_price: {{ 'products.listing.from' | t | json }},
-      backorder: {{ 'products.product.backorder' | t | json }},
-      only_x_left: {{ 'products.labels.only_x_left' | t | json }},
-      previous: {{ 'general.pagination.previous' | t | json }},
-      next: {{ 'general.pagination.next' | t | json }},
-      quantity: {{ 'products.product.quantity' | t  | json }},
-      new_in: {{ 'products.labels.new_in' | t | json }},
-      only_x_left: {{ 'products.labels.only_x_left' | t | json }},
-      percent_reduction: {{ 'products.labels.percent_reduction' | t | json }},
-      value_reduction_html: {{ 'products.labels.value_reduction_html' | t | json }},
-      previous: {{ 'general.accessibility_labels.previous' | t | escape | json }},
-      next: {{ 'general.accessibility_labels.next' | t | escape | json }},
-      quick_buy:{{ 'products.quick_buy.launch' | t | json }},
-      more_swatches: {{ 'collections.general.more_swatches' | t | json }}
-    },
-    custom: {
-      products_per_page: {% if section.settings.coll_num_per_page_int != nil %} {{ section.settings.coll_num_per_page_int | json }} {% else %} 24 {% endif %},
-      grid: {% if section.settings.grid %} {{ section.settings.grid | json }} {% else %} 4 {% endif %},
-      prod_thumb_shape: {% if prod_thumb_shape %} {{ settings.prod_thumb_shape | json }} {% else %} false {% endif %},
-      quickbuy_style: {% if settings.quickbuy_style %} {{ settings.quickbuy_style | json }} {% else %} 'off' {% endif %},
-      prod_new_show: {% if settings.prod_new_show %} {{ settings.prod_new_show | json }} {% else %} false {% endif %},
-      prod_new_method: {% if settings.prod_new_method %} {{ settings.prod_new_method | json }} {% else %} '' {% endif %},
-      prod_new_limit_int: {% if settings.prod_new_limit_int %} {{ settings.prod_new_limit_int | json }} {% else %} 3 {% endif %},
-      prod_stock_warn_show: {% if settings.prod_stock_warn_show %} {{ settings.prod_stock_warn_show | json }} {% else %} false {% endif %},
-      prod_stock_warn_limit_int: {% if settings.prod_stock_warn_limit_int %} {{ settings.prod_stock_warn_limit_int | json }} {% else %} 0 {% endif %},
-      prod_reduction_show: {% if settings.prod_reduction_show %} {{ settings.prod_reduction_show | json }} {% else %} false {% endif %},
-      prod_reduction_type: {% if settings.prod_reduction_type %} {{ settings.prod_reduction_type | json }} {% else %} '' {% endif %},
-      thumb_variable_width: {% if settings.prod_thumb_variable_width != nil %} {{ settings.prod_thumb_variable_width | json }} {% else %} '' {% endif %},
-      show_vendor: {% if section.settings.show_vendor != nil %} {{ section.settings.show_vendor | json }} {% else %} false {% endif %},
-      blank_image_url: {{ 'blank.gif' | asset_url | json }},
-      prod_stock_warn_show: {% if settings.prod_stock_warn_show != nil %} {{ settings.prod_stock_warn_show | json }} {% else %} false {% endif %},
-      prod_stock_warn_limit: {% if settings.prod_stock_warn_limit_int != nil %} {{ settings.prod_stock_warn_limit_int | json }} {% else %} 0 {% endif %},
-      prod_thumb_height: {% if settings.prod_thumb_height != nil %} {{ settings.prod_thumb_height | json }} {% else %} 255 {% endif %},
-      prod_thumb_hover_image: {% if settings.prod_thumb_hover_image != nil %} {{ settings.prod_thumb_hover_image | json }} {% else %} false {% endif %},
-      prod_hov_type: {% if settings.prod_hov_type != nil %} {{ settings.prod_hov_type | json }} {% else %} "permanent" {% endif %},
-      enable_payment_button: {% if settings.enable_payment_button != nil %} {{ settings.enable_payment_button | json }} {% else %} false {% endif %},
-      prod_thumb_detail_show: {% if settings.prod_thumb_detail_show != nil %} {{ settings.prod_thumb_detail_show | json }} {% else %} false {% endif %},
-      swatch_enabled: {% if settings.swatch_enabled != nil %} {{ settings.swatch_enabled | json }} {% else %} false {% endif %},
-      swatch_option_name: {% if settings.swatch_option_name != nil %} {{ settings.swatch_option_name | json }} {% else %} "Color" {% endif %},
-      swatch_images: {% if settings.swatch_images != nil %} {{ settings.swatch_images | json }} {% else %} false {% endif %},
-      prod_sold_out_show: {% if settings.prod_sold_out_show %} {{ settings.prod_sold_out_show | json }} {% else %} false {% endif %},
-      prod_pre_order_label_show: {% if settings.prod_pre_order_label_show %} {{ settings.prod_pre_order_label_show | json }} {% else %} false {% endif %},
-      prod_sale_show: {% if settings.prod_sale_show %} {{ prod_sale_show | json }} {% else %} false {% endif %},
-      prod_thumb_show_options: {% if settings.prod_thumb_show_options %} {{ settings.prod_thumb_show_options | json }} {% else %} false {% endif %},
-      prod_thumb_options_names: {% if options_to_show %} {{ options_to_show | json }} {% else %} '' {% endif %},
-      chosen_aspect_ratio: {{ chosen_aspect_ratio | json }},
-    },
-  };
 
-  var boostPFSTemplate = {
-    'fixedWidthClass': 'fixed-width',
-    'hasThumbnailClass': 'has-thumbnails',
-    'noSkuClass': 'sku--no-sku',
-
-    // Grid Template
-    'vendorHtml': {% render 'boost-pfs-filter-html', layout: 'vendorHtml' %},
-    'skuHtml': {% render 'boost-pfs-filter-html', layout: 'skuHtml' %},
-    'productGridItemHtml': {% render 'boost-pfs-filter-html', layout: 'productGridItemHtml' %},
-
-    // Pagination Template
-    'previousDisabledHtml': {% render 'boost-pfs-filter-html', layout: 'previousDisabledHtml' %},
-    'previousActiveHtml': {% render 'boost-pfs-filter-html', layout: 'previousActiveHtml' %},
-    'nextDisabledHtml': {% render 'boost-pfs-filter-html', layout: 'nextDisabledHtml' %},
-    'nextActiveHtml': {% render 'boost-pfs-filter-html', layout: 'nextActiveHtml' %},
-    'pageItemHtml': {% render 'boost-pfs-filter-html', layout: 'pageItemHtml' %},
-    'pageItemSelectedHtml': {% render 'boost-pfs-filter-html', layout: 'pageItemSelectedHtml' %},
-    'pageItemRemainHtml': {% render 'boost-pfs-filter-html', layout: 'pageItemRemainHtml' %},
-    'paginateHtml': {% render 'boost-pfs-filter-html', layout: 'paginateHtml' %},
-
-    // Sorting Template
-    'sortingHtml': {% render 'boost-pfs-filter-html', layout: 'sortingHtml' %},
-  };
-</script>
 {% schema %}
-
-
   {
     "name": "Collection pages",
     "settings": [
